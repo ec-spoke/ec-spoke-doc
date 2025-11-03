@@ -1,0 +1,2399 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="EC-SPOKE プロジェクトのドキュメント集">
+      
+      
+      
+      
+        <link rel="prev" href="../EC-SPOKE%E9%85%8D%E4%BB%98%E6%A7%8B%E6%83%B3/">
+      
+      
+        <link rel="next" href="../%E4%BE%A1%E6%A0%BC%E8%A8%88%E7%AE%97/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>注文計算方式 - EC-SPOKE ドキュメント</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CNoto+Sans+JP:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"Noto Sans JP"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Noto-Sans-JP" data-md-color-accent="Noto-Sans-JP">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="EC-SPOKE ドキュメント" class="md-header__button md-logo" aria-label="EC-SPOKE ドキュメント" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EC-SPOKE ドキュメント
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              注文計算方式
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="Noto-Sans-JP" data-md-color-accent="Noto-Sans-JP"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="Noto-Sans-JP" data-md-color-accent="Noto-Sans-JP"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../EC-SPOKE%E9%85%8D%E4%BB%98%E6%A7%8B%E6%83%B3/" class="md-tabs__link">
+          
+  
+  
+  設計資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../DB%E5%AE%9A%E7%BE%A9/DB%E5%AE%9A%E7%BE%A9%E6%A6%82%E8%A6%81/" class="md-tabs__link">
+          
+  
+  
+  DB定義
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EC-SPOKE ドキュメント" class="md-nav__button md-logo" aria-label="EC-SPOKE ドキュメント" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    EC-SPOKE ドキュメント
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ホーム
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    設計資料
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            設計資料
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EC-SPOKE%E9%85%8D%E4%BB%98%E6%A7%8B%E6%83%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC-SPOKE配付構想
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    注文計算方式
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    注文計算方式
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      概要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本方針
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本方針">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      単一カート方式（単一決済方式）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      親注文・子注文のリレーション管理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      責任境界線
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="責任境界線">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      送料系（子注文単位）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      手数料
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      課税対象別値引（子注文単位）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      全体対象値引グループ（親注文単位）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      責任境界線の修正
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      メール送信の責任
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="メール送信の責任">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      注文メール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      部分出荷メール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      全体出荷メール
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      端数処理設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="端数処理設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      端数処理設定の種類
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      端数処理の種類
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      適格請求書対応の計算ルール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="適格請求書対応の計算ルール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      明細種別と課税区分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      明細行フォーマット
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      不課税分の按分計算
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="不課税分の按分計算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      計算手順
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      計算精度の保証
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      複数税率の扱い
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="複数税率の扱い">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      計算順序
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      処理方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      エラーハンドリング
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="エラーハンドリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      例外ケース
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      計算例（複数税率で一部が0円の場合）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      関連ドキュメント
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      今後の拡張予定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今後の拡張予定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BE%A1%E6%A0%BC%E8%A8%88%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    価格計算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E8%BF%91%E6%8E%A5%E9%85%8D%E7%BD%AE%E3%81%AB%E4%BC%B4%E3%81%86%E5%AF%BE%E5%BF%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    近接配置に伴う対応
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DB定義
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            DB定義
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DB定義概要
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            DB定義概要
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/DB%E5%AE%9A%E7%BE%A9%E6%A6%82%E8%A6%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    データベース定義書
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    商品系
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            商品系
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/PRODUCT_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    商品系概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/brands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    brands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/categories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    categories
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/category_product_rel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    category_product_rel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/products/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    products
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_tags_rel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_tags_rel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_mst_rel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_mst_rel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_mst_val_combs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_mst_val_combs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_mst_vals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_mst_vals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_msts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_msts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_vars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_vars
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    tags
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    マスター
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            マスター
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/MASTER_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    マスター概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/countries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    countries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/currencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    currencies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/genders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    genders
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    jobs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/prefectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    prefectures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/register_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    register_types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/tax_rates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    tax_rates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      概要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本方針
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本方針">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      単一カート方式（単一決済方式）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      親注文・子注文のリレーション管理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      責任境界線
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="責任境界線">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      送料系（子注文単位）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      手数料
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      課税対象別値引（子注文単位）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      全体対象値引グループ（親注文単位）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      責任境界線の修正
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      メール送信の責任
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="メール送信の責任">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      注文メール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      部分出荷メール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      全体出荷メール
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      端数処理設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="端数処理設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      端数処理設定の種類
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      端数処理の種類
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      適格請求書対応の計算ルール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="適格請求書対応の計算ルール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      明細種別と課税区分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      明細行フォーマット
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      不課税分の按分計算
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="不課税分の按分計算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      計算手順
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      計算精度の保証
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      複数税率の扱い
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="複数税率の扱い">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      計算順序
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      処理方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      エラーハンドリング
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="エラーハンドリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      例外ケース
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      計算例（複数税率で一部が0円の場合）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      関連ドキュメント
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      今後の拡張予定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今後の拡張予定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">注文計算方式設計</h1>
+<h2 id="_2">概要</h2>
+<p>EC-SPOKEシステムにおける注文計算方式の設計仕様です。ECCUBEと異なる単一カート方式（単一決済方式）を採用し、親注文・子注文のリレーション管理による責任境界を明確にした計算システムを定義します。</p>
+<h2 id="_3">基本方針</h2>
+<h3 id="_4">単一カート方式（単一決済方式）</h3>
+<ul>
+<li><strong>採用理由</strong>: ECCUBEと異なるアプローチで、より柔軟な価格計算と責任境界の明確化を実現</li>
+<li><strong>特徴</strong>: 注文時にレジ種別ごとに子注文を生成し、リレーション管理を行う</li>
+<li><strong>計算の複雑さ</strong>: 単一カート方式は計算が複雑になるが、明確な責任境界線により管理可能</li>
+</ul>
+<h3 id="_5">親注文・子注文のリレーション管理</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>親注文（Order）
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── 子注文1（OrderItem - レジ種別A）
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── 子注文2（OrderItem - レジ種別B）
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>└── 子注文3（OrderItem - レジ種別C）
+</code></pre></div>
+<h2 id="_6">責任境界線</h2>
+<h3 id="_7">送料系（子注文単位）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>責任範囲</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>送料</td>
+<td>子注文（レジ種別毎）</td>
+<td>各レジ種別ごとに送料を計算・管理</td>
+</tr>
+<tr>
+<td>送料無料条件</td>
+<td>子注文（レジ種別毎）</td>
+<td>レジ種別ごとの送料無料条件を適用</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">手数料</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>責任範囲</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代引手数料</td>
+<td>子注文（レジ種別毎）</td>
+<td>各レジ種別ごとの代引手数料</td>
+</tr>
+<tr>
+<td>決済手数料</td>
+<td>親注文</td>
+<td>全体の決済手数料</td>
+</tr>
+<tr>
+<td>購読管理手数料</td>
+<td>子注文（レジ種別毎）</td>
+<td>レジ種別ごとの購読管理手数料</td>
+</tr>
+<tr>
+<td>ギフト包装料</td>
+<td>子注文（レジ種別毎）</td>
+<td>レジ種別ごとのギフト包装料</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">課税対象別値引（子注文単位）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>責任範囲</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>課税対象別値引</td>
+<td>子注文（レジ種別毎）</td>
+<td>各レジ種別ごとの課税対象値引</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">全体対象値引グループ（親注文単位）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>責任範囲</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全体対象値引</td>
+<td>親注文</td>
+<td>注文全体に適用される値引</td>
+</tr>
+<tr>
+<td>クーポン値引</td>
+<td>親注文</td>
+<td>クーポンによる値引</td>
+</tr>
+<tr>
+<td>ポイント値引</td>
+<td>親注文</td>
+<td>ポイントによる値引</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">責任境界線の修正</h3>
+<p>各項目の責任境界線の修正は、それぞれの管理画面にて行います。</p>
+<h2 id="_12">メール送信の責任</h2>
+<h3 id="_13">注文メール</h3>
+<ul>
+<li><strong>送信単位</strong>: 親注文単位</li>
+<li><strong>対象</strong>: フロントでの注文履歴表示</li>
+<li><strong>内容</strong>: 注文全体の情報</li>
+</ul>
+<h3 id="_14">部分出荷メール</h3>
+<ul>
+<li><strong>送信単位</strong>: 子注文単位</li>
+<li><strong>対象</strong>: 部分出荷時の通知</li>
+<li><strong>内容</strong>: 該当する子注文の情報のみ</li>
+</ul>
+<h3 id="_15">全体出荷メール</h3>
+<ul>
+<li><strong>送信単位</strong>: 親注文単位</li>
+<li><strong>対象</strong>: 全体出荷時の通知</li>
+<li><strong>制限</strong>: 部分出荷メールが送信済みの場合、親注文からは出荷メール送信は不可</li>
+</ul>
+<h2 id="_16">端数処理設定</h2>
+<h3 id="_17">端数処理設定の種類</h3>
+<p>EC-SPOKEでは、計算用途に応じて2種類の端数処理設定を使い分けます。</p>
+<table>
+<thead>
+<tr>
+<th>設定種類</th>
+<th>用途</th>
+<th>適用場面</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>税込計算用端数処理設定</strong></td>
+<td>税抜価格から税込価格を計算する際の端数処理</td>
+<td>商品価格の税込表示、カート内の商品単価表示、フロントエンドでの価格表示</td>
+</tr>
+<tr>
+<td><strong>レジ計算用端数処理設定</strong></td>
+<td>レジ計算（注文確定時）の各種計算での端数処理</td>
+<td>不課税分の按分計算、送料計算、手数料計算、値引計算、最終的な税率別集計</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_18">設定方法</h3>
+<ul>
+<li><strong>管理画面での設定</strong>: それぞれ独立して設定可能</li>
+<li><strong>デフォルト値</strong>: 四捨五入</li>
+<li><strong>本計算時の適用</strong>: 注文確定時は<strong>レジ計算用端数処理設定</strong>に従う</li>
+</ul>
+<h3 id="_19">端数処理の種類</h3>
+<table>
+<thead>
+<tr>
+<th>処理方式</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>四捨五入</td>
+<td>0.5以上を切り上げ</td>
+</tr>
+<tr>
+<td>切上げ</td>
+<td>0.1以上を切り上げ</td>
+</tr>
+<tr>
+<td>切捨て</td>
+<td>小数点以下を切り捨て</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_20">適格請求書対応の計算ルール</h2>
+<h3 id="_21">明細種別と課税区分</h3>
+<table>
+<thead>
+<tr>
+<th>明細種別</th>
+<th>課税区分</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>商品</td>
+<td>課税</td>
+<td>商品本体の価格（税率: 10%、8%など）</td>
+</tr>
+<tr>
+<td>送料</td>
+<td>課税</td>
+<td>配送料</td>
+</tr>
+<tr>
+<td>手数料</td>
+<td>課税</td>
+<td>各種手数料</td>
+</tr>
+<tr>
+<td>課税対象別値引</td>
+<td>課税</td>
+<td>課税対象の値引</td>
+</tr>
+<tr>
+<td>カート値引</td>
+<td>不課税</td>
+<td>カート全体の値引</td>
+</tr>
+<tr>
+<td>クーポン</td>
+<td>不課税</td>
+<td>クーポンによる値引</td>
+</tr>
+<tr>
+<td>ポイント</td>
+<td>不課税</td>
+<td>ポイントによる値引</td>
+</tr>
+</tbody>
+</table>
+<p><strong>課税区分について</strong></p>
+<ul>
+<li><strong>課税区分は「課税」または「不課税」の2種類のみ</strong></li>
+<li><strong>0%税率は存在しない</strong>（非課税は「不課税」として扱う）</li>
+<li><strong>税率の種類</strong>: 課税商品は10%、8%など複数税率が混在可能（課税区分はすべて「課税」）</li>
+</ul>
+<h3 id="_22">明細行フォーマット</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>明細行
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>明細区分　商品名　商品コード　商品単価　数量　税率　課税区分　小計
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>＝＝
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>商品合計
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>送料合計
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>手数料合計
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>値引き合計
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>＝＝
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>課税対象合計
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>カート値引
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>XXXクーポン
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>XXXクーポン
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>ポイント
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>＝＝
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>お支払い合計
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>＝＝
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>税率N％対象 XXX円 内消費税 XXX円
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>税率M％対象 XXX円 内消費税 XXX円
+</code></pre></div>
+<h3 id="_23">不課税分の按分計算</h3>
+<p>不課税分（カート値引、クーポン、ポイント）については、税率毎のパーセンテージに応じた按分計算により税率対象金額を決定し、そこから消費税額を計算します。</p>
+<h4 id="_24">計算手順</h4>
+<p><strong>1. 税率毎の課税対象合計を算出</strong></p>
+<p>各税率（例: 10%、8%）ごとに課税対象金額を集計します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>課税対象に含まれる項目:
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>- 商品
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>- 送料
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>- 手数料
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>- 課税対象別値引
+</code></pre></div>
+<p><strong>2. 課税合計毎のパーセンテージを算出</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>税率ごとのパーセンテージ = (税率ごとの課税対象合計 / 全課税対象合計)
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>【例】
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>課税対象合計: 1000.000円
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>- 10%税率: 800.000円 → 0.80000 (80.000%)
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>- 8%税率: 200.000円 → 0.20000 (20.000%)
+</code></pre></div>
+<p><strong>3. 不課税分合計を按分</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>各税率への按分金額 = 不課税分合計 × パーセンテージ
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>【例】
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>不課税分合計: 100.000円
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>- 10%税率への按分: 100.000 × 0.80000 = 80.000円
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>- 8%税率への按分: 100.000 × 0.20000 = 20.000円
+</code></pre></div>
+<p><strong>4. 端数処理を適用</strong></p>
+<p>レジ計算用端数処理設定（四捨五入/切上/切捨て）に従い、按分金額を処理します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>【例: 四捨五入の場合】
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>- 10%税率: round(80.000, 3) = 80.000円
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>- 8%税率: round(20.000, 3) = 20.000円
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>合計: 80.000 + 20.000 = 100.000円 → ✓ 一致
+</code></pre></div>
+<h4 id="_25">計算精度の保証</h4>
+<p><strong>保存精度</strong></p>
+<ul>
+<li><code>DECIMAL(10, 3)</code>（小数点以下3桁）で一貫して保存・計算</li>
+<li>詳細は<a href="../%E4%BE%A1%E6%A0%BC%E8%A8%88%E7%AE%97/">価格計算設計</a>を参照</li>
+</ul>
+<p><strong>合計一致の保証</strong></p>
+<p>3桁精度で一貫して保存・計算する限り、数学的に合計は必ず一致します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>数学的証明:
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>不課税分 × (税率A金額 / 課税対象合計) + 不課税分 × (税率B金額 / 課税対象合計)
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>= 不課税分 × [(税率A金額 + 税率B金額) / 課税対象合計]
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>= 不課税分 × (課税対象合計 / 課税対象合計)
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>= 不課税分 × 1
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>= 不課税分
+</code></pre></div>
+<p>したがって、端数処理方式（四捨五入/切上/切捨て）に関わらず、按分計算後の合計は必ず不課税分合計と一致します。</p>
+<h3 id="_26">複数税率の扱い</h3>
+<p>注文内に複数の税率（例: 10%、8%）が混在する場合の扱いについて説明します。</p>
+<h4 id="_27">計算順序</h4>
+<ul>
+<li><strong>計算順序は存在しない</strong>: 各税率の計算は数学的に等価であり、処理順序に依存しない</li>
+<li><strong>並列処理可能</strong>: 各税率ごとに独立して計算し、最終的に合計</li>
+</ul>
+<h4 id="_28">処理方法</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>【例: 10%税率と8%税率が混在する場合】
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>1. 各税率ごとに課税対象金額を集計
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>   - 10%税率: 800.000円
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>   - 8%税率: 200.000円
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>2. 各税率ごとに不課税分を按分
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>   - 10%税率への按分: 80.000円
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>   - 8%税率への按分: 20.000円
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>3. 各税率ごとに税込金額を計算
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>   - 10%税率: (800.000 + 80.000) × 1.10 = 968.000円（内消費税: 88.000円）
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>   - 8%税率: (200.000 + 20.000) × 1.08 = 237.600円（内消費税: 17.600円）
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>4. 最終合計を算出
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>   - お支払い合計: 968.000 + 237.600 = 1,205.600円
+</code></pre></div>
+<h3 id="_29">エラーハンドリング</h3>
+<h4 id="_30">例外ケース</h4>
+<p><strong>全課税対象合計が0円の場合</strong></p>
+<ul>
+<li>按分計算をスキップ（按分対象が存在しないため、除算エラーを回避）</li>
+<li>不課税分のみの注文として処理</li>
+</ul>
+<p><strong>特定の税率の課税対象合計が0円の場合</strong></p>
+<ul>
+<li>その税率は計算対象外（按分計算・表示ともにスキップ）</li>
+<li>他の税率への按分計算は通常通り実行</li>
+</ul>
+<p><strong>不課税分合計が0円の場合</strong></p>
+<ul>
+<li>按分計算をスキップ（結果はすべての税率で0円）</li>
+<li>課税対象のみの注文として処理</li>
+</ul>
+<h4 id="0">計算例（複数税率で一部が0円の場合）</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>課税対象合計: 1000.000円
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>- 10%税率: 1000.000円
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>- 8%税率: 0.000円（商品なし → 非表示）
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>不課税分合計: 100.000円
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>按分計算:
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>- 10%税率: 100.000 × (1000.000 / 1000.000) = 100.000円
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>- 8%税率: 計算・表示スキップ（課税対象が0円のため）
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>最終表示:
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>＝＝
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>税率10％対象 1,100.000円 内消費税 100.000円
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>（8%税率の行は非表示）
+</code></pre></div>
+<h2 id="_31">関連ドキュメント</h2>
+<ul>
+<li><a href="../%E4%BE%A1%E6%A0%BC%E8%A8%88%E7%AE%97/">価格計算設計</a> - 価格計算の詳細仕様</li>
+<li><a href="../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/tax_rates/">税率マスター</a> - 税率設定の詳細</li>
+<li><a href="../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/currencies/">通貨マスター</a> - 通貨設定の詳細</li>
+</ul>
+<h2 id="_32">今後の拡張予定</h2>
+<h3 id="todo">TODO</h3>
+<ul>
+<li>[ ] 親注文・子注文のテーブル設計詳細</li>
+<li>[ ] 計算ロジックのクラス設計</li>
+<li>[ ] 明細行生成の実装詳細</li>
+<li>[ ] メール送信機能の実装詳細</li>
+<li>[ ] 管理画面での責任境界線修正機能</li>
+<li>[ ] 適格請求書のPDF生成機能</li>
+</ul>
+<hr />
+<p><strong>更新日</strong>: 2025-10-29
+<strong>バージョン</strong>: 1.1
+<strong>作成者</strong>: EC-SPOKE開発チーム</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 EC-SPOKE
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

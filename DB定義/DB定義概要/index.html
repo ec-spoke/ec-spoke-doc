@@ -1,0 +1,2189 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="EC-SPOKE プロジェクトのドキュメント集">
+      
+      
+      
+      
+        <link rel="prev" href="../../%E8%A8%AD%E8%A8%88%E8%B3%87%E6%96%99/%E8%BF%91%E6%8E%A5%E9%85%8D%E7%BD%AE%E3%81%AB%E4%BC%B4%E3%81%86%E5%AF%BE%E5%BF%9C/">
+      
+      
+        <link rel="next" href="../01_%E5%95%86%E5%93%81%E7%B3%BB/PRODUCT_README/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>データベース定義書 - EC-SPOKE ドキュメント</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CNoto+Sans+JP:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"Noto Sans JP"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Noto-Sans-JP" data-md-color-accent="Noto-Sans-JP">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ec-spoke" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="EC-SPOKE ドキュメント" class="md-header__button md-logo" aria-label="EC-SPOKE ドキュメント" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EC-SPOKE ドキュメント
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              データベース定義書
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="Noto-Sans-JP" data-md-color-accent="Noto-Sans-JP"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="Noto-Sans-JP" data-md-color-accent="Noto-Sans-JP"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%A8%AD%E8%A8%88%E8%B3%87%E6%96%99/EC-SPOKE%E9%85%8D%E4%BB%98%E6%A7%8B%E6%83%B3/" class="md-tabs__link">
+          
+  
+  
+  設計資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  DB定義
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EC-SPOKE ドキュメント" class="md-nav__button md-logo" aria-label="EC-SPOKE ドキュメント" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    EC-SPOKE ドキュメント
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ホーム
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    設計資料
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            設計資料
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%A8%AD%E8%A8%88%E8%B3%87%E6%96%99/EC-SPOKE%E9%85%8D%E4%BB%98%E6%A7%8B%E6%83%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC-SPOKE配付構想
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%A8%AD%E8%A8%88%E8%B3%87%E6%96%99/%E6%B3%A8%E6%96%87%E8%A8%88%E7%AE%97%E6%96%B9%E5%BC%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    注文計算方式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%A8%AD%E8%A8%88%E8%B3%87%E6%96%99/%E4%BE%A1%E6%A0%BC%E8%A8%88%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    価格計算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%A8%AD%E8%A8%88%E8%B3%87%E6%96%99/%E8%BF%91%E6%8E%A5%E9%85%8D%E7%BD%AE%E3%81%AB%E4%BC%B4%E3%81%86%E5%AF%BE%E5%BF%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    近接配置に伴う対応
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    DB定義
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            DB定義
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DB定義概要
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            DB定義概要
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    データベース定義書
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    データベース定義書
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      概要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      設計方針
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="設計方針">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ec-cube" class="md-nav__link">
+    <span class="md-ellipsis">
+      EC-CUBEからの改善点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリ構成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#db" class="md-nav__link">
+    <span class="md-ellipsis">
+      各システムのDB定義書
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="各システムのDB定義書">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 商品系システム
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      👥 顧客系システム（将来実装）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛒 注文系システム（将来実装）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎫 プロモーション系システム（将来実装）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      📄 コンテンツ系システム（将来実装）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ マスター系システム
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      実装状況
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      実装優先順位
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="実装優先順位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      フェーズ1: コア機能（必須）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      フェーズ2: 付加機能（推奨）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      設計原則
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="設計原則">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 命名規則
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nn" class="md-nav__link">
+    <span class="md-ellipsis">
+      N:N中間テーブルの命名規則
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 共通カラム
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. インデックス設計
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      テーブル定義記載ルール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="テーブル定義記載ルール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      外部キー制約の記載方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      リレーションの記載方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nn_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      N:Nリレーション表記の詳細ルール
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      更新履歴
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    商品系
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            商品系
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/PRODUCT_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    商品系概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/brands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    brands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/categories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    categories
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/category_product_rel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    category_product_rel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/products/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    products
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/product_tags_rel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_tags_rel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_mst_rel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_mst_rel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_mst_val_combs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_mst_val_combs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_mst_vals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_mst_vals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_msts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_msts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/product_vars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_vars
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    tags
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    マスター
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            マスター
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/MASTER_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    マスター概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/countries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    countries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/currencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    currencies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/genders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    genders
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    jobs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/prefectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    prefectures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/register_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    register_types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/tax_rates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    tax_rates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      概要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      設計方針
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="設計方針">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ec-cube" class="md-nav__link">
+    <span class="md-ellipsis">
+      EC-CUBEからの改善点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリ構成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#db" class="md-nav__link">
+    <span class="md-ellipsis">
+      各システムのDB定義書
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="各システムのDB定義書">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 商品系システム
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      👥 顧客系システム（将来実装）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛒 注文系システム（将来実装）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎫 プロモーション系システム（将来実装）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      📄 コンテンツ系システム（将来実装）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ マスター系システム
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      実装状況
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      実装優先順位
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="実装優先順位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      フェーズ1: コア機能（必須）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      フェーズ2: 付加機能（推奨）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      設計原則
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="設計原則">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 命名規則
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nn" class="md-nav__link">
+    <span class="md-ellipsis">
+      N:N中間テーブルの命名規則
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 共通カラム
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. インデックス設計
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      テーブル定義記載ルール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="テーブル定義記載ルール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      外部キー制約の記載方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      リレーションの記載方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nn_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      N:Nリレーション表記の詳細ルール
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      更新履歴
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<h1 id="ec-spoke">EC-SPOKE データベース定義書</h1>
+<h2 id="_1">概要</h2>
+<p>EC-SPOKEプロジェクトのデータベース設計書です。EC-CUBEの優れた設計を参考にしつつ、柔軟性と拡張性を重視した設計となっています。</p>
+<h2 id="_2">設計方針</h2>
+<h3 id="ec-cube">EC-CUBEからの改善点</h3>
+<ul>
+<li><strong>商品バリエーションシステム</strong>: EC-CUBEの2軸制限を解消し、3軸以上の柔軟なバリエーションに対応</li>
+<li><strong>階層カテゴリ</strong>: 無制限階層のカテゴリ構造</li>
+<li><strong>商品画像</strong>: 複数画像対応（EC-CUBEは1枚のみ）</li>
+<li><strong>商品タグ</strong>: タグ機能の追加</li>
+</ul>
+<h3 id="_3">ディレクトリ構成</h3>
+<ul>
+<li><strong>docs/</strong></li>
+<li><strong>01_商品系/</strong> - 商品管理関連テーブル（カテゴリ含む）<ul>
+<li><a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/PRODUCT_README/">PRODUCT_README.md</a></li>
+</ul>
+</li>
+<li><strong>マスター/</strong> - システム共通マスターテーブル<ul>
+<li><a href="../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/MASTER_README/">MASTER_README.md</a></li>
+</ul>
+</li>
+<li>DB定義概要.md - このファイル（全体のまとめ）</li>
+</ul>
+<h2 id="db">各システムのDB定義書</h2>
+<h3 id="_4">📦 商品系システム</h3>
+<p><strong>ファイル</strong>: <a href="../01_%E5%95%86%E5%93%81%E7%B3%BB/PRODUCT_README/">PRODUCT_README.md</a></p>
+<p>商品管理に関連するテーブル定義：
+- 商品バリエーションシステム（3軸以上対応）
+- 商品マスター・画像・タグ管理
+- カテゴリ階層構造</p>
+<hr />
+<h3 id="_5">👥 顧客系システム（将来実装）</h3>
+<p><strong>ファイル</strong>: <code>02_顧客系/CUSTOMER_README.md</code>（未作成）</p>
+<p>顧客・会員管理に関連するテーブル定義：
+- 顧客情報管理
+- 配送先管理
+- お気に入り商品</p>
+<p><strong>予定テーブル</strong>:</p>
+<ul>
+<li><code>customers</code> - 顧客マスター</li>
+<li><code>customer_addresses</code> - 顧客配送先</li>
+<li><code>customer_favorite_products</code> - お気に入り商品</li>
+</ul>
+<hr />
+<h3 id="_6">🛒 注文系システム（将来実装）</h3>
+<p><strong>ファイル</strong>: <code>03_注文系/ORDER_README.md</code>（未作成）</p>
+<p>注文・決済管理に関連するテーブル定義：
+- 注文管理
+- 決済・配送管理
+- カート機能</p>
+<p><strong>予定テーブル</strong>:</p>
+<ul>
+<li><code>orders</code> - 注文マスター</li>
+<li><code>order_items</code> - 注文明細</li>
+<li><code>shippings</code> - 配送情報</li>
+<li><code>carts</code> - カート</li>
+<li><code>cart_items</code> - カート明細</li>
+<li><code>payments</code> - 支払方法</li>
+<li><code>deliveries</code> - 配送業者</li>
+</ul>
+<hr />
+<h3 id="_7">🎫 プロモーション系システム（将来実装）</h3>
+<p><strong>ファイル</strong>: <code>04_プロモーション/PROMOTION_README.md</code>（未作成）</p>
+<p>プロモーション・マーケティングに関連するテーブル定義：
+- クーポン管理
+- 商品レビュー
+- ポイント管理</p>
+<p><strong>予定テーブル</strong>:</p>
+<ul>
+<li><code>coupons</code> - クーポン</li>
+<li><code>coupon_products</code> - クーポン対象商品</li>
+<li><code>coupon_orders</code> - クーポン利用履歴</li>
+<li><code>product_reviews</code> - 商品レビュー</li>
+</ul>
+<hr />
+<h3 id="_8">📄 コンテンツ系システム（将来実装）</h3>
+<p><strong>ファイル</strong>: <code>05_コンテンツ/CONTENT_README.md</code>（未作成）</p>
+<p>コンテンツ管理に関連するテーブル定義：
+- 固定ページ
+- お知らせ
+- ブロック管理</p>
+<p><strong>予定テーブル</strong>:</p>
+<ul>
+<li><code>pages</code> - 固定ページ</li>
+<li><code>news</code> - お知らせ</li>
+<li><code>blocks</code> - ブロック</li>
+</ul>
+<hr />
+<h3 id="_9">⚙️ マスター系システム</h3>
+<p><strong>ファイル</strong>: <a href="../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/MASTER_README/">MASTER_README.md</a></p>
+<p>システム全体で使用する共通マスターデータを管理：
+- 通貨マスター
+- 配送方法マスター
+- 支払方法マスター
+- 国・地域マスター</p>
+<hr />
+<h2 id="_10">実装状況</h2>
+<table>
+<thead>
+<tr>
+<th>システム</th>
+<th>状況</th>
+<th>進捗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>📦 商品系</td>
+<td>✅ 完了</td>
+<td>DB定義書作成済み</td>
+</tr>
+<tr>
+<td>⚙️ マスター系</td>
+<td>✅ 完了</td>
+<td>通貨マスター定義済み</td>
+</tr>
+<tr>
+<td>👥 顧客系</td>
+<td>🔄 計画中</td>
+<td>設計検討中（未作成）</td>
+</tr>
+<tr>
+<td>🛒 注文系</td>
+<td>🔄 計画中</td>
+<td>設計検討中（未作成）</td>
+</tr>
+<tr>
+<td>🎫 プロモーション系</td>
+<td>🔄 計画中</td>
+<td>設計検討中（未作成）</td>
+</tr>
+<tr>
+<td>📄 コンテンツ系</td>
+<td>🔄 計画中</td>
+<td>設計検討中（未作成）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">実装優先順位</h2>
+<h3 id="1">フェーズ1: コア機能（必須）</h3>
+<ol>
+<li><strong>商品系システム</strong> ✅</li>
+<li><strong>マスター系システム</strong> ✅</li>
+<li><strong>顧客系システム</strong>（商品系完了後）</li>
+<li><strong>注文系システム</strong>（顧客系完了後）</li>
+</ol>
+<h3 id="2">フェーズ2: 付加機能（推奨）</h3>
+<ol>
+<li><strong>プロモーション系システム</strong></li>
+<li><strong>コンテンツ系システム</strong></li>
+</ol>
+<h2 id="_12">設計原則</h2>
+<h3 id="1_1">1. 命名規則</h3>
+<ul>
+<li><strong>商品系</strong>: <code>product_*</code> プレフィックス</li>
+<li><strong>顧客系</strong>: <code>customer_*</code> プレフィックス</li>
+<li><strong>注文系</strong>: <code>order_*</code> プレフィックス</li>
+<li><strong>N:N中間テーブル</strong>: <code>{テーブル1}_{テーブル2}_rel</code> 形式（<code>_rel</code>サフィックス必須）</li>
+</ul>
+<h3 id="nn">N:N中間テーブルの命名規則</h3>
+<ul>
+<li><strong>形式</strong>: <code>{テーブル1}_{テーブル2}_rel</code>（<code>_rel</code>サフィックス必須）</li>
+<li><strong>理由</strong>:</li>
+<li>中間テーブルであることを明示し、実テーブルとの区別を容易にする</li>
+<li>データベース直接操作時やER図での可読性向上</li>
+<li>EC特化システムでは中間テーブルが多数存在するため、識別の明確化を優先</li>
+<li><strong>注意</strong>:</li>
+<li>Laravelの<code>belongsToMany()</code>では第2引数でテーブル名を明示的に指定する必要がある</li>
+<li>例: <code>$this-&gt;belongsToMany(Category::class, 'category_product_rel')</code></li>
+</ul>
+<h3 id="2_1">2. 共通カラム</h3>
+<ul>
+<li><code>id</code>: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY</li>
+<li><code>created_at</code>, <code>updated_at</code>: TIMESTAMP</li>
+<li><code>deleted_at</code>: TIMESTAMP（Soft Delete用）</li>
+</ul>
+<h3 id="3">3. インデックス設計</h3>
+<ul>
+<li>検索・ソート対象カラムに必ず設定</li>
+<li>複合インデックスでパフォーマンス最適化</li>
+</ul>
+<h2 id="_13">テーブル定義記載ルール</h2>
+<h3 id="_14">外部キー制約の記載方法</h3>
+<p><strong>記載項目</strong>: 名称、対象カラム、参照先、ON DELETE、ON UPDATE、説明</p>
+<p><strong>ルール</strong>:</p>
+<ul>
+<li>物理的外部キー制約のみを記載する（ON_DELETE、ON_UPDATEに「─」は存在しない）</li>
+<li>デフォルトのRESTRICTでも必ず明記する</li>
+</ul>
+<p><strong>フォーマット</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>対象カラム</th>
+<th>参照先</th>
+<th>ON DELETE</th>
+<th>ON UPDATE</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fk_products_brand</td>
+<td>brand_id</td>
+<td>brands(id)</td>
+<td>SET NULL</td>
+<td>RESTRICT</td>
+<td>ブランド削除時はNULL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_15">リレーションの記載方法</h3>
+<p><strong>記載項目</strong>: 関連先、関連タイプ、外部キー、参照先、ON DELETE、ON UPDATE、説明</p>
+<p><strong>ルール</strong>:</p>
+<ul>
+<li>親→自身、自身→子の双方を記載する</li>
+<li>論理的関係性も含める</li>
+<li>デフォルトのRESTRICTでも必ず明記する</li>
+</ul>
+<p><strong>関連先の記載ルール</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>関連タイプ</th>
+<th>記載対象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1:N</td>
+<td>子</td>
+</tr>
+<tr>
+<td>N:1</td>
+<td>親</td>
+</tr>
+<tr>
+<td>N:N</td>
+<td>親（中間テーブル経由も親として記載）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>外部キー・参照先の記載ルール</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>関連タイプ</th>
+<th>外部キー</th>
+<th>参照先</th>
+<th>ON DELETE</th>
+<th>ON UPDATE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1:N</td>
+<td>子の列</td>
+<td>自分の列</td>
+<td>記載要</td>
+<td>記載要</td>
+</tr>
+<tr>
+<td>N:1</td>
+<td>自分の列</td>
+<td>親の列</td>
+<td>記載要</td>
+<td>記載要</td>
+</tr>
+<tr>
+<td>N:N</td>
+<td>自分の列</td>
+<td>親の列</td>
+<td>─</td>
+<td>─</td>
+</tr>
+</tbody>
+</table>
+<p><strong>フォーマット</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>関連先テーブル</th>
+<th>関連タイプ</th>
+<th>外部キー</th>
+<th>参照先</th>
+<th>ON DELETE</th>
+<th>ON UPDATE</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>brands</td>
+<td>N:1</td>
+<td>brand_id</td>
+<td>id</td>
+<td>SET NULL</td>
+<td>RESTRICT</td>
+<td>商品は1つのブランドに属する</td>
+</tr>
+<tr>
+<td>product_vars</td>
+<td>1:N</td>
+<td>id</td>
+<td>product_id</td>
+<td>CASCADE</td>
+<td>RESTRICT</td>
+<td>1つの商品は複数のバリエーションを持つ</td>
+</tr>
+<tr>
+<td>category_product_rel</td>
+<td>1:N</td>
+<td>product_id</td>
+<td>id</td>
+<td>CASCADE</td>
+<td>RESTRICT</td>
+<td>商品削除時に中間テーブル側も削除</td>
+</tr>
+<tr>
+<td>categories</td>
+<td>N:N</td>
+<td>category_id</td>
+<td>id（category_product_rel経由）</td>
+<td>─</td>
+<td>─</td>
+<td>商品は複数のカテゴリに属する</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nn_1">N:Nリレーション表記の詳細ルール</h3>
+<p>N:Nリレーションを表現する際は、<strong>中間テーブル自体のリレーション（1:N）も明記</strong>する必要があります。</p>
+<p><strong>理由</strong>:</p>
+<ul>
+<li>物理的な外部キー制約情報（CASCADE/RESTRICT等）を保持するため</li>
+<li>中間テーブルの削除挙動を明確にするため</li>
+<li>データベース設計の厳密性を向上させるため</li>
+</ul>
+<p><strong>表記順序</strong>:</p>
+<ol>
+<li><strong>自己参照（ある場合）</strong>: 親・子リレーション</li>
+<li><strong>N:1（親テーブル）</strong>: 直接の外部キー参照</li>
+<li><strong>1:N（中間テーブル）</strong>: N:Nの物理実装部分</li>
+<li><strong>N:N（最終目的地）</strong>: 論理的な多対多関係</li>
+<li><strong>1:N（子テーブル）</strong>: このテーブルを参照する子</li>
+</ol>
+<p><strong>ON DELETE/UPDATE カラムの記載ルール</strong>:</p>
+<ul>
+<li><strong>1:N（中間テーブル）</strong>: 実際の外部キー制約値（CASCADE, RESTRICT等）を記載</li>
+<li><strong>N:N（論理関係）</strong>: <code>─</code> を記載（物理制約は中間テーブル行で表現済み）</li>
+</ul>
+<h2 id="_16">更新履歴</h2>
+<ul>
+<li>2024-01-XX: 初版作成（商品系のみ）</li>
+<li>2024-01-XX: DB定義概要.md構造化、階層化</li>
+<li>2024-01-XX: テーブル定義記載ルールを策定・追記</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 EC-SPOKE
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

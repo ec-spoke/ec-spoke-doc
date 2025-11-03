@@ -1,0 +1,384 @@
+/* カスタムスタイル: Filamentドキュメントサイトと同じCSS変数とレイアウト設定 */
+
+/* ============================================
+   CSS変数定義（Filamentドキュメントサイトと同じ）
+   ============================================ */
+   :root {
+    /* ブレークポイント（Tailwind v4準拠） */
+    --breakpoint-xl: 80rem;    /* 1280px */
+    --breakpoint-2xl: 96rem;    /* 1536px */
+    --spacing: 0.25rem;         /* 4px */
+
+    /* コンテナ最大幅 */
+    --container-max-width-xl: var(--breakpoint-xl);  /* 1280px */
+    --container-max-width-2xl: var(--breakpoint-2xl); /* 1536px */
+  }
+
+  /* ============================================
+     メインコンテナ（Filamentドキュメントサイトと同じ構造）
+     ============================================ */
+
+  /* ヘッダー下のメインコンテナ */
+  .md-main {
+    margin-inline: auto !important;  /* mx-auto */
+    width: 100% !important;
+    max-width: var(--container-max-width-xl) !important;  /* max-w-screen-xl */
+    padding-inline: calc(var(--spacing) * 8) !important;  /* px-8 = 32px */
+    padding-top: 0 !important;  /* 上パディングなし */
+    padding-bottom: calc(var(--spacing) * 24) !important;  /* pb-24 = 96px（下パディングは維持） */
+  }
+
+  /* グリッドコンテナ */
+  .md-main__inner.md-grid {
+    margin-inline: auto !important;  /* mx-auto */
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: auto 1fr auto;  /* 左サイドバー メインコンテンツ 右サイドバー */
+    gap: 0 !important;
+  }
+
+  /* ============================================
+     左サイドバー（ナビゲーション）
+     ============================================ */
+  /* 左メニューのテキストを折り返し表示（エリプシスを無効化） */
+  .md-sidebar--primary .md-nav__item {
+    max-width: 100% !important;  /* アイテムの幅制限を緩和 */
+    width: 100% !important;  /* 親要素の幅いっぱいに */
+  }
+
+  .md-sidebar--primary .md-nav__link {
+    white-space: normal !important;  /* テキストの折り返しを許可 */
+    overflow-wrap: break-word !important;  /* 長い単語でも折り返す */
+    word-wrap: break-word !important;  /* 互換性のための古いプロパティ */
+    text-overflow: clip !important;  /* エリプシスを無効化 */
+    overflow: visible !important;  /* オーバーフローを表示 */
+    max-width: 100% !important;  /* 親要素の幅を超えないように */
+    width: 100% !important;  /* 親要素の幅いっぱいに */
+    min-width: 0 !important;  /* flexアイテムの縮小を許可 */
+  }
+
+  .md-sidebar--primary {
+    width: auto !important;
+    min-width: 280px !important;
+    max-width: 280px !important;
+    padding-right: calc(var(--spacing) * 5) !important;  /* pr-5 = 20px */
+    padding-left: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+    /* スクロールはscrollwrapが管理するため、親要素では制御しない */
+    overflow: visible !important;
+  }
+
+  /* Firefox用：スクロールバーを透明にする */
+  .md-sidebar--primary .md-sidebar__scrollwrap {
+    scrollbar-width: thin !important;
+    scrollbar-color: transparent transparent !important;  /* スクロールバーを透明にする */
+  }
+
+
+  /* ============================================
+     メインコンテンツ
+     ============================================ */
+  .md-content {
+    min-width: 0 !important;  /* グリッドアイテムの縮小を許可 */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+  }
+
+  .md-content__inner {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* ============================================
+     右サイドバー（目次など）
+     ============================================ */
+  .md-sidebar--secondary {
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: none !important;  /* hidden: デフォルトで非表示 */
+  }
+
+  /* xlブレークポイント（1280px以上）で右サイドバーを表示 */
+  @media (width >= 80rem) {
+    .md-sidebar--secondary:not([hidden]) {
+      display: block !important;  /* xl:block */
+    }
+
+    /* hidden属性を持つ右サイドバーは常に非表示（MkDocs Materialのhide: tocメタデータに対応） */
+    .md-sidebar--secondary[hidden] {
+      display: none !important;
+    }
+
+    /* md-sidebar__scrollwrapのサイズを調整（MkDocs Materialが管理するスクロール） */
+    .md-sidebar--secondary .md-sidebar__scrollwrap {
+      width: 100% !important;  /* 親要素のパディング内に収まるように */
+      height: calc(100vh - var(--spacing) * 16) !important;  /* 100vh - top-16 = 100vh - 64px */
+      overflow-y: auto !important;  /* スクロールはscrollwrapが管理 */
+      overflow-x: hidden !important;  /* 横スクロールを防ぐ */
+      box-sizing: border-box !important;  /* パディングを含めたサイズ計算 */
+      padding-right: 0 !important;  /* 右パディングを削除 */
+      margin-right: 0 !important;  /* 右マージンを削除 */
+    }
+
+    /* md-sidebar__innerも親要素内に収まるように */
+    .md-sidebar--secondary .md-sidebar__inner {
+      width: 100% !important;
+      max-width: 100% !important;  /* 親要素を超えないように */
+      padding: 0 !important;  /* デフォルトのパディングを削除 */
+      padding-right: 0 !important;  /* 右パディングを明示的に削除 */
+      margin: 0 !important;  /* デフォルトのマージンを削除 */
+      margin-right: 0 !important;  /* 右マージンを明示的に削除 */
+      box-sizing: border-box !important;
+      overflow-x: hidden !important;  /* 横スクロールを防ぐ */
+    }
+
+    /* 右サイドバー内のnav要素（Filamentドキュメントサイトと同じ構造） */
+    .md-sidebar--secondary nav,
+    .md-sidebar--secondary .md-nav--secondary {
+      width: calc(var(--spacing) * 48) !important;  /* w-48 = 192px（224pxから32px削減） */
+      margin-block: calc(var(--spacing) * 6) !important;  /* my-6 = 24px */
+      margin-inline: 0 !important;
+      margin-right: 0 !important;  /* 右マージンを明示的に削除 */
+      padding-right: 0 !important;  /* 右パディングを明示的に削除 */
+      max-width: 100% !important;  /* 親要素を超えないように */
+      box-sizing: border-box !important;
+      overflow-x: hidden !important;  /* 横スクロールを防ぐ */
+    }
+
+    /* 大画面ではコンテナの最大幅を拡大 */
+    .md-main {
+      max-width: var(--container-max-width-2xl) !important;  /* max-w-screen-2xl */
+    }
+  }
+
+  /* 小画面（sm: 640px以上）での調整 */
+  @media (width >= 40rem) {
+    .md-main {
+      padding-inline: calc(var(--spacing) * 6) !important;  /* sm:px-6 = 24px */
+    }
+  }
+
+  /* 大画面（lg: 1024px以上）での調整 */
+  @media (width >= 64rem) {
+    .md-main {
+      padding-inline: calc(var(--spacing) * 8) !important;  /* lg:px-8 = 32px */
+    }
+  }
+
+  /* ============================================
+     VSCode/CursorのMarkdownプレビュースタイルに合わせる
+     ============================================ */
+  .md-content__inner.md-typeset {
+    font-size: 14px !important;  /* VSCodeのデフォルト: 14px */
+    line-height: 22px !important;  /* VSCodeのデフォルト: 22px (約1.571倍) */
+    padding-top: 0 !important;  /* 上パディングを無くす */
+  }
+
+  .md-content__inner.md-typeset::before {
+    height: 0 !important;  /* before疑似要素の高さを無くす */
+    display: none !important;  /* before疑似要素を非表示にする */
+  }
+
+  .md-content__inner.md-typeset p,
+  .md-content__inner.md-typeset ul,
+  .md-content__inner.md-typeset ol,
+  .md-content__inner.md-typeset li {
+    font-size: 14px !important;  /* VSCodeのデフォルト: 14px */
+  }
+
+  /* VSCodeのリセットルール: 見出し・段落・リスト・pre要素のmargin-topを0に */
+  .md-content__inner.md-typeset h1,
+  .md-content__inner.md-typeset h2,
+  .md-content__inner.md-typeset h3,
+  .md-content__inner.md-typeset h4,
+  .md-content__inner.md-typeset h5,
+  .md-content__inner.md-typeset h6,
+  .md-content__inner.md-typeset p,
+  .md-content__inner.md-typeset ol,
+  .md-content__inner.md-typeset ul,
+  .md-content__inner.md-typeset pre {
+    margin-top: 0 !important;  /* VSCodeのリセットルール */
+  }
+
+  /* 段落スタイル */
+  .md-content__inner.md-typeset p {
+    margin-bottom: 16px !important;  /* VSCodeのデフォルト: 16px */
+  }
+
+  /* リストスタイル */
+  .md-content__inner.md-typeset ul,
+  .md-content__inner.md-typeset ol {
+    margin-bottom: 0.7em !important;  /* VSCodeのデフォルト: 0.7em */
+  }
+
+  .md-content__inner.md-typeset li {
+    margin-bottom: 0 !important;  /* VSCodeではリスト項目自体には下マージンなし */
+  }
+
+  .md-content__inner.md-typeset li p {
+    margin-bottom: 0.7em !important;  /* VSCodeのデフォルト: 0.7em */
+  }
+
+  /* 見出しスタイル（VSCode仕様） */
+  .md-content__inner.md-typeset h1,
+  .md-content__inner.md-typeset h2,
+  .md-content__inner.md-typeset h3,
+  .md-content__inner.md-typeset h4,
+  .md-content__inner.md-typeset h5,
+  .md-content__inner.md-typeset h6 {
+    font-weight: 600 !important;  /* VSCodeのデフォルト: 600 */
+    margin-top: 24px !important;  /* VSCodeのデフォルト: 24px */
+    margin-bottom: 16px !important;  /* VSCodeのデフォルト: 16px */
+    line-height: 1.25 !important;  /* VSCodeのデフォルト: 1.25 */
+  }
+
+  .md-content__inner.md-typeset h1 {
+    font-size: 2em !important;  /* VSCodeのデフォルト: 2em */
+    padding-bottom: 0.3em !important;  /* VSCodeのデフォルト: 0.3em */
+    border-bottom-width: 1px !important;  /* VSCodeのデフォルト: 1px */
+    border-bottom-style: solid !important;  /* VSCodeのデフォルト: solid */
+    margin-top: 0 !important;  /* VSCode: h1のmargin-topは0 */
+  }
+
+  .md-content__inner.md-typeset h2 {
+    font-size: 1.5em !important;  /* VSCodeのデフォルト: 1.5em */
+    padding-bottom: 0.3em !important;  /* VSCodeのデフォルト: 0.3em */
+    border-bottom-width: 1px !important;  /* VSCodeのデフォルト: 1px */
+    border-bottom-style: solid !important;  /* VSCodeのデフォルト: solid */
+  }
+
+  .md-content__inner.md-typeset h3 {
+    font-size: 1.25em !important;  /* VSCodeのデフォルト: 1.25em */
+  }
+
+  .md-content__inner.md-typeset h4 {
+    font-size: 1em !important;  /* VSCodeのデフォルト: 1em */
+  }
+
+  .md-content__inner.md-typeset h5 {
+    font-size: 0.875em !important;  /* VSCodeのデフォルト: 0.875em */
+  }
+
+  .md-content__inner.md-typeset h6 {
+    font-size: 0.85em !important;  /* VSCodeのデフォルト: 0.85em */
+  }
+
+  .md-content__inner.md-typeset table {
+    font-size: 14px !important;  /* VSCodeのデフォルト: 14px */
+    border-collapse: collapse !important;  /* VSCodeのデフォルト: collapse */
+    border: none !important;  /* VSCodeではテーブル外枠なし */
+    border-radius: 0 !important;  /* VSCodeではborder-radiusなし */
+    overflow: visible !important;  /* VSCodeではoverflow: visible */
+    margin-bottom: 0.7em !important;  /* VSCodeのデフォルト: 0.7em */
+  }
+
+  .md-content__inner.md-typeset table th,
+  .md-content__inner.md-typeset table > thead > tr > th,
+  .md-content__inner.md-typeset table thead > tr > th {
+    font-size: 14px !important;  /* VSCodeのデフォルト: 14px */
+    /* VSCodeのデフォルト: padding: 5px 10px */
+    padding: 5px 10px !important;
+    text-align: left !important;  /* VSCodeのデフォルト: left */
+    border-top: none !important;  /* VSCodeではthの上ボーダーなし */
+    border-left: none !important;  /* VSCodeではthの左ボーダーなし */
+    border-right: none !important;  /* VSCodeではthの右ボーダーなし */
+    border-bottom: 1px solid !important;  /* VSCodeのデフォルト: 1px solid（色はテーマ依存） */
+  }
+
+  .md-content__inner.md-typeset table td {
+    font-size: 14px !important;  /* VSCodeのデフォルト: 14px */
+    /* VSCodeのデフォルト: padding: 5px 10px */
+    padding: 5px 10px !important;
+    border-top: none !important;  /* VSCodeではtdの上ボーダーは直接設定しない（tr + tr > tdで設定） */
+    border-left: none !important;  /* VSCodeではtdの左ボーダーなし */
+    border-right: none !important;  /* VSCodeではtdの右ボーダーなし */
+    border-bottom: none !important;  /* VSCodeではtdに直接border-bottomは設定しない */
+  }
+
+  /* VSCodeの仕様: table > tbody > tr + tr > td に border-top を追加 */
+  .md-content__inner.md-typeset table > tbody > tr + tr > td {
+    border-top: 1px solid !important;  /* VSCodeのデフォルト: 1px solid（色はテーマ依存） */
+    border-top-color: rgba(0, 0, 0, 0.18) !important;  /* ライトモード用 */
+  }
+
+  .md-content__inner.md-typeset table tr {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* VSCodeではテーブルにホバー効果は設定されていない */
+
+  /* ダークモード対応（VSCodeではテーブル外枠なし） */
+  [data-md-color-scheme="slate"] .md-content__inner.md-typeset table {
+    border: none !important;  /* VSCodeではテーブル外枠なし */
+  }
+
+  /* ダークモード対応（VSCode仕様ではthに特別な色設定なし） */
+
+  [data-md-color-scheme="slate"] .md-content__inner.md-typeset table td {
+    border-bottom: none !important;  /* VSCodeではtdに直接border-bottomは設定しない */
+  }
+
+  /* ダークモード用: table > tbody > tr + tr > td の border-top */
+  [data-md-color-scheme="slate"] .md-content__inner.md-typeset table > tbody > tr + tr > td {
+    border-top: 1px solid !important;
+    border-top-color: rgba(255, 255, 255, 0.18) !important;  /* ダークモード用 */
+  }
+
+
+  .md-content__inner.md-typeset code {
+    font-size: 1em !important;  /* VSCodeのデフォルト: 1em */
+    line-height: 1.357em !important;  /* VSCodeのデフォルト: 1.357em */
+  }
+
+  .md-content__inner.md-typeset pre {
+    font-size: 14px !important;  /* VSCodeのデフォルト: 14px */
+  }
+
+  .md-content__inner.md-typeset pre code {
+    font-size: 14px !important;  /* VSCodeのデフォルト: 14px */
+  }
+
+/* ============================================
+   文字色設定（ダークモード: 白）
+   ============================================ */
+
+/* 左メニューの文字色（ダークモード: 白） */
+[data-md-color-scheme="slate"] .md-sidebar--primary,
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link,
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item,
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__title {
+  color: rgb(255, 255, 255) !important;
+}
+
+/* 右メニューの文字色（ダークモード: 白） */
+[data-md-color-scheme="slate"] .md-sidebar--secondary,
+[data-md-color-scheme="slate"] .md-sidebar--secondary .md-nav__link,
+[data-md-color-scheme="slate"] .md-sidebar--secondary .md-nav__item {
+  color: rgb(255, 255, 255) !important;
+}
+
+/* メインコンテンツの文字色（ダークモード: 白） */
+[data-md-color-scheme="slate"] .md-content__inner.md-typeset,
+[data-md-color-scheme="slate"] .md-content__inner.md-typeset p,
+[data-md-color-scheme="slate"] .md-content__inner.md-typeset h1,
+[data-md-color-scheme="slate"] .md-content__inner.md-typeset h2,
+[data-md-color-scheme="slate"] .md-content__inner.md-typeset h3,
+[data-md-color-scheme="slate"] .md-content__inner.md-typeset h4,
+[data-md-color-scheme="slate"] .md-content__inner.md-typeset h5,
+[data-md-color-scheme="slate"] .md-content__inner.md-typeset h6,
+[data-md-color-scheme="slate"] .md-content__inner.md-typeset li,
+[data-md-color-scheme="slate"] .md-content__inner.md-typeset ul,
+[data-md-color-scheme="slate"] .md-content__inner.md-typeset ol,
+[data-md-color-scheme="slate"] .md-content__inner.md-typeset a,
+[data-md-color-scheme="slate"] .md-content__inner.md-typeset code {
+  color: rgb(255, 255, 255) !important;
+}
