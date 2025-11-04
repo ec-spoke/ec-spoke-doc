@@ -1820,7 +1820,7 @@
 <td>URL用スラッグ</td>
 </tr>
 <tr>
-<td>image</td>
+<td>logo_image</td>
 <td>VARCHAR(255)</td>
 <td>NULL</td>
 <td>NULL</td>
@@ -1948,7 +1948,7 @@
 <th>id</th>
 <th>name</th>
 <th>slug</th>
-<th>image</th>
+<th>logo_image</th>
 <th>is_active</th>
 </tr>
 </thead>
@@ -1999,7 +1999,7 @@
 </ul>
 <h3 id="_11">画像管理</h3>
 <ul>
-<li><code>image</code>: ブランドロゴ画像のパス（単一画像、VARCHAR型）</li>
+<li><code>logo_image</code>: ブランドロゴ画像のパス（単一画像、VARCHAR型）</li>
 <li><code>images</code>: ブランド画像（複数画像、JSON配列形式）</li>
 <li>例: <code>["brands/image1.jpg", "brands/image2.jpg"]</code></li>
 <li>ファイルアップロードは<code>public/brands/</code>ディレクトリに保存</li>
@@ -2024,7 +2024,7 @@
 </code></pre></div>
 <h4 id="_15">有効ブランド一覧</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">-- 有効なブランド一覧（Soft Delete対応）</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">slug</span><span class="p">,</span><span class="w"> </span><span class="n">image</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">slug</span><span class="p">,</span><span class="w"> </span><span class="n">logo_image</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">brands</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">is_active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">TRUE</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">deleted_at</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
