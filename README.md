@@ -1,1 +1,0 @@
-# ec-spoke-doc
