@@ -1694,6 +1694,14 @@
 <td>販売状態（TRUE=販売中、FALSE=販売中止）</td>
 </tr>
 <tr>
+<td>sort_order</td>
+<td>INTEGER</td>
+<td>NOT NULL</td>
+<td>0</td>
+<td>INDEX</td>
+<td>表示順序</td>
+</tr>
+<tr>
 <td>created_at</td>
 <td>TIMESTAMP</td>
 <td>NULL</td>
@@ -1753,6 +1761,12 @@
 <td>idx_products_is_active</td>
 <td>is_active</td>
 <td>販売状態別検索</td>
+</tr>
+<tr>
+<td>INDEX</td>
+<td>idx_products_sort_order</td>
+<td>sort_order</td>
+<td>表示順序別検索</td>
 </tr>
 <tr>
 <td>INDEX</td>
