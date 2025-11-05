@@ -1806,12 +1806,28 @@
 <td>タグ名</td>
 </tr>
 <tr>
-<td>color</td>
+<td>border_color</td>
 <td>VARCHAR(7)</td>
 <td>NULL</td>
 <td>NULL</td>
 <td>-</td>
-<td>タグ色（HEX形式、例: #FF5733）</td>
+<td>枠線色（HEX形式、例: #FF5733）</td>
+</tr>
+<tr>
+<td>bg_color</td>
+<td>VARCHAR(7)</td>
+<td>NULL</td>
+<td>NULL</td>
+<td>-</td>
+<td>背景色（HEX形式、例: #FF5733）</td>
+</tr>
+<tr>
+<td>text_color</td>
+<td>VARCHAR(7)</td>
+<td>NULL</td>
+<td>NULL</td>
+<td>-</td>
+<td>文字色（HEX形式、例: #FF5733）</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -1912,7 +1928,9 @@
 <tr>
 <th>id</th>
 <th>name</th>
-<th>color</th>
+<th>border_color</th>
+<th>bg_color</th>
+<th>text_color</th>
 <th>created_at</th>
 <th>updated_at</th>
 <th>deleted_at</th>
@@ -1923,6 +1941,8 @@
 <td>1</td>
 <td>人気</td>
 <td>#FF5733</td>
+<td>#FFE5E5</td>
+<td>#000000</td>
 <td>2025-01-01 10:00:00</td>
 <td>2025-01-01 10:00:00</td>
 <td>NULL</td>
@@ -1931,6 +1951,8 @@
 <td>2</td>
 <td>新商品</td>
 <td>#33FF57</td>
+<td>#E5FFE5</td>
+<td>#000000</td>
 <td>2025-01-01 10:00:00</td>
 <td>2025-01-01 10:00:00</td>
 <td>NULL</td>
@@ -1939,6 +1961,8 @@
 <td>3</td>
 <td>セール</td>
 <td>#FF3333</td>
+<td>#FFE5E5</td>
+<td>#FFFFFF</td>
 <td>2025-01-01 10:00:00</td>
 <td>2025-01-01 10:00:00</td>
 <td>NULL</td>
@@ -1947,6 +1971,8 @@
 <td>4</td>
 <td>限定</td>
 <td>#3357FF</td>
+<td>#E5E5FF</td>
+<td>#000000</td>
 <td>2025-01-01 10:00:00</td>
 <td>2025-01-01 10:00:00</td>
 <td>NULL</td>
@@ -1955,6 +1981,8 @@
 <td>5</td>
 <td>おすすめ</td>
 <td>#FF33FF</td>
+<td>#FFE5FF</td>
+<td>#000000</td>
 <td>2025-01-01 10:00:00</td>
 <td>2025-01-01 10:00:00</td>
 <td>NULL</td>
@@ -1988,7 +2016,7 @@
 </code></pre></div>
 <h4 id="_13">商品のタグ一覧</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">-- 特定商品のタグ一覧（ソフトデリートされたタグは除外）</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">color</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">border_color</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">bg_color</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">text_color</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">tags</span><span class="w"> </span><span class="n">t</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">product_tags_rel</span><span class="w"> </span><span class="n">pt</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pt</span><span class="p">.</span><span class="n">tag_id</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">pt</span><span class="p">.</span><span class="n">product_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
@@ -1999,14 +2027,16 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">-- タグ別商品数（ソフトデリートされたタグは除外）</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">SELECT</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">color</span><span class="p">,</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="n">pt</span><span class="p">.</span><span class="n">product_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">product_count</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">FROM</span><span class="w"> </span><span class="n">tags</span><span class="w"> </span><span class="n">t</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">product_tags_rel</span><span class="w"> </span><span class="n">pt</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pt</span><span class="p">.</span><span class="n">tag_id</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">pt</span><span class="p">.</span><span class="n">product_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">deleted_at</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">deleted_at</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">color</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">product_count</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">border_color</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">bg_color</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">text_color</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="n">pt</span><span class="p">.</span><span class="n">product_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">product_count</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">FROM</span><span class="w"> </span><span class="n">tags</span><span class="w"> </span><span class="n">t</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">product_tags_rel</span><span class="w"> </span><span class="n">pt</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pt</span><span class="p">.</span><span class="n">tag_id</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">pt</span><span class="p">.</span><span class="n">product_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">deleted_at</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">deleted_at</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">border_color</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">bg_color</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">text_color</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">product_count</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="_15">タグ管理のベストプラクティス</h3>
 <h4 id="_16">タグの種類</h4>
@@ -2038,7 +2068,7 @@
 </code></pre></div>
 <h4 id="_20">タグ候補の自動補完</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">-- タグ名の部分一致検索（ソフトデリートされたタグは除外）</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">border_color</span><span class="p">,</span><span class="w"> </span><span class="n">bg_color</span><span class="p">,</span><span class="w"> </span><span class="n">text_color</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">tags</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%人%&#39;</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">deleted_at</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
@@ -2054,8 +2084,10 @@
 <h3 id="_22">将来の拡張</h3>
 <h4 id="_23">タグの色・アイコン</h4>
 <ul>
-<li><strong>colorカラム</strong>: タグの色をHEX形式で保存（例: #FF5733）</li>
-<li><strong>実装済み</strong>: カラーピッカーで色を選択可能</li>
+<li><strong>border_colorカラム</strong>: タグの枠線色をHEX形式で保存（例: #FF5733）</li>
+<li><strong>bg_colorカラム</strong>: タグの背景色をHEX形式で保存（例: #FFE5E5）</li>
+<li><strong>text_colorカラム</strong>: タグの文字色をHEX形式で保存（例: #000000）</li>
+<li><strong>実装済み</strong>: カラーピッカーで3つの色を個別に選択可能</li>
 </ul>
 <h4 id="_24">タグの階層化</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">-- タググループの追加</span>
