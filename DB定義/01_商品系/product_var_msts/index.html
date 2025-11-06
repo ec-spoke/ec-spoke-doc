@@ -1018,7 +1018,7 @@
           <li class="md-nav__item">
   <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
-      ソフトデリート対応
+      削除制約
     </span>
   </a>
   
@@ -1027,15 +1027,6 @@
           <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
-      削除制約
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
       推奨: 無効化による管理
     </span>
   </a>
@@ -1043,7 +1034,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       削除が必要な場合
     </span>
@@ -1066,7 +1057,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       クエリ例
     </span>
@@ -1529,7 +1520,7 @@
           <li class="md-nav__item">
   <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
-      ソフトデリート対応
+      削除制約
     </span>
   </a>
   
@@ -1538,15 +1529,6 @@
           <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
-      削除制約
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
       推奨: 無効化による管理
     </span>
   </a>
@@ -1554,7 +1536,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       削除が必要な場合
     </span>
@@ -1577,7 +1559,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       クエリ例
     </span>
@@ -1702,14 +1684,6 @@
 <td>NULL</td>
 <td>-</td>
 <td>更新日時</td>
-</tr>
-<tr>
-<td>deleted_at</td>
-<td>TIMESTAMP</td>
-<td>NULL</td>
-<td>NULL</td>
-<td>-</td>
-<td>削除日時（ソフトデリート）</td>
 </tr>
 </tbody>
 </table>
@@ -1853,19 +1827,12 @@
 <li><strong>選択肢の順序</strong>: <code>sort_order</code>で表示順を制御</li>
 </ul>
 <h3 id="_11">削除管理</h3>
-<h4 id="_12">ソフトデリート対応</h4>
-<ul>
-<li><strong>ソフトデリート</strong>: <code>deleted_at</code>カラムによる論理削除に対応</li>
-<li><strong>復元可能</strong>: 削除されたレコードは<code>deleted_at</code>がNULLに戻すことで復元可能</li>
-<li><strong>物理削除</strong>: <code>forceDelete()</code>を使用することで物理削除も可能</li>
-<li><strong>デフォルト動作</strong>: <code>delete()</code>メソッドはソフトデリート（<code>deleted_at</code>にタイムスタンプを設定）</li>
-</ul>
-<h4 id="_13">削除制約</h4>
+<h4 id="_12">削除制約</h4>
 <p><strong>外部キー制約</strong>:
 - <code>product_var_mst_vals</code>: <code>ON DELETE RESTRICT</code>
 - <code>product_var_mst_rel</code>: <code>ON DELETE RESTRICT</code></p>
 <p>バリエーション値または商品関連が存在する場合、マスターは削除不可。</p>
-<h4 id="_14">推奨: 無効化による管理</h4>
+<h4 id="_13">推奨: 無効化による管理</h4>
 <p>削除の代わりに無効化を推奨（将来的に<code>is_visible</code>カラム追加を検討）:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">-- 将来の拡張: is_visibleカラム追加</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">product_var_msts</span>
@@ -1875,40 +1842,32 @@
 - 既存SKUへの影響を回避
 - 履歴データの保持
 - 必要に応じて再有効化可能</p>
-<h4 id="_15">削除が必要な場合</h4>
+<h4 id="_14">削除が必要な場合</h4>
 <ol>
 <li><strong>影響範囲の確認</strong>: 使用中のSKU数、バリエーション値数、商品関連数</li>
 <li><strong>関連データの削除</strong>:</li>
 <li><code>product_var_mst_val_combs</code>（SKUレベル）</li>
 <li><code>product_var_mst_vals</code>（バリエーション値）</li>
 <li><code>product_var_mst_rel</code>（商品関連）</li>
-<li><strong>マスター削除</strong>: 最後に<code>product_var_msts</code>を削除（ソフトデリートまたは物理削除）</li>
+<li><strong>マスター削除</strong>: 最後に<code>product_var_msts</code>を削除</li>
 </ol>
 <h4 id="ui">UI推奨実装</h4>
 <ul>
 <li>削除ボタン押下時に影響範囲を表示</li>
 <li>例: 「このバリエーションマスターは5つの商品、20のSKUで使用されています。削除前に全ての関連データを削除する必要があります。代わりに無効化しますか？」</li>
-<li>ソフトデリートされたレコードは復元可能なため、誤削除時の安全性が向上</li>
 </ul>
-<h3 id="_16">クエリ例</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">-- Tシャツの選択肢を取得（削除済みを除外）</span>
+<h3 id="_15">クエリ例</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">-- Tシャツの選択肢を取得</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">variation_name</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">backend_name</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">sort_order</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">product_var_mst_rel</span><span class="w"> </span><span class="n">pvmr</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">product_var_msts</span><span class="w"> </span><span class="n">pvm</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">pvmr</span><span class="p">.</span><span class="n">product_var_mst_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">id</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">pvmr</span><span class="p">.</span><span class="n">product_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">deleted_at</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">sort_order</span><span class="p">;</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1">-- 削除済みレコードを含む全バリエーションマスターを取得</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">variation_name</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">backend_name</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">sort_order</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">deleted_at</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">FROM</span><span class="w"> </span><span class="n">product_var_msts</span><span class="w"> </span><span class="n">pvm</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">sort_order</span><span class="p">;</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1">-- 削除済みレコードのみを取得</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">variation_name</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">backend_name</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">sort_order</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">deleted_at</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="k">FROM</span><span class="w"> </span><span class="n">product_var_msts</span><span class="w"> </span><span class="n">pvm</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">deleted_at</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">deleted_at</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">sort_order</span><span class="p">;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1">-- 全バリエーションマスターを取得</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">variation_name</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">backend_name</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">sort_order</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">FROM</span><span class="w"> </span><span class="n">product_var_msts</span><span class="w"> </span><span class="n">pvm</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">sort_order</span><span class="p">;</span>
 </code></pre></div>
 
 
