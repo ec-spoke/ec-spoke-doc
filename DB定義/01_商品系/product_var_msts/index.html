@@ -1056,15 +1056,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      クエリ例
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1558,15 +1549,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      クエリ例
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1856,19 +1838,6 @@
 <li>削除ボタン押下時に影響範囲を表示</li>
 <li>例: 「このバリエーションマスターは5つの商品、20のSKUで使用されています。削除前に全ての関連データを削除する必要があります。代わりに無効化しますか？」</li>
 </ul>
-<h3 id="_15">クエリ例</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">-- Tシャツの選択肢を取得</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">variation_name</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">backend_name</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">sort_order</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">product_var_mst_rel</span><span class="w"> </span><span class="n">pvmr</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">product_var_msts</span><span class="w"> </span><span class="n">pvm</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">pvmr</span><span class="p">.</span><span class="n">product_var_mst_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">id</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">pvmr</span><span class="p">.</span><span class="n">product_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">sort_order</span><span class="p">;</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1">-- 全バリエーションマスターを取得</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">variation_name</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">backend_name</span><span class="p">,</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">sort_order</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">FROM</span><span class="w"> </span><span class="n">product_var_msts</span><span class="w"> </span><span class="n">pvm</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pvm</span><span class="p">.</span><span class="n">sort_order</span><span class="p">;</span>
-</code></pre></div>
 
 
 
