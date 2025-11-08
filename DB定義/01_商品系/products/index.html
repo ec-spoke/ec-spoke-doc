@@ -935,15 +935,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      データ移行時の注意
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1546,15 +1537,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      データ移行時の注意
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -2080,14 +2062,6 @@
 <li><code>image</code>: JSON配列（表示順は配列順）</li>
 <li>外部テーブル化は行わない（検索が稀なため）</li>
 </ul>
-<h3 id="_13">データ移行時の注意</h3>
-<ol>
-<li><strong>既存price → product_variations.price</strong>: 既存商品の価格を規格テーブルに移行</li>
-<li><strong>既存stock → product_variations.stock</strong>: 既存在庫を規格テーブルに移行</li>
-<li><strong>既存is_active</strong>: 販売中/販売中止の管理として復活</li>
-<li><strong>statusの変更</strong>: 公開/非公開の2値のみに変更（廃止ステータスは削除）</li>
-</ol>
-<p><strong>注意</strong>: 単一価格商品も1つのproduct_variationsレコードとして管理</p>
 
 
 

@@ -929,24 +929,6 @@
         <li class="md-nav__item">
   <a href="#_18" class="md-nav__link">
     <span class="md-ellipsis">
-      実装順序
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      注意事項
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
       更新履歴
     </span>
   </a>
@@ -1728,24 +1710,6 @@
         <li class="md-nav__item">
   <a href="#_18" class="md-nav__link">
     <span class="md-ellipsis">
-      実装順序
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      注意事項
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
       更新履歴
     </span>
   </a>
@@ -1956,21 +1920,7 @@
 <li><strong>削除順序</strong>: 末端（SKU）→中間（バリエーション値）→マスター（バリエーションマスター）</li>
 <li><strong>推奨</strong>: マスターの削除は避け、<code>is_visible=FALSE</code>での無効化を推奨</li>
 </ul>
-<h2 id="_18">実装順序</h2>
-<ol>
-<li><strong>基盤構築</strong>: brands → variation_names → variation_values → products → product_var_msts → product_var_mst_vals → product_var_mst_rel → product_var_mst_val_combs → product_vars</li>
-<li><strong>既存テーブル変更</strong>: categories</li>
-<li><strong>付属機能</strong>: tags, product_tags</li>
-<li><strong>データ移行</strong>: 既存データの移行スクリプト</li>
-<li><strong>アプリケーション</strong>: Eloquentモデル → Factory/Seeder → Filament Resource</li>
-</ol>
-<h2 id="_19">注意事項</h2>
-<ul>
-<li>マイグレーション実行順序を厳守（外部キー制約のため）</li>
-<li>既存データの移行が必要（products.price → product_vars.price等）</li>
-<li>商品バリエーションのクエリは中間テーブル（product_var_mst_val_combs）を経由するため、Eager Loadingを活用</li>
-</ul>
-<h2 id="_20">更新履歴</h2>
+<h2 id="_18">更新履歴</h2>
 <ul>
 <li>2024-01-XX: 初版作成（商品系のみ）</li>
 </ul>
