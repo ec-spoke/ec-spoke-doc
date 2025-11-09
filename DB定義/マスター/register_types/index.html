@@ -1526,8 +1526,8 @@
 
 <h1 id="register_types">register_types テーブル定義</h1>
 <h2 id="_1">概要</h2>
-<p>レジ種別を管理するマスターテーブル。顧客の登録種別（通常、定期購読等）を管理する。</p>
-<p><strong>用途</strong>: 顧客登録時の種別選択、定期購読者と通常顧客の区分などで使用。</p>
+<p>レジ種別を管理するマスターテーブル。商品のレジ種別（通常、定期購読等）を管理する。</p>
+<p><strong>用途</strong>: 商品のレジ種別選択、通常商品と定期購読商品の区分などで使用。</p>
 <h2 id="_2">テーブル情報</h2>
 <table>
 <thead>
@@ -1657,12 +1657,30 @@
 <p>なし（マスターテーブルのため）</p>
 <h2 id="_6">リレーション</h2>
 <p>このテーブルは他のテーブルから参照される：</p>
-<ul>
-<li><strong>product_vars</strong>: 商品バリエーションのレジ種別を記録（NULLの場合は通常顧客向け）</li>
-<li><strong>customers</strong>: 顧客のレジ種別を記録（将来実装）</li>
-<li><strong>users</strong>: ユーザーのレジ種別を記録（将来実装）</li>
-<li><strong>subscriptions</strong>: 定期購読情報のレジ種別を記録（将来実装）</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>関連先テーブル</th>
+<th>関連タイプ</th>
+<th>外部キー</th>
+<th>参照先</th>
+<th>ON DELETE</th>
+<th>ON UPDATE</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../01_%E5%95%86%E5%93%81%E7%B3%BB/products/">products</a></td>
+<td>1:N</td>
+<td>register_type_id</td>
+<td>id</td>
+<td>RESTRICT</td>
+<td>RESTRICT</td>
+<td>1つのレジ種別は複数の商品で使用される（レジ種別削除時は使用中の商品があるとエラー、商品削除はレジ種別に影響なし）</td>
+</tr>
+</tbody>
+</table>
 <h2 id="_7">データ例</h2>
 <table>
 <thead>
@@ -1676,7 +1694,7 @@
 <tbody>
 <tr>
 <td>1</td>
-<td>通常</td>
+<td>一般</td>
 <td>1</td>
 <td>TRUE</td>
 </tr>
@@ -1693,14 +1711,13 @@
 <h4 id="_10">初期データ</h4>
 <p>マイグレーション時に以下の初期データが投入される：</p>
 <ul>
-<li><strong>通常</strong>: 通常の顧客登録（sort_order: 1）</li>
-<li><strong>定期購読</strong>: 定期購読契約の顧客（sort_order: 2）</li>
+<li><strong>一般</strong>: 通常商品（sort_order: 1）</li>
+<li><strong>定期購読</strong>: 定期購読商品（sort_order: 2）</li>
 </ul>
 <h4 id="_11">レジ種別の用途</h4>
 <ul>
-<li><strong>顧客区分</strong>: 通常顧客と定期購読顧客を区別</li>
-<li><strong>価格設定</strong>: 定期購読顧客には特別価格を適用する場合に使用</li>
-<li><strong>配送管理</strong>: 定期購読顧客は定期的な配送スケジュールを管理</li>
+<li><strong>商品区分</strong>: 通常商品と定期購読商品を区別</li>
+<li><strong>価格設定</strong>: 定期購読商品には特別価格を適用する場合に使用</li>
 </ul>
 <h4 id="_12">有効化ポリシー</h4>
 <ul>
@@ -1715,12 +1732,12 @@
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">is_active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">TRUE</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">sort_order</span><span class="p">;</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">-- レジ種別別の顧客数（将来実装）</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">-- レジ種別別の商品数</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">SELECT</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="n">r</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">customer_count</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">product_count</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">FROM</span><span class="w"> </span><span class="n">register_types</span><span class="w"> </span><span class="n">r</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">register_type_id</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">register_type_id</span>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">is_active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">TRUE</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">name</span>
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">sort_order</span><span class="p">;</span>

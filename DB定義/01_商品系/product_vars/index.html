@@ -1098,43 +1098,10 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="レジ種別管理">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
-      個別レジ種別設定（将来の拡張予定）
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
-    <span class="md-ellipsis">
-      レジ種別の用途
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
-    <span class="md-ellipsis">
-      レジ種別と価格の関係
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
     <span class="md-ellipsis">
       販売中フラグ
     </span>
@@ -1631,43 +1598,10 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="レジ種別管理">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
-      個別レジ種別設定（将来の拡張予定）
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
-    <span class="md-ellipsis">
-      レジ種別の用途
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
-    <span class="md-ellipsis">
-      レジ種別と価格の関係
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
     <span class="md-ellipsis">
       販売中フラグ
     </span>
@@ -1788,8 +1722,8 @@
 <tr>
 <td>regular_price</td>
 <td>DECIMAL(10,3)</td>
-<td>NOT NULL</td>
-<td>-</td>
+<td>NULL</td>
+<td>NULL</td>
 <td>-</td>
 <td>通常価格（定価・税抜）</td>
 </tr>
@@ -1824,14 +1758,6 @@
 <td>NULL</td>
 <td>FK</td>
 <td>税率ID（tax_rates.id、NULLの場合はデフォルト税率）</td>
-</tr>
-<tr>
-<td>register_type_id</td>
-<td>BIGINT UNSIGNED</td>
-<td>NULL</td>
-<td>NULL</td>
-<td>FK</td>
-<td>レジ種別ID（register_types.id、NULLの場合は通常顧客向け）</td>
 </tr>
 <tr>
 <td>stock</td>
@@ -1955,14 +1881,6 @@
 <td>RESTRICT</td>
 <td>税率削除時はNULL（デフォルト税率にフォールバック）</td>
 </tr>
-<tr>
-<td>fk_product_vars_register_type</td>
-<td>register_type_id</td>
-<td>register_types(id)</td>
-<td>SET NULL</td>
-<td>RESTRICT</td>
-<td>レジ種別削除時はNULL（通常顧客向けにフォールバック）</td>
-</tr>
 </tbody>
 </table>
 <h2 id="_6">リレーション</h2>
@@ -1986,7 +1904,7 @@
 <td>id</td>
 <td>CASCADE</td>
 <td>RESTRICT</td>
-<td>商品バリエーションは1つの商品に属する</td>
+<td>商品バリエーションは1つの商品に属する（レジ種別は商品レベルで管理）</td>
 </tr>
 <tr>
 <td><a href="../../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/tax_rates/">tax_rates</a></td>
@@ -1996,15 +1914,6 @@
 <td>SET NULL</td>
 <td>RESTRICT</td>
 <td>商品バリエーションは1つの税率を持つ（NULLの場合はデフォルト税率）</td>
-</tr>
-<tr>
-<td><a href="../../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/register_types/">register_types</a></td>
-<td>N:1</td>
-<td>register_type_id</td>
-<td>id</td>
-<td>SET NULL</td>
-<td>RESTRICT</td>
-<td>商品バリエーションは1つのレジ種別を持つ（NULLの場合は通常顧客向け）</td>
 </tr>
 <tr>
 <td><a href="../product_var_mst_val_combs/">product_var_mst_val_combs</a></td>
@@ -2040,7 +1949,6 @@
 <th>special_price</th>
 <th>member_price</th>
 <th>tax_rate_id</th>
-<th>register_type_id</th>
 <th>stock</th>
 <th>stock_unlimited</th>
 <th>sale_limit</th>
@@ -2059,7 +1967,6 @@
 <td>2400.000</td>
 <td>2200.000</td>
 <td>1</td>
-<td>NULL</td>
 <td>50</td>
 <td>FALSE</td>
 <td>5</td>
@@ -2076,7 +1983,6 @@
 <td>NULL</td>
 <td>2200.000</td>
 <td>1</td>
-<td>NULL</td>
 <td>30</td>
 <td>FALSE</td>
 <td>5</td>
@@ -2093,7 +1999,6 @@
 <td>NULL</td>
 <td>NULL</td>
 <td>2</td>
-<td>NULL</td>
 <td>1000</td>
 <td>FALSE</td>
 <td>10</td>
@@ -2107,7 +2012,6 @@
 <td>0.000</td>
 <td>980.000</td>
 <td>980.000</td>
-<td>NULL</td>
 <td>NULL</td>
 <td>NULL</td>
 <td>NULL</td>
@@ -2127,7 +2031,6 @@
 <td>NULL</td>
 <td>NULL</td>
 <td>1</td>
-<td>2</td>
 <td>NULL</td>
 <td>TRUE</td>
 <td>NULL</td>
@@ -2182,7 +2085,7 @@
 <td><code>regular_price</code></td>
 <td>通常価格（定価）</td>
 <td>公開</td>
-<td>商品の定価（参考価格として表示）</td>
+<td>商品の定価（参考価格として表示、必須ではない）</td>
 </tr>
 <tr>
 <td><code>price</code></td>
@@ -2206,9 +2109,10 @@
 </table>
 <h4 id="_15">価格の関係性</h4>
 <ul>
-<li><strong>cost_price</strong> &lt; <strong>price</strong> &lt; <strong>regular_price</strong> （一般的な関係）</li>
+<li><strong>cost_price</strong> &lt; <strong>price</strong> &lt; <strong>regular_price</strong> （一般的な関係、<code>regular_price</code>がNULLの場合は適用されない）</li>
 <li><strong>special_price</strong> は <strong>price</strong> より安い場合が多い</li>
 <li><strong>member_price</strong> は <strong>price</strong> より安い場合が多い</li>
+<li><strong>regular_price</strong> は必須ではない（定価を設定しない商品も可）</li>
 </ul>
 <h3 id="_16">在庫管理</h3>
 <ul>
@@ -2228,24 +2132,13 @@
 <li>それぞれ独立して管理（重複不可）</li>
 </ul>
 <h3 id="_19">レジ種別管理</h3>
-<h4 id="_20">個別レジ種別設定（将来の拡張予定）</h4>
+<p>レジ種別は商品レベル（<code>products.register_type_id</code>）で管理します。商品バリエーション（<code>product_vars</code>）にはレジ種別カラムは存在しません。</p>
 <ul>
-<li><strong>register_type_id</strong>: 商品バリエーション個別のレジ種別を設定（Migrationに存在するが、管理画面では未実装）</li>
-<li><strong>NULL許容</strong>: レジ種別未設定（NULL）の場合、通常顧客向けとして扱う</li>
+<li><strong>商品レベル管理</strong>: 商品全体のレジ種別は<code>products.register_type_id</code>で管理</li>
+<li><strong>バリエーション</strong>: すべてのバリエーションは親商品のレジ種別を継承</li>
 <li><strong>レジ種別マスター参照</strong>: <a href="../../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/register_types/">register_types</a>テーブルを参照</li>
 </ul>
-<h4 id="_21">レジ種別の用途</h4>
-<ul>
-<li><strong>定期購読商品</strong>: <code>register_type_id = 2</code>（定期購読）を設定することで、定期購読顧客向け商品として扱う</li>
-<li><strong>通常商品</strong>: <code>register_type_id = NULL</code>または<code>register_type_id = 1</code>（通常）の場合、通常顧客向け商品として扱う</li>
-<li><strong>価格設定</strong>: レジ種別ごとに異なる価格を設定可能（将来実装）</li>
-</ul>
-<h4 id="_22">レジ種別と価格の関係</h4>
-<ul>
-<li><strong>通常顧客向け</strong>: <code>register_type_id = NULL</code>または<code>1</code>（通常）の場合、<code>price</code>、<code>special_price</code>、<code>member_price</code>を使用</li>
-<li><strong>定期購読顧客向け</strong>: <code>register_type_id = 2</code>（定期購読）の場合、定期購読価格を適用（将来実装時に<code>subscription_price</code>カラムを追加する可能性）</li>
-</ul>
-<h3 id="_23">販売中フラグ</h3>
+<h3 id="_20">販売中フラグ</h3>
 <ul>
 <li><code>is_active</code> = TRUE: 販売中（フロントエンドで表示・購入可能）</li>
 <li><code>is_active</code> = FALSE: 販売停止（管理画面でのみ表示、フロントエンドでは非表示・購入不可）</li>

@@ -1622,6 +1622,14 @@
 <td>作成者ID（admins.id）</td>
 </tr>
 <tr>
+<td>register_type_id</td>
+<td>BIGINT UNSIGNED</td>
+<td>NULL</td>
+<td>NULL</td>
+<td>FK</td>
+<td>レジ種別ID（register_types.id）</td>
+</tr>
+<tr>
 <td>name</td>
 <td>VARCHAR(255)</td>
 <td>NOT NULL</td>
@@ -1819,6 +1827,14 @@
 <td>RESTRICT</td>
 <td>作成者削除時はNULL</td>
 </tr>
+<tr>
+<td>fk_products_register_type</td>
+<td>register_type_id</td>
+<td>register_types(id)</td>
+<td>RESTRICT</td>
+<td>RESTRICT</td>
+<td>レジ種別を削除しようとした時に、そのレジ種別を使用している商品があるとエラー</td>
+</tr>
 </tbody>
 </table>
 <h2 id="_5">リレーション</h2>
@@ -1852,6 +1868,15 @@
 <td>SET NULL</td>
 <td>RESTRICT</td>
 <td>商品は1人の作成者を持つ</td>
+</tr>
+<tr>
+<td><a href="../../%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/register_types/">register_types</a></td>
+<td>N:1</td>
+<td>register_type_id</td>
+<td>id</td>
+<td>RESTRICT</td>
+<td>RESTRICT</td>
+<td>商品は1つのレジ種別に属する（商品削除はレジ種別に影響なし、レジ種別削除時は使用中の商品があるとエラー）</td>
 </tr>
 <tr>
 <td><a href="../category_product_rel/">category_product_rel</a></td>
@@ -1934,6 +1959,7 @@
 <th>id</th>
 <th>brand_id</th>
 <th>creator_id</th>
+<th>register_type_id</th>
 <th>name</th>
 <th>slug</th>
 <th>status</th>
@@ -1946,6 +1972,7 @@
 <td>100</td>
 <td>1</td>
 <td>1</td>
+<td>1</td>
 <td>コットンTシャツ</td>
 <td>cotton-t-shirt</td>
 <td>1</td>
@@ -1955,6 +1982,7 @@
 <tr>
 <td>200</td>
 <td>2</td>
+<td>1</td>
 <td>1</td>
 <td>レモン飲料</td>
 <td>lemon-drink</td>
@@ -1966,6 +1994,7 @@
 <td>300</td>
 <td>NULL</td>
 <td>1</td>
+<td>NULL</td>
 <td>電子書籍</td>
 <td>ebook-basic</td>
 <td>1</td>
@@ -1998,6 +2027,7 @@
 <li><code>status</code>: 公開/非公開の管理（1=公開, 2=非公開）</li>
 <li><code>is_active</code>: 販売中/販売中止の管理（TRUE=販売中, FALSE=販売中止）※既存カラムを再利用</li>
 <li><code>creator_id</code>: 作成者管理</li>
+<li><code>register_type_id</code>: レジ種別管理（NULL可、削除時はRESTRICT）</li>
 </ul>
 <h3 id="status">ステータス管理（status）</h3>
 <table>
