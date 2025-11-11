@@ -2477,14 +2477,16 @@
 <li><strong>近接配置の原則</strong>: Filamentリソースとビュー、ワークフロー関連ファイルを同じディレクトリ配下に配置（詳細は<a href="../AdminViewsResource%E8%BF%91%E6%8E%A5%E9%85%8D%E7%BD%AE/">AdminViewsResource近接配置</a>を参照）</li>
 <li><strong>イベント駆動アーキテクチャ</strong>: Observers（モデルライフサイクル）、Events/Listeners（ビジネスイベント）を適切に使い分け</li>
 </ul>
-<p>主要なディレクトリ構成：
-- <code>app/Models/{Domain}/</code>: Eloquentモデル
-- <code>app/Domains/{Domain}/</code>: ドメイン固有のサービス、ポリシー、アクション、オブザーバ、値オブジェクト
-- <code>app/Admin/</code>: Filament管理画面（近接配置ルールに従いビューも配置）
-- <code>app/Frontend/</code>: Livewireコンポーネント、ページビルダー、テーマ別ビュー
-- <code>app/Http/</code>: コントローラ、ミドルウェア、FormRequest、API Resource（詳細は<a href="../API%E5%B1%A4%E3%81%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87/">API層の命名規則</a>を参照）
-- <code>app/Services/</code>: ドメイン横断的なアプリケーションサービス（カート管理等）
-- <code>app/Workflows/{WorkflowName}/</code>: 複数手順を跨ぐ処理をパイプライン化</p>
+<p>主要なディレクトリ構成：</p>
+<ul>
+<li><code>app/Models/{Domain}/</code>: Eloquentモデル</li>
+<li><code>app/Domains/{Domain}/</code>: ドメイン固有のサービス、ポリシー、アクション、オブザーバ、値オブジェクト</li>
+<li><code>app/Admin/</code>: Filament管理画面（近接配置ルールに従いビューも配置）</li>
+<li><code>app/Frontend/</code>: Livewireコンポーネント、ページビルダー、テーマ別ビュー</li>
+<li><code>app/Http/</code>: コントローラ、ミドルウェア、FormRequest、API Resource（詳細は<a href="../API%E5%B1%A4%E3%81%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87/">API層の命名規則</a>を参照）</li>
+<li><code>app/Services/</code>: ドメイン横断的なアプリケーションサービス（カート管理等）</li>
+<li><code>app/Workflows/{WorkflowName}/</code>: 複数手順を跨ぐ処理をパイプライン化</li>
+</ul>
 <p>設定は <code>config/*.php</code> をドメイン別に分割し、テナント固有設定は専用テーブル＋キャッシュで提供。ユースケース単位のサービスは <code>app/Domains/{Domain}/Services</code> に配置し、複数手順を跨ぐ処理は <code>app/Workflows/{WorkflowName}/</code> でパイプライン化（詳細は<a href="../Workflow-Pipeline%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3/">Workflow-Pipelineパターン</a>を参照）。</p>
 <p>詳細は<a href="../%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E6%A7%8B%E9%80%A0/">アプリケーション構造</a>を参照してください。</p>
 <h2 id="_5">データ戦略（将来予定）</h2>
