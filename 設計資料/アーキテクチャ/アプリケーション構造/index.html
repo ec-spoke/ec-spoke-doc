@@ -1,0 +1,4485 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="EC-SPOKE プロジェクトのドキュメント集">
+      
+      
+      
+      
+        <link rel="prev" href="../%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%A2%83%E7%95%8C%E3%81%A8%E8%B2%AC%E5%8B%99/">
+      
+      
+        <link rel="next" href="../AdminViewsResource%E8%BF%91%E6%8E%A5%E9%85%8D%E7%BD%AE/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>アプリケーション構造 - EC-SPOKE ドキュメント</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CNoto+Sans+JP:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"Noto Sans JP"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Noto-Sans-JP" data-md-color-accent="Noto-Sans-JP">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../.." title="EC-SPOKE ドキュメント" class="md-header__button md-logo" aria-label="EC-SPOKE ドキュメント" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EC-SPOKE ドキュメント
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              アプリケーション構造
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="Noto-Sans-JP" data-md-color-accent="Noto-Sans-JP"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="Noto-Sans-JP" data-md-color-accent="Noto-Sans-JP"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../%E6%B3%A8%E6%96%87%E8%A8%88%E7%AE%97%E6%96%B9%E5%BC%8F/" class="md-tabs__link">
+          
+  
+  
+  設計資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/brands/" class="md-tabs__link">
+          
+  
+  
+  仕様書
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../DB%E5%AE%9A%E7%BE%A9/DB%E5%AE%9A%E7%BE%A9%E6%A6%82%E8%A6%81/" class="md-tabs__link">
+          
+  
+  
+  DB定義
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TIPS/filament-modal-in-modal/" class="md-tabs__link">
+          
+  
+  
+  TIPS
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="EC-SPOKE ドキュメント" class="md-nav__button md-logo" aria-label="EC-SPOKE ドキュメント" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    EC-SPOKE ドキュメント
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ホーム
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    設計資料
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            設計資料
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B3%A8%E6%96%87%E8%A8%88%E7%AE%97%E6%96%B9%E5%BC%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    注文計算方式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%BE%A1%E6%A0%BC%E8%A8%88%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    価格計算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%A9%E7%94%A8%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    利用プラグイン
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%85%A8%E4%BD%93%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    全体アーキテクチャ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%A2%83%E7%95%8C%E3%81%A8%E8%B2%AC%E5%8B%99/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ドメイン境界と責務
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    アプリケーション構造
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    アプリケーション構造
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      概要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本方針
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本方針">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. ドメイン駆動の構造化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. レイヤー別の責務分離
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 近接配置の原則
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. イベント駆動アーキテクチャ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 技術スタックの活用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリ構成例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      各ディレクトリの役割分担と配置ルール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="各ディレクトリの役割分担と配置ルール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#models-appmodels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Models (app/Models/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domains-appdomainsdomain" class="md-nav__link">
+    <span class="md-ellipsis">
+      Domains (app/Domains/{Domain}/)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Domains (app/Domains/{Domain}/)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      サービス層
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      値オブジェクト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      アクション
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      オブザーバ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      定数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums-appenums" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enums (app/Enums/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rules-apprules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rules (app/Rules/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services-appservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services (app/Services/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflows-appworkflowsworkflowname" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflows (app/Workflows/{WorkflowName}/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-appadmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Admin (app/Admin/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-appfrontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frontend (app/Frontend/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-apphttp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Http (app/Http/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providers-appproviders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Providers (app/Providers/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support-appsupport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support (app/Support/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traits-apptraits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traits (app/Traits/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#facades-appfacades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Facades (app/Facades/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console-appconsolecommands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Console (app/Console/Commands/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observers-appobservers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observers (app/Observers/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notifications-appnotifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notifications (app/Notifications/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      config/ (config/)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロジェクトルート配下のディレクトリ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="プロジェクトルート配下のディレクトリ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      database/ (database/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routes-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      routes/ (routes/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      resources/ (resources/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap-bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      bootstrap/ (bootstrap/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      tests/ (tests/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage/ (storage/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#public-public" class="md-nav__link">
+    <span class="md-ellipsis">
+      public/ (public/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observers-appobservers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observers (app/Observers/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-appevents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Events (app/Events/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listeners-applisteners" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listeners (app/Listeners/)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observerseventslisteners" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observers、Events、Listenersの使い分け
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Observers、Events、Listenersの使い分け">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      補記：使い分けの比較表
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      使い分けの判断フローチャート
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      実践的なルール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="実践的なルール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#observers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observersを使う場合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventslisteners" class="md-nav__link">
+    <span class="md-ellipsis">
+      Events/Listenersを使う場合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      直接呼び出しを使う場合
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jobs-appjobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jobs (app/Jobs/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mail-appmail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mail (app/Mail/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exceptions-appexceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exceptions (app/Exceptions/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadcast-appbroadcast" class="md-nav__link">
+    <span class="md-ellipsis">
+      Broadcast (app/Broadcast/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notifications-appnotifications_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notifications (app/Notifications/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-config_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      config/ (config/)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロジェクトルート配下のディレクトリ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="プロジェクトルート配下のディレクトリ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-database_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      database/ (database/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routes-routes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      routes/ (routes/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources-resources_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      resources/ (resources/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap-bootstrap_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      bootstrap/ (bootstrap/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests-tests_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      tests/ (tests/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-storage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage/ (storage/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#public-public_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      public/ (public/)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#servicefacade" class="md-nav__link">
+    <span class="md-ellipsis">
+      ヘルパー関数・Service・Facadeの使い分け
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ヘルパー関数・Service・Facadeの使い分け">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      使い分けの判断フローチャート
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      比較表
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      実践的なルール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="実践的なルール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      ヘルパー関数を使う場合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Serviceを使う場合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#facade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Facadeを使う場合
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      関連ドキュメント
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AdminViewsResource%E8%BF%91%E6%8E%A5%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AdminViewsResource近接配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API%E5%B1%A4%E3%81%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API層の命名規則
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Workflow-Pipeline%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Workflow-Pipelineパターン
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%A9%E3%83%93%E3%83%AA%E3%83%86%E3%82%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    スケーラビリティ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EC-SPOKE%E9%85%8D%E4%BB%98%E6%A7%8B%E6%83%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC-SPOKE配付構想
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    仕様書
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            仕様書
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    機能仕様書
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            機能仕様書
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    商品管理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            商品管理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/brands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ブランド
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/categories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    カテゴリ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/products/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    商品
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/product-var-msts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    商品バリエーション仕様
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    タグ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    システム管理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            システム管理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E7%AE%A1%E7%90%86/admins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    管理者
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    店舗管理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            店舗管理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3_1" id="__nav_3_1_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    基本マスタ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            基本マスタ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%BA%97%E8%88%97%E7%AE%A1%E7%90%86/%E5%9F%BA%E6%9C%AC%E3%83%9E%E3%82%B9%E3%82%BF/countries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    国
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%BA%97%E8%88%97%E7%AE%A1%E7%90%86/%E5%9F%BA%E6%9C%AC%E3%83%9E%E3%82%B9%E3%82%BF/genders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    性別
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%BA%97%E8%88%97%E7%AE%A1%E7%90%86/%E5%9F%BA%E6%9C%AC%E3%83%9E%E3%82%B9%E3%82%BF/jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    職業
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%BA%97%E8%88%97%E7%AE%A1%E7%90%86/%E5%9F%BA%E6%9C%AC%E3%83%9E%E3%82%B9%E3%82%BF/prefectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    都道府県
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%BA%97%E8%88%97%E7%AE%A1%E7%90%86/%E5%9F%BA%E6%9C%AC%E3%83%9E%E3%82%B9%E3%82%BF/register-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    登録タイプ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DB定義
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            DB定義
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DB定義概要
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            DB定義概要
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/DB%E5%AE%9A%E7%BE%A9%E6%A6%82%E8%A6%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    データベース定義書
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    商品系
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            商品系
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/PRODUCT_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    商品系概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/brands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    brands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/categories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    categories
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/category_product_rel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    category_product_rel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/products/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    products
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_tags_rel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_tags_rel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_mst_rel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_mst_rel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_mst_val_combs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_mst_val_combs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_mst_vals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_mst_vals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_msts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_msts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_vars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_vars
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    tags
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    マスター
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            マスター
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/MASTER_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    マスター概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/countries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    countries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/currencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    currencies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/genders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    genders
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    jobs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/prefectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    prefectures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/register_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    register_types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/tax_rates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    tax_rates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    TIPS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            TIPS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../TIPS/filament-modal-in-modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filament
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      概要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本方針
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本方針">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. ドメイン駆動の構造化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. レイヤー別の責務分離
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 近接配置の原則
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. イベント駆動アーキテクチャ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 技術スタックの活用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリ構成例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      各ディレクトリの役割分担と配置ルール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="各ディレクトリの役割分担と配置ルール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#models-appmodels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Models (app/Models/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domains-appdomainsdomain" class="md-nav__link">
+    <span class="md-ellipsis">
+      Domains (app/Domains/{Domain}/)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Domains (app/Domains/{Domain}/)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      サービス層
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      値オブジェクト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      アクション
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      オブザーバ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      定数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums-appenums" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enums (app/Enums/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rules-apprules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rules (app/Rules/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services-appservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services (app/Services/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflows-appworkflowsworkflowname" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflows (app/Workflows/{WorkflowName}/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-appadmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Admin (app/Admin/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-appfrontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frontend (app/Frontend/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-apphttp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Http (app/Http/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providers-appproviders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Providers (app/Providers/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support-appsupport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support (app/Support/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traits-apptraits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traits (app/Traits/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#facades-appfacades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Facades (app/Facades/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console-appconsolecommands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Console (app/Console/Commands/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observers-appobservers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observers (app/Observers/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notifications-appnotifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notifications (app/Notifications/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      config/ (config/)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロジェクトルート配下のディレクトリ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="プロジェクトルート配下のディレクトリ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      database/ (database/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routes-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      routes/ (routes/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      resources/ (resources/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap-bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      bootstrap/ (bootstrap/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      tests/ (tests/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage/ (storage/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#public-public" class="md-nav__link">
+    <span class="md-ellipsis">
+      public/ (public/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observers-appobservers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observers (app/Observers/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-appevents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Events (app/Events/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listeners-applisteners" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listeners (app/Listeners/)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observerseventslisteners" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observers、Events、Listenersの使い分け
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Observers、Events、Listenersの使い分け">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      補記：使い分けの比較表
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      使い分けの判断フローチャート
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      実践的なルール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="実践的なルール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#observers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observersを使う場合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventslisteners" class="md-nav__link">
+    <span class="md-ellipsis">
+      Events/Listenersを使う場合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      直接呼び出しを使う場合
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jobs-appjobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jobs (app/Jobs/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mail-appmail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mail (app/Mail/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exceptions-appexceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exceptions (app/Exceptions/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadcast-appbroadcast" class="md-nav__link">
+    <span class="md-ellipsis">
+      Broadcast (app/Broadcast/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notifications-appnotifications_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notifications (app/Notifications/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-config_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      config/ (config/)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロジェクトルート配下のディレクトリ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="プロジェクトルート配下のディレクトリ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-database_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      database/ (database/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routes-routes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      routes/ (routes/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources-resources_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      resources/ (resources/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap-bootstrap_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      bootstrap/ (bootstrap/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests-tests_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      tests/ (tests/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-storage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage/ (storage/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#public-public_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      public/ (public/)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#servicefacade" class="md-nav__link">
+    <span class="md-ellipsis">
+      ヘルパー関数・Service・Facadeの使い分け
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ヘルパー関数・Service・Facadeの使い分け">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      使い分けの判断フローチャート
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      比較表
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      実践的なルール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="実践的なルール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      ヘルパー関数を使う場合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Serviceを使う場合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#facade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Facadeを使う場合
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      関連ドキュメント
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">アプリケーション構造</h1>
+<h2 id="_2">概要</h2>
+<p>EC-SPOKEシステムの具体的なディレクトリ構成と、各種コンポーネントの配置方針を定義します。実装時の具体的なガイドラインとして参照してください。</p>
+<h2 id="_3">基本方針</h2>
+<p>EC-SPOKEシステムのアプリケーション構造は、以下の原則に基づいて設計されています：</p>
+<h3 id="1">1. ドメイン駆動の構造化</h3>
+<ul>
+<li><strong>モデルとドメインの分離</strong>: Eloquentモデル（<code>app/Models/{Domain}</code>）とドメイン固有の振る舞い（<code>app/Domains/{Domain}</code>）を明確に分離し、責務を明確化する</li>
+<li><strong>ドメイン別の集約</strong>: 各ドメイン（Catalog、Order、Page等）は、モデル・サービス・ポリシー・アクション・オブザーバを独立したディレクトリに集約する</li>
+<li><strong>グローバルコンポーネントの明確化</strong>: 複数ドメインで共通利用されるコンポーネント（Enums、Rules、Services、Workflows）は、グローバルに配置し、ドメイン固有のものと区別する</li>
+</ul>
+<h3 id="2">2. レイヤー別の責務分離</h3>
+<ul>
+<li><strong>プレゼンテーション層</strong>: Admin（Filament管理画面）、Frontend（Livewireコンポーネント）、Http（API/Webコントローラ）を明確に分離</li>
+<li><strong>ビジネスロジック層</strong>: ドメインサービス、ワークフロー、アクションを配置し、UIから独立したビジネスロジックを実現</li>
+<li><strong>インフラ層</strong>: Providers、Support、Traits、Facades、Consoleコマンドを配置し、アプリケーション基盤を提供</li>
+</ul>
+<h3 id="3">3. 近接配置の原則</h3>
+<ul>
+<li><strong>Filamentリソースとビュー</strong>: <a href="../AdminViewsResource%E8%BF%91%E6%8E%A5%E9%85%8D%E7%BD%AE/">近接配置ルール</a>に従い、リソースとビューを同じディレクトリ配下に配置し、探索性を向上</li>
+<li><strong>ワークフロー関連ファイル</strong>: ワークフロー名別のディレクトリに、Workflow、Pipeline、Context、State、Actions、Jobs、Pipesを集約</li>
+</ul>
+<h3 id="4">4. イベント駆動アーキテクチャ</h3>
+<ul>
+<li><strong>Observers</strong>: モデルのライフサイクルに密接に関連する処理（検索インデックス更新、監査ログ等）</li>
+<li><strong>Events/Listeners</strong>: ビジネスイベントを表現し、ドメイン間の疎結合な連携を実現</li>
+<li><strong>使い分け</strong>: モデルの状態変化はObservers、ビジネス的に意味のある出来事はEvents/Listenersを使用</li>
+</ul>
+<h3 id="5">5. 技術スタックの活用</h3>
+<ul>
+<li><strong>PHP 8.3以上</strong>: readonly class、enum、match式、型付きプロパティなど最新の機能を積極的に活用</li>
+<li><strong>Laravel標準構造</strong>: プロジェクトルート配下のディレクトリ（database、routes、resources、bootstrap、tests、storage、public）はLaravel標準に従う</li>
+<li><strong>Filament v4</strong>: 管理画面のリソース、コンポーネント、ウィジェットを<code>app/Admin/</code>配下に配置</li>
+</ul>
+<h2 id="_4">ディレクトリ構成例</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>app/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── Models/
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   ├── Catalog/
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   │   ├── Product.php
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   │   ├── ProductVariant.php
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   │   ├── Inventory.php
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   │   └── Price.php
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── Order/
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   │   ├── Order.php
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   │   └── OrderItem.php
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   └── ...（他ドメインも同様に配置）
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>├── Domains/
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   ├── Catalog/
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   │   ├── Services/
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   │   │   ├── ProductCatalogService.php
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│   │   │   └── InventoryService.php
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│   │   ├── Policies/
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│   │   │   └── ProductPolicy.php
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│   │   ├── Actions/
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│   │   │   └── ArchiveProductAction.php
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│   │   ├── Observers/
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│   │   │   └── ProductObserver.php
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│   │   ├── ValueObjects/
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>│   │   │   └── Price.php
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│   │   └── Constants/
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>│   │       └── ProductConstants.php
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>│   └── Order/
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>│       ├── Services/
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>│       │   └── OrderPlacementService.php
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>│       ├── ValueObjects/
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>│       │   ├── ReservedInventory.php
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>│       │   ├── PaymentResult.php
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>│       │   └── ShippingArrangement.php
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>│       └── ...
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>├── Enums/
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>│   ├── OrderStatus.php
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>│   ├── PaymentStatus.php
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>│   └── ...（グローバルなEnum）
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>├── Rules/
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>│   ├── SubscriptionPlanUniqueRule.php
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>│   ├── ValidProductVariantRule.php
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>│   └── ...（カスタムバリデーションルール）
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>├── Services/
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>│   ├── CartService.php
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>│   └── PageCompiler.php
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>├── Workflows/
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>│   └── OrderPlacement/
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>│       ├── OrderPlacementWorkflow.php
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>│       ├── OrderPlacementPipeline.php
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>│       ├── OrderPlacementContext.php
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>│       ├── OrderPlacementState.php
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>│       ├── Actions/
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>│       │   ├── ReserveInventoryAction.php
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>│       │   ├── ProcessPaymentAction.php
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>│       │   └── ArrangeShippingAction.php
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>│       ├── Jobs/
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>│       │   ├── ReserveInventoryJob.php
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>│       │   ├── ProcessPaymentJob.php
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>│       │   └── ArrangeShippingJob.php
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>│       └── Pipes/
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>│           ├── ReserveInventoryPipe.php
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>│           └── ProcessPaymentPipe.php
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>├── Admin/
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>│   ├── Catalog/
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>│   │   ├── Resources/
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>│   │   │   └── ProductResource.php
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>│   │   └── Views/
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>│   │       └── product-form.blade.php
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>│   └── ...
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>├── Frontend/
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>│   ├── Components/
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>│   ├── PageBuilder/
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>│   ├── Services/
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>│   └── Themes/
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>│       ├── Default/
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>│       └── Bootstrap/
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>├── Http/
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>│   ├── Controllers/
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>│   ├── Middleware/
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>│   ├── Requests/
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>│   └── Resources/
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>│       ├── ProductApiResource.php
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>│       ├── OrderApiResource.php
+<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>│       └── CategoryApiResource.php
+<a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>
+<a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>├── Providers/
+<a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>│   ├── AppServiceProvider.php
+<a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>│   ├── Filament/
+<a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>│   │   └── AdminPanelProvider.php
+<a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>│   └── ThemeServiceProvider.php
+<a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>
+<a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>├── Support/
+<a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>│   ├── Helpers/
+<a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>│   ├── helpers.php
+<a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>│   └── MultibyteSlug.php
+<a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>
+<a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>├── Traits/
+<a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>│   └── HasSortableTree.php
+<a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>
+<a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>├── Facades/
+<a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>│   └── Cart.php
+<a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>
+<a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>├── Console/
+<a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>│   └── Commands/
+<a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>│       ├── CleanupOrphanedBlocks.php
+<a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>│       ├── CompilePageCommand.php
+<a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>│       ├── ConvertEcSpokeLang.php
+<a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>│       └── ExportEcSpokeLang.php
+<a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>
+<a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>├── Observers/
+<a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>│   └── ...（グローバルなオブザーバ）
+<a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>
+<a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>├── Events/
+<a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>│   └── .gitkeep
+<a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>
+<a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>├── Listeners/
+<a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>│   └── .gitkeep
+<a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>
+<a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>├── Jobs/
+<a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>│   └── .gitkeep
+<a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>
+<a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>├── Mail/
+<a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>│   └── .gitkeep
+<a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>
+<a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>├── Exceptions/
+<a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>│   └── .gitkeep
+<a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>
+<a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>├── Broadcast/
+<a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>│   └── .gitkeep
+<a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>
+<a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>└── Notifications/
+<a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>    └── TwoFactorEmailCodeNotification.php
+<a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>
+<a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>config/
+<a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>├── catalog.php
+<a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>├── orders.php
+<a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>├── subscriptions.php
+<a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>├── payment.php
+<a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>└── ...（ドメイン別設定ファイル）
+<a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>
+<a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>database/
+<a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>├── factories/
+<a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>│   └── ...（モデルファクトリー）
+<a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>├── migrations/
+<a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a>│   └── ...（データベースマイグレーション）
+<a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a>└── seeders/
+<a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a>    └── ...（データベースシーダー）
+<a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a>
+<a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a>routes/
+<a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a>├── web.php
+<a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a>└── console.php
+<a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a>
+<a id="__codelineno-0-160" name="__codelineno-0-160" href="#__codelineno-0-160"></a>resources/
+<a id="__codelineno-0-161" name="__codelineno-0-161" href="#__codelineno-0-161"></a>├── views/
+<a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a>│   └── ...（Bladeビュー）
+<a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a>├── lang/
+<a id="__codelineno-0-164" name="__codelineno-0-164" href="#__codelineno-0-164"></a>│   └── ...（多言語翻訳ファイル）
+<a id="__codelineno-0-165" name="__codelineno-0-165" href="#__codelineno-0-165"></a>└── css/
+<a id="__codelineno-0-166" name="__codelineno-0-166" href="#__codelineno-0-166"></a>    └── ...（CSSファイル）
+<a id="__codelineno-0-167" name="__codelineno-0-167" href="#__codelineno-0-167"></a>
+<a id="__codelineno-0-168" name="__codelineno-0-168" href="#__codelineno-0-168"></a>bootstrap/
+<a id="__codelineno-0-169" name="__codelineno-0-169" href="#__codelineno-0-169"></a>├── app.php
+<a id="__codelineno-0-170" name="__codelineno-0-170" href="#__codelineno-0-170"></a>└── providers.php
+<a id="__codelineno-0-171" name="__codelineno-0-171" href="#__codelineno-0-171"></a>
+<a id="__codelineno-0-172" name="__codelineno-0-172" href="#__codelineno-0-172"></a>tests/
+<a id="__codelineno-0-173" name="__codelineno-0-173" href="#__codelineno-0-173"></a>└── ...（PHPUnitテストファイル）
+</code></pre></div>
+<h2 id="_5">各ディレクトリの役割分担と配置ルール</h2>
+<p>各ディレクトリの役割分担と配置ルールをディレクトリ構成に従って整理します。後から見たときに「これこれはここに配置する」というルールが分かるように構成しています。</p>
+<h3 id="models-appmodels">Models (<code>app/Models/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: Eloquentモデルを配置。データベーステーブルと1対1対応するエンティティを定義</li>
+<li><strong>配置ルール</strong>: ドメイン別にサブディレクトリを作成（例: <code>app/Models/Catalog/</code>, <code>app/Models/Order/</code>）</li>
+<li><strong>例</strong>: <code>Product.php</code>, <code>Category.php</code>, <code>Order.php</code>, <code>User.php</code>, <code>Brand.php</code>, <code>Page.php</code>, <code>PageArea.php</code>, <code>PageBlock.php</code>, <code>OrderItem.php</code>, <code>Address.php</code>, <code>Admin.php</code></li>
+</ul>
+<h3 id="domains-appdomainsdomain">Domains (<code>app/Domains/{Domain}/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: ドメイン固有の振る舞いを配置。ユースケース毎のロジックを横断的に再利用</li>
+</ul>
+<h4 id="_6">サービス層</h4>
+<ul>
+<li><strong>ユースケース単位のサービス</strong>: <code>app/Domains/{Domain}/Services</code> に配置</li>
+<li>ユースケースごとにトランザクション境界・バリデーション・イベント発火を担当</li>
+<li>Eloquent への直接的な依存はここに集める</li>
+<li>PHP 8.3の型付きプロパティとコンストラクタプロパティプロモーションを活用</li>
+</ul>
+<h4 id="_7">値オブジェクト</h4>
+<ul>
+<li><strong>ドメインの概念を表現</strong>: <code>app/Domains/{Domain}/ValueObjects</code> に配置</li>
+<li>ドメインの概念を表現する不変オブジェクト</li>
+<li><code>readonly class</code> として実装し、ビジネスルールを含む</li>
+<li>ワークフロー固有のデータ構造（Context、State等）は <code>app/Workflows/{WorkflowName}/</code> 配下に配置</li>
+</ul>
+<h4 id="_8">ポリシー</h4>
+<ul>
+<li><strong>認可ロジック</strong>: <code>app/Domains/{Domain}/Policies</code> に配置</li>
+<li>Filament／API 双方の認可に再利用</li>
+<li>Filament の <code>can*</code> 系メソッドは自動的に Policy を参照</li>
+</ul>
+<h4 id="_9">アクション</h4>
+<ul>
+<li><strong>ビジネスアクション</strong>: <code>app/Domains/{Domain}/Actions</code> に配置</li>
+<li>Filament Actions やジョブ／コマンドラインから呼び出せる単位にまとめる</li>
+<li>UI ごとの差異を吸収</li>
+</ul>
+<h4 id="_10">オブザーバ</h4>
+<ul>
+<li><strong>モデル更新の副作用</strong>: <code>app/Domains/{Domain}/Observers</code> に配置</li>
+<li>モデル更新の副作用（検索インデックス更新、監査ログ、イベント発火など）を一元管理</li>
+</ul>
+<h4 id="_11">定数</h4>
+<ul>
+<li><strong>ドメイン固有の定数</strong>: <code>app/Domains/{Domain}/Constants</code> に配置</li>
+<li>変更頻度が低く、ドメイン固有の定数値を管理</li>
+<li>値オブジェクトとして <code>readonly class</code> を活用する場合もある</li>
+</ul>
+<h3 id="enums-appenums">Enums (<code>app/Enums/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: グローバルな列挙型を配置。複数のドメインで共通利用される列挙型を定義</li>
+<li><strong>配置ルール</strong>: ドメイン固有のEnumは <code>app/Domains/{Domain}/Constants/</code> に配置。グローバルなもののみここに配置</li>
+<li><strong>例</strong>: <code>App\Enums\OrderStatus</code>, <code>App\Enums\PaymentStatus</code>, <code>App\Enums\Page\AreaType</code></li>
+<li><strong>注意</strong>: PHP 8.3のEnum機能を活用。Backed Enum（値を持つEnum）やメソッド付きEnumを積極的に使用</li>
+</ul>
+<h3 id="rules-apprules">Rules (<code>app/Rules/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: カスタムバリデーションルールを配置。FormRequest とサービス層の両方で再利用可能なルールを定義</li>
+<li><strong>配置ルール</strong>: グローバルに配置。ドメイン固有の複雑なバリデーションロジック（例: サブスク契約の重複チェック、商品バリエーションの整合性チェック）を一元管理</li>
+<li><strong>例</strong>: <code>App\Rules\SubscriptionPlanUniqueRule</code>, <code>App\Rules\ValidProductVariantRule</code></li>
+</ul>
+<h3 id="services-appservices">Services (<code>app/Services/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: ドメイン横断的なアプリケーションサービスを配置。複数のドメインにまたがる処理や、アプリケーション全体で共通利用される機能を担当</li>
+<li><strong>配置ルール</strong>: 特定のドメインに属さないサービスを配置。ドメイン固有のサービスは <code>app/Domains/{Domain}/Services/</code> に配置</li>
+<li><strong>使用例</strong>:</li>
+<li><strong>カート管理</strong>: セッション管理、商品追加・削除、合計計算など（<code>CartService</code>）。商品・注文・ユーザーなど複数ドメインにまたがる処理</li>
+<li><strong>その他</strong>: 複数ドメインにまたがる共通処理、アプリケーション全体で使われる機能</li>
+<li><strong>ドメイン固有のサービスとの違い</strong>:</li>
+<li><strong><code>app/Services/</code></strong>: カートなど、複数ドメインにまたがる処理</li>
+<li><strong><code>app/Domains/{Domain}/Services/</code></strong>: 商品カタログ管理、注文確定、ページコンパイルなど、特定ドメインのビジネスロジック</li>
+<li><strong>Serviceの使い分け</strong>:</li>
+<li><strong>使用する場合</strong>: ビジネスロジックを持つクラス、状態を持つ可能性がある（セッション、キャッシュ、DB等）</li>
+<li><strong>特徴</strong>: 複数のメソッドを持つ、依存注入で使用、テストしやすい（モック可能）</li>
+<li><strong>例</strong>: <code>CartService::addToCart()</code>（セッションに状態を保存）, <code>PageCompiler::compile()</code>（複雑な処理、ファイル操作）</li>
+<li><strong>判断基準</strong>: 状態を持つか？複数のメソッドが必要か？複雑なビジネスロジックか？依存関係があるか？</li>
+<li><strong>例</strong>: <code>CartService.php</code>（カート管理サービス）</li>
+<li><strong>注意</strong>: <code>PageCompiler</code>は現在<code>app/Services/</code>に配置されているが、Pageドメイン固有の処理のため、将来的には<code>app/Domains/Page/Services/</code>への移動を検討</li>
+</ul>
+<h3 id="workflows-appworkflowsworkflowname">Workflows (<code>app/Workflows/{WorkflowName}/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: 決済・在庫連携など複数手順を跨ぐ処理を、Laravel PipelineとWorkflowパターンを用いてパイプライン化し、各ステップをAction/ジョブに分離する</li>
+<li><strong>使い分け</strong>:</li>
+<li><strong>Pipeline</strong>: 同期処理（数秒以内）。ユーザーリクエスト内で完結する処理（カート計算、価格計算、バリデーション等）</li>
+<li><strong>Workflow</strong>: 同期・非同期両対応（数分〜数時間）。外部API呼び出しが多い処理、進捗を追跡したい処理（注文確定、決済処理、配送手配、在庫連携等）</li>
+<li><strong>配置ルール</strong>: ワークフロー名別にサブディレクトリを作成し、その中に以下のファイル・ディレクトリを配置</li>
+<li><strong>{WorkflowName}Workflow.php</strong>: ワークフローオーケストレーター（非同期処理用）。各ステップの実行順序と状態遷移を管理</li>
+<li><strong>{WorkflowName}Pipeline.php</strong>: パイプラインオーケストレーター（同期処理用、オプション）</li>
+<li><strong>{WorkflowName}Context.php</strong>: Pipeline用のコンテキスト。各Pipe間でデータを伝播</li>
+<li><strong>{WorkflowName}State.php</strong>: Workflow用の状態管理モデル。データベースに永続化</li>
+<li><strong>Actions/</strong>: ビジネスロジック。ワークフロー固有のActionを配置</li>
+<li><strong>Jobs/</strong>: 非同期処理。ワークフロー固有のジョブを配置</li>
+<li><strong>Pipes/</strong>: Pipeline用のPipe（同期処理用、オプション）</li>
+<li><strong>注意</strong>: ワークフロー固有のデータ構造（Context、State等）はここに配置。ドメインの概念を表現する値オブジェクトは <code>app/Domains/{Domain}/ValueObjects/</code> に配置</li>
+<li><strong>例</strong>: <code>OrderPlacement/OrderPlacementWorkflow.php</code>, <code>OrderPlacement/Actions/ReserveInventoryAction.php</code>, <code>OrderPlacement/Jobs/ProcessPaymentJob.php</code></li>
+<li><strong>詳細</strong>: <a href="../Workflow-Pipeline%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3/">Workflow-Pipelineパターン</a> を参照</li>
+</ul>
+<h3 id="admin-appadmin">Admin (<code>app/Admin/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: Filament管理画面のリソース、コンポーネント、ウィジェット、ページを配置</li>
+<li><strong>配置ルール</strong>:</li>
+<li><strong>Resources/</strong>: Filamentリソース（CRUD管理）。各リソースは <code>{ResourceName}Resource.php</code> として配置</li>
+<li><strong>Components/</strong>: Filamentカスタムコンポーネント。Livewireコンポーネントやカスタムフィールドを配置</li>
+<li><strong>Widgets/</strong>: Filamentウィジェット。ダッシュボード用の小型コンポーネント</li>
+<li><strong>Base/</strong>: 基底クラス・共通機能。複数のリソースで共通利用される基底クラス</li>
+<li><strong>Views/</strong>: ビューは<a href="../AdminViewsResource%E8%BF%91%E6%8E%A5%E9%85%8D%E7%BD%AE/">近接配置ルール</a>に従い、各コンポーネント・リソースと同じディレクトリ直下の <code>Views/</code> に配置</li>
+<li><strong>注意</strong>: リソース／ウィジェット／フォームビューは <code>app/Admin/{Domain}</code> 以下で近接配置し、必要なサービスやポリシーを <code>use App\Domains\...</code> で参照する。ドメインフォルダ内のアクションやサービスを呼び出すことで、管理画面・API・ジョブのロジックを統一できる。監査ログ・設定変更などは Administration ドメインのサービスを経由して Filament から操作し、変更履歴を残す。詳細は<a href="../AdminViewsResource%E8%BF%91%E6%8E%A5%E9%85%8D%E7%BD%AE/">近接配置ルール</a>を参照</li>
+</ul>
+<h3 id="frontend-appfrontend">Frontend (<code>app/Frontend/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: フロントエンドのLivewireコンポーネント、ページビルダー、テーマ別ビューを配置</li>
+<li><strong>配置ルール</strong>:</li>
+<li><strong>Components/</strong>: Livewireコンポーネント（ページ）。認証、カート、商品一覧・詳細、チェックアウト等のページコンポーネント</li>
+<li><strong>PageBuilder/</strong>: ページビルダー機能。動的ページレンダリング、エリア・ブロックコンポーネント</li>
+<li><strong>Services/</strong>: フロントエンド用サービス。ブロック登録管理、テーマサービス</li>
+<li><strong>Themes/</strong>: テーマ別ディレクトリ（Default/Bootstrap等）。テーマ固有のビュー、アセット、ヘルパーを配置</li>
+</ul>
+<h3 id="http-apphttp">Http (<code>app/Http/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: HTTP層のコントローラ、ミドルウェア、リクエストクラス、API Resourceを配置</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>Controllers/</strong>: コントローラクラス。基底コントローラは <code>Controller.php</code></li>
+<li><strong>Middleware/</strong>: ミドルウェア（Laravel 12では <code>bootstrap/app.php</code> で登録）</li>
+<li><strong>Requests/</strong>: FormRequestクラス。バリデーションルールとカスタムエラーメッセージを定義</li>
+<li><strong>Resources/</strong>: API Resourceクラス。JSONレスポンスの形式定義（<code>JsonResource</code>を継承）</li>
+<li><strong>API Resourceの命名規則</strong>:</li>
+<li><strong>形式</strong>: <code>{Model}ApiResource</code>（サフィックス方式）</li>
+<li><strong>例</strong>: <code>ProductApiResource</code>, <code>OrderApiResource</code>, <code>CategoryApiResource</code></li>
+<li><strong>配置場所</strong>: <code>app/Http/Resources/{Model}ApiResource.php</code></li>
+<li><strong>Filament Resourceとの区別</strong>: Filament Resource（<code>app/Admin/Resources/{Model}Resource.php</code>）とは完全に独立。名前空間が異なるため、同じディレクトリ名でも問題ない</li>
+<li><strong>詳細</strong>: <a href="../API%E5%B1%A4%E3%81%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87/">API層の命名規則</a> を参照</li>
+</ul>
+<h3 id="providers-appproviders">Providers (<code>app/Providers/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: サービスプロバイダを配置。アプリケーション起動時の設定、サービス登録を担当</li>
+<li><strong>配置ルール</strong>:</li>
+<li><code>AppServiceProvider.php</code>: アプリケーションプロバイダ</li>
+<li><code>Filament/AdminPanelProvider.php</code>: Filament管理パネル設定</li>
+<li><code>ThemeServiceProvider.php</code>: テーマ切り替えプロバイダ</li>
+<li><strong>注意</strong>: Laravel 12では <code>bootstrap/providers.php</code> に登録</li>
+</ul>
+<h3 id="support-appsupport">Support (<code>app/Support/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: サポートクラス・ヘルパー関数を配置。アプリケーション全体で利用されるユーティリティ</li>
+<li><strong>配置ルール</strong>:</li>
+<li><strong>Helpers/</strong>: ヘルパー関数群。<code>image.php</code>（画像ヘルパー）, <code>theme.php</code>（テーマヘルパー）</li>
+<li><code>helpers.php</code>: グローバルヘルパー</li>
+<li><code>MultibyteSlug.php</code>: マルチバイトSlug生成などのユーティリティクラス</li>
+<li><strong>ヘルパー関数の使い分け</strong>:</li>
+<li><strong>使用する場合</strong>: 純粋関数（状態を持たない、単純な変換・フォーマット処理）</li>
+<li><strong>特徴</strong>: 入力→出力の変換処理、グローバルスコープから呼び出し可能、単一の責務</li>
+<li><strong>例</strong>: <code>get_image_url()</code>（画像URL生成）, <code>date_time_format()</code>（日付フォーマット）, <code>theme_asset()</code>（アセットURL生成）</li>
+<li><strong>判断基準</strong>: 状態を持たないか？単純な変換・フォーマット処理か？複数のメソッドが必要か？（不要ならヘルパー）</li>
+</ul>
+<h3 id="traits-apptraits">Traits (<code>app/Traits/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: 再利用可能なトレイトを配置。複数のクラスで共通利用される機能を定義</li>
+<li><strong>配置ルール</strong>: グローバルに配置</li>
+<li><strong>例</strong>: <code>HasSortableTree.php</code>（ソート可能ツリートレイト。カテゴリで使用）</li>
+</ul>
+<h3 id="facades-appfacades">Facades (<code>app/Facades/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: ファサード定義を配置。サービスコンテナに登録されたサービスの静的インターフェースを提供</li>
+<li><strong>配置ルール</strong>: グローバルに配置</li>
+<li><strong>Facadeの使い分け</strong>:</li>
+<li><strong>使用する場合</strong>: BladeテンプレートやLivewireコンポーネントから直接呼ぶ必要がある場合のみ（最小限の使用）</li>
+<li><strong>特徴</strong>: Serviceをラップするだけ、静的メソッドとして呼び出せる、Bladeテンプレートから直接呼び出し可能</li>
+<li><strong>例</strong>: <code>Cart::addToCart()</code>（BladeテンプレートやLivewireから呼ぶ場合のみ）</li>
+<li><strong>判断基準</strong>: BladeテンプレートやLivewireコンポーネントから直接呼ぶ必要があるか？Laravel標準のFacade（Cache、DB、Auth等）と同じような使い方か？</li>
+<li><strong>推奨</strong>: それ以外はServiceを依存注入で使用する方が良い（コントローラやサービスでは依存注入を優先）</li>
+<li><strong>例</strong>: <code>Cart.php</code>（カートファサード）</li>
+</ul>
+<h3 id="console-appconsolecommands">Console (<code>app/Console/Commands/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: Artisanコマンドを配置。バックグラウンド処理、メンテナンス、データ移行用のコマンド</li>
+<li><strong>配置ルール</strong>: <code>app/Console/Commands/</code> に配置。Laravel 12では自動登録されるため手動登録不要</li>
+<li><strong>例</strong>:</li>
+<li><code>CleanupOrphanedBlocks.php</code>（存在しないブロッククラスを持つページブロックをクリーンアップ）</li>
+<li><code>CompilePageCommand.php</code>（ページビルダーで作成したページをBladeファイルにコンパイル）</li>
+<li><code>ConvertEcSpokeLang.php</code>（外部翻訳ファイルをLaravel形式にインポート）</li>
+<li><code>ExportEcSpokeLang.php</code>（Laravel翻訳ファイルを外部形式にエクスポート）</li>
+</ul>
+<h3 id="observers-appobservers">Observers (<code>app/Observers/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: グローバルなオブザーバを配置。ドメイン固有のオブザーバは <code>app/Domains/{Domain}/Observers/</code> に配置</li>
+<li><strong>配置ルール</strong>: グローバルに配置。複数のドメインにまたがるオブザーバを配置</li>
+<li><strong>注意</strong>: ドメイン固有のオブザーバは <code>app/Domains/{Domain}/Observers/</code> に配置することを推奨</li>
+</ul>
+<h3 id="notifications-appnotifications">Notifications (<code>app/Notifications/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: 通知クラスを配置。メール、SMS等の通知を定義</li>
+<li><strong>配置ルール</strong>: グローバルに配置</li>
+<li><strong>例</strong>: <code>TwoFactorEmailCodeNotification.php</code>（2FAメール認証コード通知）</li>
+<li><strong>注意</strong>: Mailableクラス（<code>app/Mail/</code>）とは異なる。通知はより高レベルな抽象化で、複数のチャネル（メール、SMS、データベース等）に対応可能</li>
+</ul>
+<h3 id="config-config">config/ (<code>config/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: 設定ファイルを配置。アプリケーションの設定値を定義</li>
+<li><strong>配置ルール</strong>: Laravel標準に従い、ドメイン別に分割（例: <code>config/catalog.php</code>, <code>config/orders.php</code>, <code>config/subscriptions.php</code>）</li>
+<li><strong>注意</strong>: アプリケーション内では <code>config('catalog.xxx')</code> 形式で参照。<code>env()</code> 関数は設定ファイル内のみで使用し、アプリケーション内では <code>config()</code> を使用</li>
+<li><strong>例</strong>: <code>app.php</code>, <code>auth.php</code>, <code>cache.php</code>, <code>database.php</code>, <code>filament.php</code>, <code>filesystems.php</code>, <code>livewire.php</code>, <code>logging.php</code>, <code>mail.php</code>, <code>queue.php</code>, <code>services.php</code>, <code>session.php</code>, <code>theme.php</code></li>
+</ul>
+<h2 id="_12">プロジェクトルート配下のディレクトリ</h2>
+<h3 id="database-database">database/ (<code>database/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: データベース関連ファイルを配置。マイグレーション、シーダー、ファクトリーを定義</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>factories/</strong>: モデルファクトリー。テストデータ生成用</li>
+<li><strong>migrations/</strong>: データベースマイグレーション。スキーマ変更を定義</li>
+<li><strong>seeders/</strong>: データベースシーダー。初期データ投入用</li>
+<li><strong>注意</strong>: マイグレーションは時系列で管理され、<code>YYYY_MM_DD_HHMMSS_create_table_name.php</code> 形式で命名</li>
+</ul>
+<h3 id="routes-routes">routes/ (<code>routes/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: ルート定義ファイルを配置。HTTPリクエストのルーティングを定義</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>web.php</strong>: Webルート（セッション、CSRF保護、Cookie暗号化が有効）</li>
+<li><strong>console.php</strong>: Artisanコマンドのスケジュール定義</li>
+<li><strong>注意</strong>: APIルートは <code>routes/api.php</code> に配置（現在は未使用）。Laravel 12では <code>bootstrap/app.php</code> でルートファイルを登録</li>
+</ul>
+<h3 id="resources-resources">resources/ (<code>resources/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: 未コンパイルのアセット（ビュー、言語ファイル、CSS等）を配置</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>views/</strong>: Bladeビューテンプレート。<code>app/Admin/</code> や <code>app/Frontend/</code> 配下のビューは近接配置ルールに従う</li>
+<li><strong>lang/</strong>: 多言語翻訳ファイル。<code>{locale}/{group}.php</code> 形式で配置</li>
+<li><strong>css/</strong>: CSSファイル。Tailwind CSSの設定ファイル等</li>
+<li><strong>注意</strong>: <code>app/Admin/</code> 配下のビューは近接配置ルールに従い、<code>app/Admin/.../Views/</code> に配置。<code>resources/views/</code> は標準的なLaravelビュー用</li>
+</ul>
+<h3 id="bootstrap-bootstrap">bootstrap/ (<code>bootstrap/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: アプリケーション起動時の設定ファイルを配置</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>app.php</strong>: アプリケーション起動設定。ミドルウェア、例外処理、ルートファイルの登録</li>
+<li><strong>providers.php</strong>: サービスプロバイダの登録</li>
+<li><strong>cache/</strong>: 設定キャッシュ、ルートキャッシュ等（自動生成）</li>
+<li><strong>注意</strong>: Laravel 12では <code>app.php</code> でミドルウェアやルートを登録。<code>providers.php</code> でサービスプロバイダを登録</li>
+</ul>
+<h3 id="tests-tests">tests/ (<code>tests/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: PHPUnitテストファイルを配置。アプリケーションのテストを定義</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>Feature/</strong>: フィーチャーテスト。HTTPリクエスト、データベース操作を含む統合テスト</li>
+<li><strong>Unit/</strong>: ユニットテスト。単一のクラスやメソッドのテスト</li>
+<li><strong>注意</strong>: テストは <code>php artisan test</code> で実行。<code>RefreshDatabase</code> トレイトを使用する場合は、テスト専用データベースを使用すること</li>
+</ul>
+<h3 id="storage-storage">storage/ (<code>storage/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: アプリケーションが生成するファイルを配置。ログ、キャッシュ、アップロードファイル等</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>app/</strong>: アプリケーションが生成するファイル（公開されない）</li>
+<li><strong>framework/</strong>: フレームワークが生成するファイル（キャッシュ、セッション等）</li>
+<li><strong>logs/</strong>: ログファイル</li>
+<li><strong>注意</strong>: <code>.gitignore</code> に含まれているため、バージョン管理されない</li>
+</ul>
+<h3 id="public-public">public/ (<code>public/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: 公開ファイルを配置。Webサーバーのドキュメントルート</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>index.php</strong>: アプリケーションのエントリーポイント</li>
+<li><strong>assets/</strong>: コンパイル済みアセット（CSS、JavaScript、画像等）</li>
+<li><strong>注意</strong>: Viteでコンパイルされたアセットはここに配置される</li>
+</ul>
+<h3 id="observers-appobservers_1">Observers (<code>app/Observers/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: グローバルなオブザーバを配置。ドメイン固有のオブザーバは <code>app/Domains/{Domain}/Observers/</code> に配置</li>
+<li><strong>配置ルール</strong>: グローバルに配置。複数のドメインにまたがるオブザーバを配置</li>
+<li><strong>注意</strong>: ドメイン固有のオブザーバは <code>app/Domains/{Domain}/Observers/</code> に配置することを推奨</li>
+</ul>
+<p><strong>Observersとは</strong>:
+- モデルのライフサイクルイベント（<code>created</code>, <code>updated</code>, <code>deleted</code>等）に自動的に反応する仕組み
+- モデル保存時に自動的に実行される副作用処理を定義
+- 例: 商品更新時に検索インデックスを更新、注文作成時に監査ログを記録</p>
+<p><strong>使用場面</strong>:
+- モデル保存時の自動的な副作用処理が必要な場合
+- 複数の場所で同じ副作用処理を実行する必要がある場合
+- モデルのライフサイクルに密接に関連する処理</p>
+<p><strong>実装例</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="x">// app/Domains/Catalog/Observers/ProductObserver.php</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="x">class ProductObserver</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="x">{</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="x">    public function updated(Product $product): void</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="x">    {</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="x">        // 商品更新時に検索インデックスを更新</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="x">        UpdateProductIndexJob::dispatch($product);</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="x">    }</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="x">}</span>
+</code></pre></div></p>
+<h3 id="events-appevents">Events (<code>app/Events/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: イベントクラスを配置。ドメインイベントやアプリケーションイベントを定義</li>
+<li><strong>配置ルール</strong>: グローバルに配置。ドメイン固有のイベントは <code>app/Domains/{Domain}/Events/</code> に配置することも検討</li>
+<li><strong>使用例</strong>: <code>OrderPlaced</code>, <code>ProductUpdated</code>, <code>UserRegistered</code> など</li>
+<li><strong>使用場面</strong>: ドメイン間の疎結合な連携、複数の非同期処理をトリガーする場面</li>
+<li><strong>詳細</strong>: イベント駆動アーキテクチャの実装時に使用。<code>event()</code> 関数または <code>Event::dispatch()</code> で発火</li>
+</ul>
+<p><strong>Eventsとは</strong>:
+- ビジネスイベントを表現するクラス（例: <code>OrderPlaced</code>, <code>ProductPublished</code>）
+- モデルのライフサイクルではなく、ビジネス的に意味のある出来事を表現
+- 複数のドメインにまたがる処理を疎結合に連携するために使用</p>
+<p><strong>使用場面</strong>:
+- 注文確定時に、在庫引当・決済処理・メール送信・監査ログなど複数の処理を実行したい場合
+- ドメイン間の連携を疎結合にしたい場合
+- 非同期処理をトリガーしたい場合</p>
+<p><strong>実装例</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="x">// app/Events/OrderPlaced.php</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="x">class OrderPlaced</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="x">{</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="x">    public function __construct(</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="x">        public Order $order</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="x">    ) {}</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="x">}</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="x">// app/Domains/Order/Services/OrderPlacementService.php</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="x">public function placeOrder(Order $order): void</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="x">{</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="x">    DB::transaction(function () use ($order) {</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="x">        $order-&gt;status = OrderStatus::Placed;</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="x">        $order-&gt;save();</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="x">        // イベント発火</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="x">        event(new OrderPlaced($order));</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="x">    });</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="x">}</span>
+</code></pre></div></p>
+<h3 id="listeners-applisteners">Listeners (<code>app/Listeners/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: イベントリスナーを配置。イベント発生時に実行される処理を定義</li>
+<li><strong>配置ルール</strong>: グローバルに配置。ドメイン固有のリスナーは <code>app/Domains/{Domain}/Listeners/</code> に配置することも検討</li>
+<li><strong>使用例</strong>: <code>SendOrderConfirmationEmail</code>, <code>UpdateSearchIndex</code>, <code>LogAuditTrail</code> など</li>
+<li><strong>使用場面</strong>: イベント発生時の副作用処理（メール送信、検索インデックス更新、監査ログ等）</li>
+<li><strong>非同期処理</strong>: <code>ShouldQueue</code> インターフェースを実装することで、リスナーを非同期で実行可能</li>
+</ul>
+<p><strong>Listenersとは</strong>:
+- イベントが発生したときに実行される処理を定義するクラス
+- 1つのイベントに対して複数のリスナーを登録可能
+- イベント発火元のコードを変更せずに、新しい処理を追加できる</p>
+<p><strong>使用場面</strong>:
+- 注文確定時にメール送信、検索インデックス更新、監査ログ記録など複数の処理を実行したい場合
+- イベント発火元のコードを変更せずに新しい処理を追加したい場合
+- 非同期処理を実行したい場合</p>
+<p><strong>実装例</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="x">// app/Listeners/SendOrderConfirmationEmail.php</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="x">class SendOrderConfirmationEmail implements ShouldQueue</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="x">{</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="x">    public function handle(OrderPlaced $event): void</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="x">    {</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="x">        // 非同期でメール送信</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="x">        Mail::to($event-&gt;order-&gt;customer-&gt;email)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="x">            -&gt;send(new OrderConfirmationMail($event-&gt;order));</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="x">    }</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="x">}</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="x">// app/Listeners/UpdateSearchIndex.php</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="x">class UpdateSearchIndex implements ShouldQueue</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="x">{</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="x">    public function handle(OrderPlaced $event): void</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="x">    {</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="x">        // 非同期で検索インデックス更新</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="x">        UpdateSearchIndexJob::dispatch($event-&gt;order);</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="x">    }</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="x">}</span>
+</code></pre></div></p>
+<h2 id="observerseventslisteners">Observers、Events、Listenersの使い分け</h2>
+<h3 id="_13">補記：使い分けの比較表</h3>
+<table>
+<thead>
+<tr>
+<th>観点</th>
+<th>Observers</th>
+<th>Events/Listeners</th>
+<th>直接呼び出し</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>トリガー</strong></td>
+<td>モデルのライフサイクル（<code>created</code>, <code>updated</code>, <code>deleted</code>等）</td>
+<td>ビジネスイベント（<code>OrderPlaced</code>, <code>ProductPublished</code>等）</td>
+<td>メソッド呼び出し</td>
+</tr>
+<tr>
+<td><strong>焦点</strong></td>
+<td>モデルの状態変化</td>
+<td>ビジネス的に意味のある出来事</td>
+<td>処理の実行</td>
+</tr>
+<tr>
+<td><strong>結合度</strong></td>
+<td>モデルに密結合</td>
+<td>疎結合（イベント名で連携）</td>
+<td>密結合（直接依存）</td>
+</tr>
+<tr>
+<td><strong>実行タイミング</strong></td>
+<td>モデル保存時に自動実行</td>
+<td>明示的にイベント発火</td>
+<td>メソッド呼び出し時</td>
+</tr>
+<tr>
+<td><strong>複数処理の実行</strong></td>
+<td>1つのObserverで複数処理</td>
+<td>1つのイベントに複数のListener</td>
+<td>複数メソッドを順次呼び出し</td>
+</tr>
+<tr>
+<td><strong>非同期処理</strong></td>
+<td>可能（ジョブをディスパッチ）</td>
+<td>可能（<code>ShouldQueue</code>を実装）</td>
+<td>可能（ジョブをディスパッチ）</td>
+</tr>
+<tr>
+<td><strong>拡張性</strong></td>
+<td>低い（Observerを変更する必要がある）</td>
+<td>高い（新しいListenerを追加するだけ）</td>
+<td>低い（呼び出し元を変更する必要がある）</td>
+</tr>
+<tr>
+<td><strong>使用例</strong></td>
+<td>商品更新時に検索インデックス更新</td>
+<td>注文確定時にメール送信・監査ログ・在庫更新</td>
+<td>カートに商品を追加</td>
+</tr>
+<tr>
+<td><strong>推奨場面</strong></td>
+<td>モデルのライフサイクルに密接に関連する処理</td>
+<td>ドメイン間の連携、複数の処理を実行したい場合</td>
+<td>単純な処理、密結合で問題ない場合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_14">使い分けの判断フローチャート</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>1. モデルのライフサイクル（created/updated/deleted）に密接に関連する処理？
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>   → Yes → Observers
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>   ↓ No
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>2. ビジネス的に意味のある出来事（注文確定、商品公開等）を表現したい？
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>   → Yes → Events/Listeners
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>   ↓ No
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>3. 単純な処理で、密結合で問題ない？
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>   → Yes → 直接呼び出し
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>   ↓ No
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>   → Events/Listeners（疎結合を優先）
+</code></pre></div>
+<h3 id="_15">実践的なルール</h3>
+<h4 id="observers">Observersを使う場合</h4>
+<ul>
+<li>✅ モデル保存時に必ず実行したい処理（検索インデックス更新、監査ログ等）</li>
+<li>✅ モデルのライフサイクルに密接に関連する処理</li>
+<li>⚠️ ビジネスロジックが複雑な場合は、Events/Listenersを検討</li>
+</ul>
+<h4 id="eventslisteners">Events/Listenersを使う場合</h4>
+<ul>
+<li>✅ ドメイン間の連携を疎結合にしたい場合</li>
+<li>✅ 1つのイベントに対して複数の処理を実行したい場合</li>
+<li>✅ イベント発火元のコードを変更せずに新しい処理を追加したい場合</li>
+<li>✅ 非同期処理を実行したい場合</li>
+</ul>
+<h4 id="_16">直接呼び出しを使う場合</h4>
+<ul>
+<li>✅ 単純な処理で、密結合で問題ない場合</li>
+<li>✅ カートに商品を追加、価格計算など、即座に結果が必要な処理</li>
+<li>⚠️ 複数の処理を実行する場合は、Events/Listenersを検討</li>
+</ul>
+<h3 id="jobs-appjobs">Jobs (<code>app/Jobs/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: グローバルなキュージョブを配置。ワークフロー固有のジョブは <code>app/Workflows/{WorkflowName}/Jobs/</code> に配置</li>
+<li><strong>配置ルール</strong>: グローバルに配置。複数のワークフローで共通利用されるジョブを配置</li>
+<li><strong>注意</strong>: ワークフロー固有のジョブは <code>app/Workflows/{WorkflowName}/Jobs/</code> に配置することを推奨</li>
+<li><strong>使用例</strong>: メール送信、検索インデックス更新、外部API連携など</li>
+</ul>
+<h3 id="mail-appmail">Mail (<code>app/Mail/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: Mailableクラスを配置。メール送信用のクラスを定義</li>
+<li><strong>配置ルール</strong>: グローバルに配置。ドメイン固有のMailableは <code>app/Domains/{Domain}/Mail/</code> に配置することも検討</li>
+<li><strong>注意</strong>: Notifications（<code>app/Notifications/</code>）とは異なる。Mailableはメール送信専用、Notificationsは複数チャネル対応</li>
+<li><strong>使用例</strong>: <code>OrderConfirmationMail</code>, <code>PasswordResetMail</code>, <code>WelcomeMail</code> など</li>
+</ul>
+<h3 id="exceptions-appexceptions">Exceptions (<code>app/Exceptions/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: カスタム例外クラスを配置。アプリケーション固有の例外を定義</li>
+<li><strong>配置ルール</strong>: グローバルに配置。ドメイン固有の例外は <code>app/Domains/{Domain}/Exceptions/</code> に配置することも検討</li>
+<li><strong>使用例</strong>: <code>InsufficientInventoryException</code>, <code>InvalidPaymentException</code>, <code>OrderNotFoundException</code> など</li>
+<li><strong>使用場面</strong>: ビジネスロジックエラーを明確に表現する場合</li>
+</ul>
+<h3 id="broadcast-appbroadcast">Broadcast (<code>app/Broadcast/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: ブロードキャストチャンネルを配置。リアルタイム通信（WebSocket等）用のチャンネル定義</li>
+<li><strong>配置ルール</strong>: グローバルに配置</li>
+<li><strong>使用例</strong>: 注文状況のリアルタイム更新、通知のリアルタイム配信など</li>
+<li><strong>注意</strong>: Laravel Echo、Pusher、Socket.IO等と連携して使用</li>
+</ul>
+<h3 id="notifications-appnotifications_1">Notifications (<code>app/Notifications/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: 通知クラスを配置。メール、SMS等の通知を定義</li>
+<li><strong>配置ルール</strong>: グローバルに配置</li>
+<li><strong>例</strong>: <code>TwoFactorEmailCodeNotification.php</code>（2FAメール認証コード通知）</li>
+<li><strong>注意</strong>: Mailableクラス（<code>app/Mail/</code>）とは異なる。通知はより高レベルな抽象化で、複数のチャネル（メール、SMS、データベース等）に対応可能</li>
+</ul>
+<h3 id="config-config_1">config/ (<code>config/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: 設定ファイルを配置。アプリケーションの設定値を定義</li>
+<li><strong>配置ルール</strong>: Laravel標準に従い、ドメイン別に分割（例: <code>config/catalog.php</code>, <code>config/orders.php</code>, <code>config/subscriptions.php</code>）</li>
+<li><strong>注意</strong>: アプリケーション内では <code>config('catalog.xxx')</code> 形式で参照。<code>env()</code> 関数は設定ファイル内のみで使用し、アプリケーション内では <code>config()</code> を使用</li>
+<li><strong>例</strong>: <code>app.php</code>, <code>auth.php</code>, <code>cache.php</code>, <code>database.php</code>, <code>filament.php</code>, <code>filesystems.php</code>, <code>livewire.php</code>, <code>logging.php</code>, <code>mail.php</code>, <code>queue.php</code>, <code>services.php</code>, <code>session.php</code>, <code>theme.php</code></li>
+</ul>
+<h2 id="_17">プロジェクトルート配下のディレクトリ</h2>
+<h3 id="database-database_1">database/ (<code>database/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: データベース関連ファイルを配置。マイグレーション、シーダー、ファクトリーを定義</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>factories/</strong>: モデルファクトリー。テストデータ生成用</li>
+<li><strong>migrations/</strong>: データベースマイグレーション。スキーマ変更を定義</li>
+<li><strong>seeders/</strong>: データベースシーダー。初期データ投入用</li>
+<li><strong>注意</strong>: マイグレーションは時系列で管理され、<code>YYYY_MM_DD_HHMMSS_create_table_name.php</code> 形式で命名</li>
+</ul>
+<h3 id="routes-routes_1">routes/ (<code>routes/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: ルート定義ファイルを配置。HTTPリクエストのルーティングを定義</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>web.php</strong>: Webルート（セッション、CSRF保護、Cookie暗号化が有効）</li>
+<li><strong>console.php</strong>: Artisanコマンドのスケジュール定義</li>
+<li><strong>注意</strong>: APIルートは <code>routes/api.php</code> に配置（現在は未使用）。Laravel 12では <code>bootstrap/app.php</code> でルートファイルを登録</li>
+</ul>
+<h3 id="resources-resources_1">resources/ (<code>resources/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: 未コンパイルのアセット（ビュー、言語ファイル、CSS等）を配置</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>views/</strong>: Bladeビューテンプレート。<code>app/Admin/</code> や <code>app/Frontend/</code> 配下のビューは近接配置ルールに従う</li>
+<li><strong>lang/</strong>: 多言語翻訳ファイル。<code>{locale}/{group}.php</code> 形式で配置</li>
+<li><strong>css/</strong>: CSSファイル。Tailwind CSSの設定ファイル等</li>
+<li><strong>注意</strong>: <code>app/Admin/</code> 配下のビューは近接配置ルールに従い、<code>app/Admin/.../Views/</code> に配置。<code>resources/views/</code> は標準的なLaravelビュー用</li>
+</ul>
+<h3 id="bootstrap-bootstrap_1">bootstrap/ (<code>bootstrap/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: アプリケーション起動時の設定ファイルを配置</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>app.php</strong>: アプリケーション起動設定。ミドルウェア、例外処理、ルートファイルの登録</li>
+<li><strong>providers.php</strong>: サービスプロバイダの登録</li>
+<li><strong>cache/</strong>: 設定キャッシュ、ルートキャッシュ等（自動生成）</li>
+<li><strong>注意</strong>: Laravel 12では <code>app.php</code> でミドルウェアやルートを登録。<code>providers.php</code> でサービスプロバイダを登録</li>
+</ul>
+<h3 id="tests-tests_1">tests/ (<code>tests/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: PHPUnitテストファイルを配置。アプリケーションのテストを定義</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>Feature/</strong>: フィーチャーテスト。HTTPリクエスト、データベース操作を含む統合テスト</li>
+<li><strong>Unit/</strong>: ユニットテスト。単一のクラスやメソッドのテスト</li>
+<li><strong>注意</strong>: テストは <code>php artisan test</code> で実行。<code>RefreshDatabase</code> トレイトを使用する場合は、テスト専用データベースを使用すること</li>
+</ul>
+<h3 id="storage-storage_1">storage/ (<code>storage/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: アプリケーションが生成するファイルを配置。ログ、キャッシュ、アップロードファイル等</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>app/</strong>: アプリケーションが生成するファイル（公開されない）</li>
+<li><strong>framework/</strong>: フレームワークが生成するファイル（キャッシュ、セッション等）</li>
+<li><strong>logs/</strong>: ログファイル</li>
+<li><strong>注意</strong>: <code>.gitignore</code> に含まれているため、バージョン管理されない</li>
+</ul>
+<h3 id="public-public_1">public/ (<code>public/</code>)</h3>
+<ul>
+<li><strong>役割</strong>: 公開ファイルを配置。Webサーバーのドキュメントルート</li>
+<li><strong>配置ルール</strong>: Laravel標準の構造に従う</li>
+<li><strong>index.php</strong>: アプリケーションのエントリーポイント</li>
+<li><strong>assets/</strong>: コンパイル済みアセット（CSS、JavaScript、画像等）</li>
+<li><strong>注意</strong>: Viteでコンパイルされたアセットはここに配置される</li>
+</ul>
+<h2 id="servicefacade">ヘルパー関数・Service・Facadeの使い分け</h2>
+<p>ヘルパー関数、Service、Facadeの使い分けを明確にするため、以下の基準に従います。</p>
+<h3 id="_18">使い分けの判断フローチャート</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>1. 状態を持つ？ → Yes → Service
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>                ↓ No
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>2. 複数のメソッドが必要？ → Yes → Service
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>                          ↓ No
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>3. 複雑なビジネスロジック？ → Yes → Service
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>                            ↓ No
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>4. 単純な変換・フォーマット？ → Yes → ヘルパー関数
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>                              ↓ No
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>5. Blade/Livewireから直接呼ぶ必要がある？ → Yes → Facade（Serviceをラップ）
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>                                                ↓ No
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>                                                → Service（依存注入）
+</code></pre></div>
+<h3 id="_19">比較表</h3>
+<table>
+<thead>
+<tr>
+<th>観点</th>
+<th>ヘルパー関数</th>
+<th>Service</th>
+<th>Facade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>役割</strong></td>
+<td>純粋関数（状態なし、単純な変換）</td>
+<td>ビジネスロジック（状態あり、複数メソッド）</td>
+<td>Serviceへの静的アクセスラッパー</td>
+</tr>
+<tr>
+<td><strong>状態</strong></td>
+<td>持たない</td>
+<td>持つ可能性がある（セッション、DB、キャッシュ等）</td>
+<td>Serviceの状態を参照</td>
+</tr>
+<tr>
+<td><strong>メソッド数</strong></td>
+<td>単一関数</td>
+<td>複数メソッド</td>
+<td>Serviceのメソッドをラップ</td>
+</tr>
+<tr>
+<td><strong>呼び出し方法</strong></td>
+<td>グローバル関数</td>
+<td>依存注入</td>
+<td>静的メソッド</td>
+</tr>
+<tr>
+<td><strong>使用場所</strong></td>
+<td>どこからでも</td>
+<td>コントローラ、サービス、テスト</td>
+<td>Blade、Livewire（最小限）</td>
+</tr>
+<tr>
+<td><strong>テスト容易性</strong></td>
+<td>高い（純粋関数）</td>
+<td>高い（モック注入可能）</td>
+<td>やや低い（モック化が必要）</td>
+</tr>
+<tr>
+<td><strong>依存関係</strong></td>
+<td>なし</td>
+<td>明確（コンストラクタで注入）</td>
+<td>隠れる（静的呼び出し）</td>
+</tr>
+<tr>
+<td><strong>使用例</strong></td>
+<td><code>get_image_url()</code>, <code>date_time_format()</code>, <code>theme_asset()</code></td>
+<td><code>CartService::addToCart()</code>, <code>PageCompiler::compile()</code></td>
+<td><code>Cart::addToCart()</code>（Blade/Livewireから）</td>
+</tr>
+<tr>
+<td><strong>推奨度</strong></td>
+<td>適切な場合に使用</td>
+<td>基本はこちらを使用</td>
+<td>最小限の使用（Blade/Livewireから直接呼ぶ場合のみ）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_20">実践的なルール</h3>
+<h4 id="_21">ヘルパー関数を使う場合</h4>
+<ul>
+<li>✅ 画像URL生成、日付フォーマット、文字列操作など</li>
+<li>✅ 純粋関数（同じ入力→同じ出力）</li>
+<li>✅ 状態を持たない</li>
+</ul>
+<h4 id="service">Serviceを使う場合</h4>
+<ul>
+<li>✅ カート管理、注文処理、ページコンパイルなど</li>
+<li>✅ 状態を持つ（セッション、DB、キャッシュ）</li>
+<li>✅ 複数のメソッドを持つ</li>
+<li>✅ ビジネスロジックを含む</li>
+<li>✅ <strong>基本はこちらを使用</strong>（コントローラ、サービス、テストでは依存注入）</li>
+</ul>
+<h4 id="facade">Facadeを使う場合</h4>
+<ul>
+<li>✅ BladeテンプレートやLivewireコンポーネントから直接呼ぶ必要がある場合のみ</li>
+<li>✅ Laravel標準のFacade（Cache、DB、Auth等）と同じような使い方</li>
+<li>⚠️ <strong>最小限の使用</strong>（それ以外はServiceを依存注入で使用）</li>
+</ul>
+<h2 id="_22">関連ドキュメント</h2>
+<ul>
+<li><a href="../%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%A2%83%E7%95%8C%E3%81%A8%E8%B2%AC%E5%8B%99/">ドメイン境界と責務</a> - ドメイン設計の基本方針と責務定義</li>
+<li><a href="../%E5%85%A8%E4%BD%93%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/">全体アーキテクチャ</a> - システム全体のアーキテクチャ設計</li>
+<li><a href="../AdminViewsResource%E8%BF%91%E6%8E%A5%E9%85%8D%E7%BD%AE/">AdminViewsResource近接配置</a> - Filamentビューの近接配置ルール</li>
+<li><a href="../API%E5%B1%A4%E3%81%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87/">API層の命名規則</a> - API Resourceの命名規則と実装方針</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 EC-SPOKE
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
