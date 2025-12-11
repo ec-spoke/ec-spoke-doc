@@ -1,0 +1,3430 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="EC-SPOKE プロジェクトのドキュメント集">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>ログ基盤設計 - EC-SPOKE ドキュメント</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CNoto+Sans+JP:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"Noto Sans JP"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Noto-Sans-JP" data-md-color-accent="Noto-Sans-JP">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../.." title="EC-SPOKE ドキュメント" class="md-header__button md-logo" aria-label="EC-SPOKE ドキュメント" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EC-SPOKE ドキュメント
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ログ基盤設計
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="Noto-Sans-JP" data-md-color-accent="Noto-Sans-JP"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="Noto-Sans-JP" data-md-color-accent="Noto-Sans-JP"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../%E5%85%A8%E4%BD%93%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/" class="md-tabs__link">
+          
+  
+  
+  設計資料
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/brands/" class="md-tabs__link">
+          
+  
+  
+  仕様書
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../DB%E5%AE%9A%E7%BE%A9/DB%E5%AE%9A%E7%BE%A9%E6%A6%82%E8%A6%81/" class="md-tabs__link">
+          
+  
+  
+  DB定義
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TIPS/filament-modal-in-modal/" class="md-tabs__link">
+          
+  
+  
+  TIPS
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="EC-SPOKE ドキュメント" class="md-nav__button md-logo" aria-label="EC-SPOKE ドキュメント" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    EC-SPOKE ドキュメント
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ホーム
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    設計資料
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            設計資料
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%85%A8%E4%BD%93%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    全体アーキテクチャ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%A2%83%E7%95%8C%E3%81%A8%E8%B2%AC%E5%8B%99/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ドメイン境界と責務
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E6%A7%8B%E9%80%A0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    アプリケーション構造
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AdminViewsResource%E8%BF%91%E6%8E%A5%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AdminViewsResource近接配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API%E5%B1%A4%E3%81%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API層の命名規則
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Workflow-Pipeline%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Workflow-Pipelineパターン
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%A9%E3%83%93%E3%83%AA%E3%83%86%E3%82%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    スケーラビリティ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EC-SPOKE%E9%85%8D%E4%BB%98%E6%A7%8B%E6%83%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC-SPOKE配付構想
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B3%A8%E6%96%87%E8%A8%88%E7%AE%97%E6%96%B9%E5%BC%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    注文計算方式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%BE%A1%E6%A0%BC%E8%A8%88%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    価格計算
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%A9%E7%94%A8%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    利用プラグイン
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    仕様書
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            仕様書
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    機能仕様書
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            機能仕様書
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    商品管理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            商品管理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/brands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ブランド
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/categories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    カテゴリ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/products/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    商品
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/product-var-msts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    商品バリエーション仕様
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    タグ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    システム管理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            システム管理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E7%AE%A1%E7%90%86/admins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    管理者
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    店舗管理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            店舗管理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3_1" id="__nav_3_1_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    基本マスタ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            基本マスタ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%BA%97%E8%88%97%E7%AE%A1%E7%90%86/%E5%9F%BA%E6%9C%AC%E3%83%9E%E3%82%B9%E3%82%BF/countries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    国
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%BA%97%E8%88%97%E7%AE%A1%E7%90%86/%E5%9F%BA%E6%9C%AC%E3%83%9E%E3%82%B9%E3%82%BF/genders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    性別
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%BA%97%E8%88%97%E7%AE%A1%E7%90%86/%E5%9F%BA%E6%9C%AC%E3%83%9E%E3%82%B9%E3%82%BF/jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    職業
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%BA%97%E8%88%97%E7%AE%A1%E7%90%86/%E5%9F%BA%E6%9C%AC%E3%83%9E%E3%82%B9%E3%82%BF/prefectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    都道府県
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%BA%97%E8%88%97%E7%AE%A1%E7%90%86/%E5%9F%BA%E6%9C%AC%E3%83%9E%E3%82%B9%E3%82%BF/register-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    登録タイプ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DB定義
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            DB定義
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DB定義概要
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            DB定義概要
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/DB%E5%AE%9A%E7%BE%A9%E6%A6%82%E8%A6%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    データベース定義書
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    商品系
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            商品系
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/PRODUCT_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    商品系概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/brands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    brands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/categories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    categories
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/category_product_rel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    category_product_rel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/products/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    products
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_tags_rel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_tags_rel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_mst_rel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_mst_rel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_mst_val_combs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_mst_val_combs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_mst_vals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_mst_vals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_var_msts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_var_msts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/product_vars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    product_vars
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/01_%E5%95%86%E5%93%81%E7%B3%BB/tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    tags
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    会員管理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            会員管理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/02_%E4%BC%9A%E5%93%A1%E7%AE%A1%E7%90%86/MEMBER_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    会員管理概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/02_%E4%BC%9A%E5%93%A1%E7%AE%A1%E7%90%86/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    users
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/02_%E4%BC%9A%E5%93%A1%E7%AE%A1%E7%90%86/customer_addresses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    customer_addresses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/02_%E4%BC%9A%E5%93%A1%E7%AE%A1%E7%90%86/point_histories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    point_histories
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    マスター
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            マスター
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/MASTER_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    マスター概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/countries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    countries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/currencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    currencies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/genders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    genders
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    jobs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/prefectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    prefectures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/register_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    register_types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DB%E5%AE%9A%E7%BE%A9/%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC/tax_rates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    tax_rates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    TIPS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            TIPS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../TIPS/filament-modal-in-modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filament
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      目的と前提
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログチャネル戦略
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ログチャネル戦略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      チャネル別設定方針
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      環境変数（ログ関連）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="環境変数（ログ関連）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログレベル
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-or-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      フォーマット（json or line）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      ペイロード制限
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログレベルと環境別ポリシー
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログ出力ラッパー（クラス名：ExLog）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ログ出力ラッパー（クラス名：ExLog）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログの構造
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      実装ステップ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログ出力例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログ出力箇所（共通イベント／例外処理）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ログ出力箇所（共通イベント／例外処理）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログ出力一覧（自動処理）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      詳細説明
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログ出力一覧（明示ログ出力基準）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow / イベント周りのログ責務
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">ログ基盤設計</h1>
+<h2 id="_2">目的と前提</h2>
+<ul>
+<li>Laravel 12 / Monolog ベースでログ管理を行うにあたり、ECCUBE で得た知見を踏まえて運用しやすい設計指針をまとめる。</li>
+<li>商品管理・会員管理・決済連携など複数ドメインで共通利用できるチャネルとレベル戦略を整備し、障害解析と日常運用の両立を図る。</li>
+<li>既存ドキュメント「ログ基盤・設定アクセス・多言語対応 方針」は横断観点の備忘録として維持し、本書でログ領域を詳細化する。</li>
+</ul>
+<h2 id="_3">ログチャネル戦略</h2>
+<ul>
+<li><strong>標準チャネル (<code>site</code>)</strong></li>
+<li>全体的なアプリ操作・業務処理の結果を記録する。</li>
+<li><code>INFO</code> レベルまで有効化し、ユーザー操作やジョブ実行のトレースを確保。</li>
+<li>
+<p>コンテキストに <code>request_id</code>、<code>user_id</code>、<code>feature</code> などを付与して検索性を高める。</p>
+</li>
+<li>
+<p><strong>フロントエンド (<code>frontend</code>)</strong></p>
+</li>
+<li>
+<p>明示的にチャネル指定した場合のみ出力。（EC-Spoke側では通常使わない）</p>
+</li>
+<li>
+<p><strong>管理画面 (<code>admin</code>)</strong></p>
+</li>
+<li>
+<p>明示的にチャネル指定した場合のみ出力。（EC-Spoke側では通常使わない）</p>
+</li>
+<li>
+<p><strong>決済 (<code>payment</code>)（将来予定）</strong></p>
+</li>
+<li>決済ゲートウェイのリクエスト／レスポンス概要を記録するタイミングや粒度は今後定義する。</li>
+<li>
+<p>秘匿情報はマスクする方針のみ先に決めておく。</p>
+</li>
+<li>
+<p><strong>監査／セキュリティ (<code>audit</code>)（将来予定）</strong></p>
+</li>
+<li>パスワード変更、ロール付与、API キー発行など重要操作のログ設計は今後検討する。</li>
+<li>変更前後の値差分や操作者、実行元 IP などを記録する方針を検討課題として残す。</li>
+</ul>
+<h3 id="_4">チャネル別設定方針</h3>
+<table>
+<thead>
+<tr>
+<th>チャネル</th>
+<th>driver</th>
+<th>保存先</th>
+<th>既定フォーマット</th>
+<th>レベル</th>
+<th>ローテーション</th>
+<th>用途・備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>site</code></td>
+<td><code>daily</code></td>
+<td><code>storage/logs/site.log</code></td>
+<td>規定値 <code>line</code></td>
+<td>規定値 <code>info</code></td>
+<td>30 日</td>
+<td>アプリ共通の操作ログ（サーバーログ）。<code>ExLog::info()</code> など明示チャネル無しの呼び出しはすべて <code>site</code> チャネルに出力される。</td>
+</tr>
+<tr>
+<td><code>frontend</code></td>
+<td><code>daily</code></td>
+<td><code>storage/logs/frontend.log</code></td>
+<td>規定値 <code>line</code></td>
+<td>規定値 <code>info</code></td>
+<td>30 日</td>
+<td>ECフロント向け。<code>ExLog::channel('frontend')-&gt;info(...)</code>のように明示的にチャネルを指定した場合のみ使用される。</td>
+</tr>
+<tr>
+<td><code>admin</code></td>
+<td><code>daily</code></td>
+<td><code>storage/logs/admin.log</code></td>
+<td>規定値 <code>line</code></td>
+<td>規定値 <code>info</code></td>
+<td>30 日</td>
+<td>管理画面向け。<code>ExLog::channel('admin')-&gt;info(...)</code>のように明示的にチャネルを指定した場合のみ使用される。</td>
+</tr>
+<tr>
+<td><code>payment</code></td>
+<td>未定</td>
+<td>未定</td>
+<td>未定</td>
+<td>未定</td>
+<td>未定</td>
+<td>決済連携ログの取得タイミング・フォーマットは後日策定。秘匿情報マスクのみ確定。</td>
+</tr>
+<tr>
+<td><code>audit</code></td>
+<td>未定</td>
+<td>未定</td>
+<td>未定</td>
+<td>未定</td>
+<td>未定</td>
+<td>監査ログの設計は後日検討。重要操作を対象とする方針のみ決定。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">環境変数（ログ関連）</h3>
+<p>本設計では、フォーマットとレベルは単一キーで全チャネル共通に制御する。</p>
+<p>採用キー（全チャネル共通）:</p>
+<h4 id="_6">ログレベル</h4>
+<ul>
+<li><code>EX_LOG_LEVEL</code>（例: <code>info</code>, <code>debug</code>）</li>
+<li>環境変数を設定しない場合、<code>APP_ENV</code>に基づいて自動的にデフォルト値が設定されます</li>
+<li><code>prod</code>, <code>stage</code>, <code>develop</code>: デフォルト <code>info</code></li>
+<li><code>testing</code>: デフォルト <code>debug</code>（PHPUnitテスト環境用）</li>
+<li>環境変数を設定することで、デフォルト値を上書き可能です</li>
+</ul>
+<h4 id="json-or-line">フォーマット（json or line）</h4>
+<ul>
+<li><code>EX_LOG_FORMAT</code>（例: <code>line</code>）</li>
+</ul>
+<h4 id="_7">ペイロード制限</h4>
+<p>リクエストのペイロード（<code>request()-&gt;all()</code>）や大きなコンテキスト配列をログに記録する際、サイズが無制限に膨らむとストレージや検索パフォーマンスに悪影響を及ぼす。以下の環境変数で制限を設定し、適切なサイズに抑える。</p>
+<ul>
+<li><code>EX_LOG_PAYLOAD_MAX_STRING_LENGTH=1000</code></li>
+<li><strong>個別の値の文字列長の上限</strong>（文字数）</li>
+<li>例: 長い説明文やJSONテキストが1000文字を超える場合、末尾が省略される</li>
+<li>
+<p>デフォルト: <code>1000</code>文字</p>
+</li>
+<li>
+<p><code>EX_LOG_PAYLOAD_MAX_ARRAY_DEPTH=20</code></p>
+</li>
+<li><strong>配列のネスト階層の深さ制限</strong></li>
+<li>例: 20階層を超えてネストされた配列は、それ以降の階層が省略される</li>
+<li>
+<p>デフォルト: <code>20</code>階層</p>
+</li>
+<li>
+<p><code>EX_LOG_PAYLOAD_MAX_ARRAY_SIZE=100</code></p>
+</li>
+<li><strong>配列の要素数の上限</strong></li>
+<li>例: 100要素を超える配列は、主要要素のみ記録される</li>
+<li>
+<p>デフォルト: <code>100</code>要素</p>
+</li>
+<li>
+<p><code>EX_LOG_PAYLOAD_MAX_TOTAL_SIZE=10240</code></p>
+</li>
+<li><strong>コンテキスト全体のサイズ上限</strong>（バイト）</li>
+<li>例: コンテキスト配列全体が10KBを超える場合、主要キーのみ記録される</li>
+<li>デフォルト: <code>10240</code>バイト（10KB）</li>
+</ul>
+<p>これらの制限は<code>ExLog::log()</code>内で実装され、すべてのログ出力に共通して適用される。制限を超えた場合、自動的に省略・切り詰め処理が行われ、ログ出力が継続される。</p>
+<h2 id="_8">ログレベルと環境別ポリシー</h2>
+<table>
+<thead>
+<tr>
+<th>環境</th>
+<th>デフォルトレベル</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>prod</code></td>
+<td><code>info</code></td>
+<td>ワーニング以上のみだと復旧時に操作履歴が追えないため、最低限の業務トレースを保持。通知閾値は <code>warning</code> 以上に設定しノイズを抑制。</td>
+</tr>
+<tr>
+<td><code>stage</code></td>
+<td><code>info</code></td>
+<td>本番環境と同等のログレベルで運用。必要に応じて環境変数 <code>EX_LOG_LEVEL=debug</code> で一時的に詳細ログを有効化可能。</td>
+</tr>
+<tr>
+<td><code>develop</code></td>
+<td><code>info</code></td>
+<td>開発環境でも本番に近いログレベルで運用。必要に応じて環境変数 <code>EX_LOG_LEVEL=debug</code> で詳細ログを有効化可能。</td>
+</tr>
+<tr>
+<td><code>testing</code></td>
+<td><code>debug</code></td>
+<td>PHPUnitテスト環境用。テスト実行時の詳細な挙動を把握するため。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>環境変数の自動設定</strong></p>
+<ul>
+<li><code>APP_ENV</code>に基づいて、<code>config/ecspoke.php</code>で自動的にデフォルトログレベルが設定されます</li>
+<li>環境変数 <code>EX_LOG_LEVEL</code> を設定することで、デフォルト値を上書き可能です</li>
+<li>
+<p>環境変数を設定しない場合、<code>APP_ENV</code>に応じたデフォルト値が自動的に適用されます</p>
+</li>
+<li>
+<p><strong>レベル選定ガイド</strong></p>
+</li>
+<li><code>info</code>: 正常系の業務イベント（在庫引当成功、決済リクエスト送信など）。</li>
+<li><code>notice</code>: 予兆レベル（リトライ成功、フォールバック利用など）。</li>
+<li><code>warning</code>: 想定外の入力や回復したエラー（API リトライ失敗→フォールバック成功）。</li>
+<li><code>error</code>: 処理失敗・要対応事象。</li>
+<li><code>critical</code>: 直ちに対応が必要な障害（決済不可、データ損失懸念）。</li>
+<li><code>alert</code>: 緊急対応が必要な重大な障害（セキュリティ侵害、重要なサービス停止など）。</li>
+<li><code>emergency</code>: システム全体が使用不可となる重大な障害（全サービス停止、データベース完全停止など）。</li>
+</ul>
+<h2 id="exlog">ログ出力ラッパー（クラス名：ExLog）</h2>
+<ul>
+<li><strong>目的</strong></li>
+<li>ログメッセージの命名規則、チャネル選択、外部通知の有無を統一し、開発者が <code>Log</code> ファサードを直接呼び出さなくても済むようにする。</li>
+<li>
+<p>共通のフォーマット／プロセッサはチャネル設定で付与しつつ、アプリ固有ルール（メッセージ形式やチャネル判定など）をラッパーで担保する。</p>
+</li>
+<li>
+<p><strong>役割</strong></p>
+</li>
+<li><code>ExLog::info('order.created', [...])</code> のように、<strong>英語ドット区切りのメッセージを必須</strong>とする。</li>
+<li>共通メソッドは <code>debug</code> / <code>info</code> / <code>notice</code> / <code>warning</code> / <code>error</code> / <code>critical</code> / <code>alert</code> / <code>emergency</code> を提供し、PSR-3 のレベルをすべてカバーする。</li>
+<li>チャネル選択は、<code>ExLog::info()</code>など明示的にチャネルを指定しない場合、すべて <code>site</code> チャネルに出力される。</li>
+<li>明示的にチャネルを指定する場合は <code>ExLog::channel('frontend')-&gt;info(...)</code> や <code>ExLog::channel('admin')-&gt;info(...)</code>、<code>ExLog::channel('payment')-&gt;info(...)</code> のようにメソッドチェーンで指定する。この場合、指定されたチャネルのみに出力される。</li>
+<li>
+<p>特定イベントを外部通知（Slack 等）へ送る場合も ExLog の内部にルールを集約し、呼び出し側が意識せず利用できるようにする（将来予定）。</p>
+</li>
+<li>
+<p><strong>実装構造</strong></p>
+</li>
+<li><code>app/Logging/ExLog.php</code>: メインのログ出力ラッパークラス。静的メソッドとチャネル指定のエントリーポイントを提供。</li>
+<li><code>app/Logging/ChannelLogger.php</code>: 明示チャネル指定用の軽量ロガー。<code>ExLog::channel('frontend')-&gt;info(...)</code> のようなチェーンを安全に解決する独立クラス。</li>
+<li>
+<p>最終的に Laravel の <code>Log</code> ファサードへ委譲し、設定されたプロセッサとフォーマッタが適用される。</p>
+</li>
+<li>
+<p><strong>メソッドシグネチャ</strong></p>
+</li>
+<li>すべてのログレベルメソッドは以下の統一されたシグネチャを持つ：
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="x">ExLog::debug(string $message, array $context = [], ?array $mask = null, ?array $callerOverride = null): void</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="x">ExLog::info(string $message, array $context = [], ?array $mask = null, ?array $callerOverride = null): void</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="x">ExLog::notice(string $message, array $context = [], ?array $mask = null, ?array $callerOverride = null): void</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="x">ExLog::warning(string $message, array $context = [], ?array $mask = null, ?array $callerOverride = null): void</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="x">ExLog::error(string $message, array $context = [], ?array $mask = null, ?array $callerOverride = null): void</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="x">ExLog::critical(string $message, array $context = [], ?array $mask = null, ?array $callerOverride = null): void</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="x">ExLog::alert(string $message, array $context = [], ?array $mask = null, ?array $callerOverride = null): void</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="x">ExLog::emergency(string $message, array $context = [], ?array $mask = null, ?array $callerOverride = null): void</span>
+</code></pre></div></li>
+<li>
+<p><strong>引数説明</strong>:</p>
+<ul>
+<li><code>$message</code>: ログメッセージ（英語ドット区切り形式を推奨、例: <code>'order.created'</code>）</li>
+<li><code>$context</code>: 追加情報の配列（例: <code>['order_id' =&gt; 123]</code>）</li>
+<li><code>$mask</code>: マスク対象のキーを指定する配列（例: <code>['email', 'phone']</code>）。指定されたキーの値がマスク処理される。</li>
+<li><code>$callerOverride</code>: 呼び出し元情報を明示的に上書きする配列（通常は自動検出されるため不要）。形式: <code>['class' =&gt; '', 'function' =&gt; '', 'file' =&gt; '', 'line' =&gt; 0]</code></li>
+</ul>
+</li>
+<li>
+<p><strong>フォーマット切り替え</strong></p>
+</li>
+<li><code>config/logging.php</code> のチャネル設定に <code>format</code>（<code>line</code> or <code>json</code>）を設け、共通 <code>tap</code> クラス（<code>App\Logging\ApplyFormatter</code>）で <code>LineFormatter</code>／<code>JsonFormatter</code> を出し分ける。</li>
+<li><code>.env</code> の <code>EX_LOG_FORMAT</code> を切り替えることで、ラインログ ⇔ JSON ログを環境ごとに簡単に変更できる。</li>
+<li>
+<p><strong>実装方法</strong>:</p>
+<ul>
+<li><code>ApplyFormatter</code> クラスは <code>Illuminate\Log\LogManager</code> の <code>tap</code> メソッドで呼び出される</li>
+<li><code>ApplyFormatter</code> クラス内で <code>$channel-&gt;getConfig('format')</code> または <code>env('EX_LOG_FORMAT', 'line')</code> を取得し、<code>line</code> の場合は <code>LineFormatter</code>、<code>json</code> の場合は <code>JsonFormatter</code> を適用する</li>
+<li>実装場所: <code>app/Logging/ApplyFormatter.php</code></li>
+</ul>
+</li>
+<li>
+<p><strong>使用例</strong></p>
+</li>
+<li>基本メソッド（チャネル自動判定、<code>site</code> チャネルに出力）：
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="x">ExLog::info(&#39;order.created&#39;, [&#39;order_id&#39; =&gt; 123]);</span>
+</code></pre></div></li>
+<li>メソッドチェーンでチャネル明示指定：
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="x">ExLog::channel(&#39;payment&#39;)-&gt;info(&#39;payment.processed&#39;, [&#39;order_id&#39; =&gt; 123]);</span>
+</code></pre></div></li>
+<li>
+<p>マスク処理を指定：
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="x">ExLog::info(&#39;user.registered&#39;, [&#39;email&#39; =&gt; $user-&gt;email, &#39;phone&#39; =&gt; $user-&gt;phone], [&#39;email&#39;, &#39;phone&#39;]);</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>マスク処理</strong></p>
+</li>
+<li>ExLogクラス内で明示的マスク処理を実装する。これにより、ExLog経由のログ出力には指定されたキーに対してマスク処理が適用される。</li>
+<li><strong>明示的マスク</strong>（第3引数 <code>$mask</code> で指定）:<ul>
+<li><code>ExLog::info()</code> などのメソッドの第3引数でマスク対象のキーを配列で指定</li>
+<li>例: <code>ExLog::info('order.created', ['email' =&gt; $email, 'phone' =&gt; $phone], ['email', 'phone'])</code></li>
+<li>ExLogクラス内で第3引数のマスク配列を処理し、指定されたキーをマスクしてからLaravelの<code>Log</code>ファサードに渡す</li>
+<li>実装場所: <code>app/Logging/ExLog.php</code> の <code>applyMasking()</code> メソッド</li>
+</ul>
+</li>
+<li><strong>マスクパターン</strong>:<ul>
+<li><code>email</code>: メールアドレス形式のマスク（例: <code>t***@example.com</code>）。キー名が <code>email</code> の場合に自動適用。</li>
+<li><code>phone</code>: 電話番号形式のマスク（例: <code>090-****-1234</code>）。キー名が <code>phone</code>, <code>phone_number</code>, <code>tel</code> の場合に自動適用。</li>
+<li><code>partial</code>: 部分表示マスク（例: <code>ab****cd</code>）。先頭2文字と末尾2文字を表示し、中間を <code>*</code> でマスク。デフォルトパターン。</li>
+</ul>
+</li>
+<li><strong>例外の扱い</strong>:<ul>
+<li><code>context</code> 配列の <code>exception</code> キーに <code>\Throwable</code> または <code>\Exception</code> オブジェクトが含まれる場合、マスク処理の対象外となる（Monologが自動的に処理）。</li>
+</ul>
+</li>
+<li><strong>再帰的マスク</strong>:<ul>
+<li><code>context</code> 配列内のネストされた配列に対しても再帰的にマスク処理が適用される。</li>
+</ul>
+</li>
+<li>
+<p>オブジェクトログは <code>toLogContext()</code> 実装（DTO）を用意し、JSON 化時のフィールド統一を図る。</p>
+</li>
+<li>
+<p><strong>呼び出し元検出</strong></p>
+</li>
+<li>ExLogクラスは3つの呼び出し元検出メソッドを提供：<ul>
+<li><code>findCallerFrame()</code>: 通常のログ出力時に呼び出し元を自動検出（<code>ExLog::info()</code> などの呼び出し箇所を特定）</li>
+<li><code>findCallerFromStack()</code>: トランザクションリスナーなどのイベントリスナーから呼び出される場合に使用（<code>DB::commit()</code> や <code>DB::rollBack()</code> を呼び出した行を取得）</li>
+<li><code>getLogCallerFromException()</code>: 例外オブジェクトから呼び出し元情報を抽出（例外ハンドラーで使用）</li>
+</ul>
+</li>
+<li><strong>実装上の流れ</strong>:<ul>
+<li>ExLogのプロセッサで <code>extra['log_caller']</code> に設定（Monologの <code>LogRecord</code> はプロパティが固定で、プロセッサが追加できるのは <code>context</code> か <code>extra</code> のみ）</li>
+<li>フォーマッタで <code>extra</code> から取り出してトップレベルの <code>log_caller</code> フィールドとして出力（<code>"file:line"</code> の文字列形式）</li>
+<li>元の <code>extra['log_caller']</code> は削除され、最終出力では <code>extra</code> に含まれない</li>
+</ul>
+</li>
+<li>
+<p><code>$callerOverride</code> 引数を使用することで、自動検出された呼び出し元を明示的に上書き可能（通常は不要）</p>
+</li>
+<li>
+<p><strong>ペイロードの取得</strong></p>
+</li>
+<li>ミドルウェア（<code>LogRequestPayload</code>）でリクエストのペイロード（<code>request()-&gt;all()</code>）を取得し、リクエスト属性に保存する</li>
+<li>別のミドルウェア（<code>LogPerformance</code>）でHTTPリクエストログ（<code>http.request</code>）の<code>context</code>にペイロードを直接展開する</li>
+<li><code>ExLog::log()</code>で一元的にサイズ制限とマスク処理を適用する（すべてのログ出力に共通）</li>
+<li>実装方法:<ul>
+<li>ミドルウェア（<code>app/Http/Middleware/LogRequestPayload.php</code>）で<code>request()-&gt;all()</code>を取得し、リクエスト属性に保存（例: <code>$request-&gt;attributes-&gt;set('log_payload', $payload)</code>）</li>
+<li>ミドルウェア（<code>app/Http/Middleware/LogPerformance.php</code>）でHTTPリクエストログの<code>context</code>にペイロードを直接展開</li>
+<li><code>ExLog::log()</code>で<code>context</code>全体にサイズ制限とマスク処理を適用</li>
+<li>HTTPリクエストコンテキスト外（CLI、キュー処理など）ではペイロードを取得しない</li>
+</ul>
+</li>
+<li>
+<p><strong>サイズ制限</strong>（<code>config/logging.php</code>で設定可能、<code>ExLog::log()</code>内で実装）：</p>
+<ul>
+<li>個別の値の文字列長: 1,000文字（超過時は末尾を省略）</li>
+<li>配列の深さ: 5階層（超過時は深い階層を省略）</li>
+<li>全体のコンテキストサイズ: 10KB（超過時は主要キーのみ記録）</li>
+<li>ファイルアップロード（<code>UploadedFile</code>）はファイル情報のみ記録（ファイル名、サイズ、MIME）</li>
+<li>Eloquent Modelはクラス名とIDのみ記録（例: <code>App\Models\User#123</code>）</li>
+<li>Collectionは要素数のみ記録（例: <code>Collection(10 items)</code>）</li>
+<li>例外オブジェクトはサイズ制限から除外（Monologが自動的に処理）</li>
+<li>処理順序: サイズ制限 → マスク処理の順で適用される</li>
+</ul>
+</li>
+<li>
+<p><strong>パフォーマンス情報の取得</strong></p>
+</li>
+<li>ミドルウェアでリクエスト開始時刻を記録し、プロセッサ（<code>PerformanceProcessor</code>）で応答時間を計算してログレコードに追加する</li>
+<li>実装方法:<ul>
+<li>ミドルウェア（例: <code>app/Http/Middleware/LogPerformance.php</code>）でリクエスト開始時刻を記録（セッションやリクエスト属性に保存）</li>
+<li>プロセッサ（例: <code>app/Logging/Processors/PerformanceProcessor.php</code>）で応答時間を計算し、ログレコードの<code>extra</code>に追加</li>
+<li>プロセッサは各チャネルの<code>tap</code>設定で登録する</li>
+</ul>
+</li>
+<li>
+<p>これにより、すべてのログ出力に自動的に応答時間が含まれ、サーバーログとUXログの両方でパフォーマンス情報を記録できる</p>
+</li>
+<li>
+<p><strong>HTTPステータスコードの取得</strong></p>
+</li>
+<li>ミドルウェアでレスポンスオブジェクトのステータスコードをリクエスト属性に保存し、プロセッサ（<code>WebRequestProcessor</code>）で取得してログレコードに追加する</li>
+<li>実装方法:<ul>
+<li>ミドルウェア（例: <code>app/Http/Middleware/LogPerformance.php</code>または専用ミドルウェア）でレスポンスオブジェクトのステータスコードをリクエスト属性に保存（例: <code>$request-&gt;attributes-&gt;set('http_status', $response-&gt;getStatusCode())</code>）</li>
+<li>プロセッサ（例: <code>app/Logging/Processors/WebRequestProcessor.php</code>）でリクエスト属性からHTTPステータスコードを取得し、ログレコードの<code>extra.http_status</code>に追加</li>
+<li>プロセッサは各チャネルの<code>tap</code>設定で登録する</li>
+</ul>
+</li>
+<li>これにより、すべてのログ出力に自動的にHTTPステータスコードが含まれ、正常レスポンス（200など）も含めてすべてのログでHTTPステータスを記録できる</li>
+</ul>
+<h3 id="_9">ログの構造</h3>
+<p><strong>出力順序とフィールド一覧</strong>（ラインログ・JSONログ共通）</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>子項目</th>
+<th>型</th>
+<th>説明</th>
+<th>例</th>
+<th>自動付与</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>datetime</code></td>
+<td>-</td>
+<td>string</td>
+<td>日時（ISO 8601形式、ラインログでは <code>[YYYY-MM-DD HH:mm:ss]</code> 形式）</td>
+<td><code>"2025-11-19T11:40:02.344438+09:00"</code></td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>channel</code></td>
+<td>-</td>
+<td>string</td>
+<td>チャネル名</td>
+<td><code>"site"</code></td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>log_level</code></td>
+<td>-</td>
+<td>string</td>
+<td>ログレベル</td>
+<td><code>"INFO"</code></td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>session_id</code></td>
+<td>-</td>
+<td>string</td>
+<td>セッションID（セッション開始済みの場合のみハッシュ化して表示。セッション未開始時は <code>N/A</code> を返す。ラインログでは <code>[session_id]</code> 形式）</td>
+<td><code>"359c9852"</code></td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td>-</td>
+<td>string</td>
+<td>リクエストID（<code>RequestUidProcessor</code>で取得。<code>UidProcessor</code> の薄いラッパ。<code>request_id</code>とも呼ばれる。ラインログでは <code>[uid]</code> 形式）</td>
+<td><code>"297f174"</code></td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>user_id</code></td>
+<td>-</td>
+<td>integer/null</td>
+<td>ユーザーID（<code>AuthenticatedUserProcessor</code>で取得。<code>Auth::user()</code> 等から ID を取得。ログインユーザーが存在する場合のみ出力。JSONログでは未ログイン時はフィールド自体が省略、ラインログでは空の <code>[]</code> が表示）</td>
+<td><code>1234</code> or <code>[]</code>(ラインログ)</td>
+<td>△</td>
+</tr>
+<tr>
+<td><code>http_method</code></td>
+<td>-</td>
+<td>string</td>
+<td>HTTPメソッド</td>
+<td><code>"GET"</code></td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>http_status</code></td>
+<td>-</td>
+<td>string</td>
+<td>HTTPステータスコード（数値文字列、ログ出力時点でレスポンスが未確定の場合は <code>"-"</code>）</td>
+<td><code>"200"</code> or <code>"-"</code></td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td>-</td>
+<td>string</td>
+<td>リクエストパス（先頭 <code>/</code> 付き）</td>
+<td><code>"/test/logs/site"</code></td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>-</td>
+<td>string</td>
+<td>ログメッセージ（英語ドット区切り形式を推奨）</td>
+<td><code>"http.request"</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>context</code></td>
+<td>-</td>
+<td>object/array</td>
+<td>追加情報（呼び出し側で指定した context 配列の内容。ExLog は追加項目を付与しない。ラインログでは <code>[{...}]</code> 形式）</td>
+<td><code>{"note":"site only"}</code> or <code>[]</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>log_caller</code></td>
+<td>-</td>
+<td>string</td>
+<td>ログ出力個所（<code>ExLog</code>クラス内で自動検出。<code>"file:line"</code>の形式。ラインログでは <code>[file:line]</code> 形式）</td>
+<td><code>"/home/kazuki/public_html/ec-spoke.local/routes/web.php:39"</code></td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>extra</code></td>
+<td>-</td>
+<td>object</td>
+<td>プロセッサで自動付与される情報（ラインログでは <code>[ip, referrer, user_agent, response_time]</code> 形式）</td>
+<td>-</td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>extra</code></td>
+<td><code>extra.ip</code></td>
+<td>string</td>
+<td>IPアドレス（<code>WebRequestProcessor</code>で取得。Livewire/HTTP 双方対応）</td>
+<td><code>"172.23.48.1"</code></td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>extra</code></td>
+<td><code>extra.referrer</code></td>
+<td>string</td>
+<td>リファラー（<code>WebRequestProcessor</code>で取得。Livewire/HTTP 双方対応）</td>
+<td><code>""</code></td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>extra</code></td>
+<td><code>extra.user_agent</code></td>
+<td>string</td>
+<td>ユーザーエージェント（<code>WebRequestProcessor</code>で取得。Livewire/HTTP 双方対応）</td>
+<td><code>"Mozilla/5.0 (Windows NT; Windows NT 10.0; ja-JP) WindowsPowerShell/5.1.26100.7019"</code></td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>extra</code></td>
+<td><code>extra.response_time_ms</code></td>
+<td>number</td>
+<td>応答時間（ミリ秒、ラインログでは <code>4.41ms</code> のように単位付きで表示）</td>
+<td><code>4.17</code></td>
+<td>○</td>
+</tr>
+<tr>
+<td><code>exception</code></td>
+<td>-</td>
+<td>object</td>
+<td>例外情報（例外発生時のみ出力。ラインログでは最後に例外クラス・メッセージ・スタックトレースが続く）</td>
+<td>-</td>
+<td>△</td>
+</tr>
+<tr>
+<td><code>exception</code></td>
+<td><code>exception.class</code></td>
+<td>string</td>
+<td>例外クラス名</td>
+<td><code>"RuntimeException"</code></td>
+<td>△</td>
+</tr>
+<tr>
+<td><code>exception</code></td>
+<td><code>exception.message</code></td>
+<td>string</td>
+<td>例外メッセージ</td>
+<td><code>"Something went wrong"</code></td>
+<td>△</td>
+</tr>
+<tr>
+<td><code>exception</code></td>
+<td><code>exception.file</code></td>
+<td>string</td>
+<td>例外発生ファイルパス</td>
+<td><code>"/home/kazuki/public_html/ec-spoke.local/app/Services/ProductService.php"</code></td>
+<td>△</td>
+</tr>
+<tr>
+<td><code>exception</code></td>
+<td><code>exception.line</code></td>
+<td>integer</td>
+<td>例外発生行番号</td>
+<td><code>123</code></td>
+<td>△</td>
+</tr>
+<tr>
+<td><code>exception</code></td>
+<td><code>exception.trace</code></td>
+<td>string</td>
+<td>スタックトレース</td>
+<td><code>"#0 /home/kazuki/public_html/ec-spoke.local/app/Http/Controllers/ProductController.php(45): ..."</code></td>
+<td>△</td>
+</tr>
+</tbody>
+</table>
+<p><strong>出力例</strong></p>
+<ul>
+<li>ラインログ（通常ログ）：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>[2025-11-19 12:50:59] [site.INFO] [a6e581a4] [6e63352] [] [GET - /test/logs/site - test.site.log] [{&quot;note&quot;:&quot;site only&quot;}] [/home/kazuki/public_html/ec-spoke.local/routes/web.php:39] [172.23.48.1, , Mozilla/5.0 (Windows NT; Windows NT 10.0; ja-JP) WindowsPowerShell/5.1.26100.7019, 4.41ms]
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>[2025-11-19 12:50:59] [site.INFO] [a6e581a4] [6e63352] [] [GET 200 /test/logs/site - http.request] [] [/home/kazuki/public_html/ec-spoke.local/app/Http/Middleware/LogPerformance.php:41] [172.23.48.1, , Mozilla/5.0 (Windows NT; Windows NT 10.0; ja-JP) WindowsPowerShell/5.1.26100.7019, 7.66ms]
+</code></pre></div>
+<ul>
+<li>ラインログ（トランザクションログ）：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>[2025-11-19 12:51:00] [site.DEBUG] [bf9f3178] [eac501b] [] [GET - /test/logs/transaction - transaction.begin] [{&quot;connection&quot;:&quot;mysql&quot;,&quot;level&quot;:1}] [/home/kazuki/public_html/ec-spoke.local/routes/web.php:57] [172.23.48.1, , Mozilla/5.0 (Windows NT; Windows NT 10.0; ja-JP) WindowsPowerShell/5.1.26100.7019, 7.72ms]
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>[2025-11-19 12:51:00] [site.DEBUG] [bf9f3178] [eac501b] [] [GET - /test/logs/transaction - transaction.committed] [{&quot;connection&quot;:&quot;mysql&quot;,&quot;level&quot;:0}] [/home/kazuki/public_html/ec-spoke.local/routes/web.php:58] [172.23.48.1, , Mozilla/5.0 (Windows NT; Windows NT 10.0; ja-JP) WindowsPowerShell/5.1.26100.7019, 9.92ms]
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>[2025-11-19 12:51:00] [site.WARNING] [a0682071] [be2a586] [] [GET - /test/tx/rollback - transaction.rollback] [{&quot;connection&quot;:&quot;mysql&quot;,&quot;level&quot;:0}] [/home/kazuki/public_html/ec-spoke.local/routes/web.php:78] [172.23.48.1, , Mozilla/5.0 (Windows NT; Windows NT 10.0; ja-JP) WindowsPowerShell/5.1.26100.7019, 8.67ms]
+</code></pre></div>
+<ul>
+<li>ラインログ（例外ログ）：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>[2025-11-19 12:51:00] [site.ERROR] [27c7c7a7] [633575d] [] [GET - /test/logs/exception - http.server.error] [{&quot;exception&quot;:&quot;Exception&quot;}] [/home/kazuki/public_html/ec-spoke.local/routes/web.php:64] [Exception: Test exception for logging in routes/web.php:64
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>#0 /home/kazuki/public_html/ec-spoke.local/vendor/laravel/framework/src/Illuminate/Routing/CallableDispatcher.php(39): Illuminate\Routing\RouteFileRegistrar-&gt;{closure:/home/kazuki/public_html/ec-spoke.local/routes/web.php:63}()
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>#1 /home/kazuki/public_html/ec-spoke.local/vendor/laravel/framework/src/Illuminate/Routing/Route.php(243): Illuminate\Routing\CallableDispatcher-&gt;dispatch()
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>#2 /home/kazuki/public_html/ec-spoke.local/vendor/laravel/framework/src/Illuminate/Routing/Route.php(214): Illuminate\Routing\Route-&gt;runCallable()
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>...] [172.23.48.1, , Mozilla/5.0 (Windows NT; Windows NT 10.0; ja-JP) WindowsPowerShell/5.1.26100.7019, 5.16ms]
+</code></pre></div>
+<ul>
+<li>ラインログ（管理画面チャネル）：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>[2025-11-19 12:50:59] [admin.INFO] [b2dbbd77] [18dca3e] [] [GET - /test/logs/admin - test.admin.log] [{&quot;note&quot;:&quot;admin only&quot;}] [/home/kazuki/public_html/ec-spoke.local/routes/web.php:51] [172.23.48.1, , Mozilla/5.0 (Windows NT; Windows NT 10.0; ja-JP) WindowsPowerShell/5.1.26100.7019, 3.96ms]
+</code></pre></div>
+<p><strong>フォーマット説明</strong>：
+  - <code>[datetime] [channel.level] [session_id] [uid] [user_id] [http_method http_status path - message] [context] [log_caller] [exception_trace] [ip, referrer, user_agent, response_time]</code>
+  - <code>user_id</code>が存在しない場合は空の<code>[]</code>が表示される
+  - <code>http_status</code>がログ出力時点で未確定の場合は<code>-</code>が表示される
+  - 例外ログの場合、<code>[log_caller]</code>の後に<code>[exception_trace]</code>（例外クラス名、メッセージ、スタックトレースを[]で囲んだ形式）が続き、その後に<code>[extra]</code>が続く</p>
+<ul>
+<li>JSONログ（通常ログの例）：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">&quot;datetime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-11-19T11:40:02.347604+09:00&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;site&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="nt">&quot;log_level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="nt">&quot;session_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;359c9852&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="nt">&quot;uid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;297f174&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="nt">&quot;http_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="nt">&quot;http_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;200&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/test/logs/site&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http.request&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span><span class="nt">&quot;context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">  </span><span class="nt">&quot;log_caller&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/kazuki/public_html/ec-spoke.local/app/Http/Middleware/LogPerformance.php:41&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">  </span><span class="nt">&quot;extra&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">    </span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.23.48.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">    </span><span class="nt">&quot;referrer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="nt">&quot;user_agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mozilla/5.0 (Windows NT; Windows NT 10.0; ja-JP) WindowsPowerShell/5.1.26100.7019&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">    </span><span class="nt">&quot;response_time_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">6.79</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>JSONログ（contextあり）：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">&quot;datetime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-11-19T11:40:02.344438+09:00&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;site&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="nt">&quot;log_level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="nt">&quot;session_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;359c9852&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="nt">&quot;uid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;297f174&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="nt">&quot;http_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span><span class="nt">&quot;http_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/test/logs/site&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;test.site.log&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">  </span><span class="nt">&quot;context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;site only&quot;</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">  </span><span class="nt">&quot;log_caller&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/kazuki/public_html/ec-spoke.local/routes/web.php:39&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">  </span><span class="nt">&quot;extra&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">    </span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.23.48.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">    </span><span class="nt">&quot;referrer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">    </span><span class="nt">&quot;user_agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mozilla/5.0 (Windows NT; Windows NT 10.0; ja-JP) WindowsPowerShell/5.1.26100.7019&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">    </span><span class="nt">&quot;response_time_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">4.17</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>JSONログ（トランザクションログの例）：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">&quot;datetime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-11-19T11:40:03.139191+09:00&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;site&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span><span class="nt">&quot;log_level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span><span class="nt">&quot;session_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b8778a8e&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span><span class="nt">&quot;uid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ad9ed6a&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span><span class="nt">&quot;http_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span><span class="nt">&quot;http_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/test/logs/transaction&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;transaction.begin&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">  </span><span class="nt">&quot;context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">    </span><span class="nt">&quot;connection&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mysql&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">    </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">  </span><span class="nt">&quot;log_caller&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/kazuki/public_html/ec-spoke.local/routes/web.php:57&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">  </span><span class="nt">&quot;extra&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">    </span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.23.48.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">    </span><span class="nt">&quot;referrer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">    </span><span class="nt">&quot;user_agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mozilla/5.0 (Windows NT; Windows NT 10.0; ja-JP) WindowsPowerShell/5.1.26100.7019&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">    </span><span class="nt">&quot;response_time_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">7.23</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>JSONログ（例外ログの例）：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">{</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nt">&quot;datetime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-11-19T12:00:00.000000+09:00&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;site&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="nt">&quot;log_level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ERROR&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="nt">&quot;session_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;42711887&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span><span class="nt">&quot;uid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8de04a5&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span><span class="nt">&quot;user_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">  </span><span class="nt">&quot;http_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">  </span><span class="nt">&quot;http_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;500&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/products/123&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http.server.error&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">  </span><span class="nt">&quot;context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">  </span><span class="nt">&quot;log_caller&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/kazuki/public_html/ec-spoke.local/app/Exceptions/Listeners/ExceptionListener.php:54&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">  </span><span class="nt">&quot;extra&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">    </span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.23.48.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">    </span><span class="nt">&quot;referrer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com/admin&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">    </span><span class="nt">&quot;user_agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64)&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">    </span><span class="nt">&quot;response_time_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">277.74</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">  </span><span class="nt">&quot;exception&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">    </span><span class="nt">&quot;class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RuntimeException&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Something went wrong&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="w">    </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/kazuki/public_html/ec-spoke.local/app/Services/ProductService.php&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="w">    </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="w">    </span><span class="nt">&quot;trace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#0 /home/kazuki/public_html/ec-spoke.local/app/Http/Controllers/ProductController.php(45): App\\Services\\ProductService-&gt;process()\n#1 ...&quot;</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="_10">実装ステップ</h2>
+<ol>
+<li><code>config/logging.php</code> にチャネル定義を追加し、各チャネルの <code>tap</code> 設定でプロセッサとフォーマッタを登録する。</li>
+<li>プロセッサ（<code>ExceptionProcessor</code>、<code>RequestUidProcessor</code>、<code>SessionIdProcessor</code>、<code>AuthenticatedUserProcessor</code>、<code>WebRequestProcessor</code>）は各チャネルの <code>tap</code> 設定で登録する</li>
+<li>フォーマッタ（<code>LineFormatter</code>、<code>JsonFormatter</code>）も <code>tap</code> 設定で登録する</li>
+<li>これにより、チャネルごとに異なるプロセッサを適用でき、設定が <code>config/logging.php</code> に集約される</li>
+<li>各ドメインのサービス層で <code>Log::channel()</code> から <code>ExLog</code> へのリファクタリングを実施し、命名規則とチャネル選択を統一する。</li>
+</ol>
+<h2 id="_11">ログ出力例</h2>
+<ul>
+<li><code>ExLog</code> を利用して、メッセージとコンテキスト配列を渡す。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="x">use App\Logging\ExLog;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="x">// 明示チャネル無しの呼び出し（すべて site チャネルに出力）</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="x">ExLog::info(&#39;order.created&#39;, [</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="x">    &#39;order_id&#39; =&gt; $order-&gt;id,</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="x">    &#39;user_id&#39; =&gt; $order-&gt;user_id,</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="x">]);</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="x">// 明示的にチャネルを指定（指定されたチャネルのみに出力）</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="x">ExLog::channel(&#39;payment&#39;)-&gt;warning(&#39;payment.retry_failed&#39;, [</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="x">    &#39;order_id&#39; =&gt; $order-&gt;id,</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="x">    &#39;attempt&#39; =&gt; $attempt,</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="x">    &#39;provider&#39; =&gt; $provider-&gt;name,</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="x">], [&#39;provider&#39;]); // 第3引数でマスク対象のキーを指定</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="x">// マスク処理の例</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="x">ExLog::info(&#39;user.registered&#39;, [</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="x">    &#39;email&#39; =&gt; $user-&gt;email,</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="x">    &#39;phone&#39; =&gt; $user-&gt;phone,</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="x">], [&#39;email&#39;, &#39;phone&#39;]); // 明示的にマスク対象を指定</span>
+</code></pre></div>
+<ul>
+<li>コンテキストに配列や DTO の <code>toLogContext()</code> を渡すと、ラインログでは <code>[key: value]</code>、JSON ログではそのままキー・値として出力される。</li>
+<li><strong>マスク処理の動作</strong>:</li>
+<li>ExLogで第3引数（<code>$mask</code>）を指定しない場合：マスク処理は行われず、すべての値がそのまま出力される</li>
+<li>ExLogで第3引数（<code>$mask</code>）を指定した場合：指定されたキーのみマスク処理が適用される</li>
+<li><strong><code>Log</code> ファサードの直接使用</strong>: ExLogの呼び出し元検出などの独自ロジックをバイパスしたい場合や、より低レベルなログ制御が必要な場合は、<code>Log</code> ファサードを直接使用できる。ただし、プロセッサやフォーマッタは同様に適用される。</li>
+</ul>
+<h2 id="_12">ログ出力箇所（共通イベント／例外処理）</h2>
+<h3 id="_13">ログ出力一覧（自動処理）</h3>
+<table>
+<thead>
+<tr>
+<th>リスナー / ミドルウェア</th>
+<th>イベント</th>
+<th>ログレベル</th>
+<th>メッセージ</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LogPerformance（ミドルウェア）</td>
+<td>HTTPリクエスト（通常）</td>
+<td><code>info</code></td>
+<td><code>http.request</code></td>
+<td>ルート解決結果（controller@method / invokable / closure）をもとに呼び出し元情報を付与して記録。Livewire内部リクエストは完全に除外。業務上重要なLivewire操作は各コンポーネント内でExLog::info()を手動呼び出し。</td>
+</tr>
+<tr>
+<td>ExceptionListener</td>
+<td>HTTP 例外（4xx）</td>
+<td><code>info</code></td>
+<td><code>http.client.error</code></td>
+<td>クライアント側の問題（不正なリクエストなど）。システムエラーではないため<code>info</code>で記録。</td>
+</tr>
+<tr>
+<td>ExceptionListener</td>
+<td>HTTP 例外（5xx）</td>
+<td><code>error</code></td>
+<td><code>http.server.error</code></td>
+<td>システムエラー。例外情報（<code>file</code>、<code>line</code>、<code>trace</code>）は自動的に<code>exception</code>オブジェクトとして付与される。</td>
+</tr>
+<tr>
+<td>TransactionListener</td>
+<td>トランザクション開始</td>
+<td><code>debug</code></td>
+<td><code>transaction.begin</code></td>
+<td>接続名とトランザクションレベルをcontextに含める。</td>
+</tr>
+<tr>
+<td>TransactionListener</td>
+<td>トランザクションコミット</td>
+<td><code>debug</code></td>
+<td><code>transaction.committed</code></td>
+<td>接続名とトランザクションレベルをcontextに含める。</td>
+</tr>
+<tr>
+<td>TransactionListener</td>
+<td>トランザクションロールバック</td>
+<td><code>warning</code></td>
+<td><code>transaction.rollback</code></td>
+<td>監視用のアラート閾値を設定しやすくするため<code>warning</code>で記録。</td>
+</tr>
+<tr>
+<td>TransactionListener</td>
+<td>未完了トランザクション</td>
+<td><code>error</code></td>
+<td><code>transaction.unfinished</code></td>
+<td>リクエスト終了時にトランザクションレベルが0より大きい場合に記録（キュー／バッチは未対応）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_14">詳細説明</h3>
+<ul>
+<li><strong>ExceptionListener</strong></li>
+<li><code>KernelEvents::EXCEPTION</code> を購読するリスナーを <code>App\Exceptions\Listeners\ExceptionListener</code> として実装する。</li>
+</ul>
+<h3 id="_15">ログ出力一覧（明示ログ出力基準）</h3>
+<table>
+<thead>
+<tr>
+<th>種別</th>
+<th>代表的なケース</th>
+<th>推奨ログレベル</th>
+<th>メッセージ例</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ユーザー操作（CRUD）</td>
+<td>画面上の登録・更新・削除などの完了時（例: 商品登録、会員情報更新、退会処理など）</td>
+<td><code>info</code></td>
+<td><code>admin.operation</code>, <code>member.operation</code>, <code>cart.operation</code></td>
+<td>画面アクセス自体は<code>http.request</code>で自動取得されるため、明示ログでは副作用のあるCRUD完了のみを対象とする。</td>
+</tr>
+<tr>
+<td>業務ステップマイルストーン</td>
+<td>カート→注文確認→決済選択→決済実行など、業務フローの主要ステップ完了</td>
+<td><code>info</code></td>
+<td><code>order.step.confirmed</code>, <code>order.step.payment_selected</code></td>
+<td>「ユーザーがどのステップまで進んだか」を追いたい単位のみ記録し、細かいUI操作は含めない。</td>
+</tr>
+<tr>
+<td>キャンセル・例外フロー</td>
+<td>注文キャンセル、出荷取消、承認却下など通常フローから外れる操作</td>
+<td><code>info</code></td>
+<td><code>order.canceled</code>, <code>shipment.reverted</code>, <code>approval.rejected</code></td>
+<td>正常フローから外れ、業務影響の大きい操作は必ず記録する。</td>
+</tr>
+<tr>
+<td>メール送信系</td>
+<td>通知メール・確認メールの送信開始／完了／失敗</td>
+<td><code>info</code> / <code>critical</code></td>
+<td><code>mail.sent</code>, <code>mail.failed</code></td>
+<td>業務上重要なメール（本登録、出荷通知など）は必ず記録する。失敗時は<code>critical</code>でアラート対象。</td>
+</tr>
+<tr>
+<td>外部API呼び出し</td>
+<td>決済API・在庫APIなど外部サービスとの通信結果</td>
+<td><code>info</code> / <code>error</code></td>
+<td><code>payment.request</code>, <code>payment.failed</code>, <code>inventory.api.error</code></td>
+<td>リクエストIDや外部側コードなど、調査に必要な最小限の情報を付与して記録する。</td>
+</tr>
+<tr>
+<td>ドメインイベント（Event）</td>
+<td>注文確定、支払い失敗、サブスクリプション解約などのビジネスイベント発生時</td>
+<td><code>info</code> / <code>error</code></td>
+<td><code>event.order.placed</code>, <code>event.payment.failed</code>, <code>event.subscription.canceled</code></td>
+<td>「何が起きたか」を業務用語で表現する。頻度の高い技術的イベントは対象外とし、本当に重要な出来事のみ記録する。</td>
+</tr>
+<tr>
+<td>リスナー（Listener）</td>
+<td>イベントを受けて通知送信や別Workflow起動などの副作用を実行した結果</td>
+<td><code>info</code> / <code>error</code></td>
+<td><code>listener.order_placed.notifications_sent</code>, <code>listener.payment_failed.workflow_started</code></td>
+<td>副作用処理の成功/失敗を簡潔に記録し、二重実行や取りこぼしの調査に使う。</td>
+</tr>
+<tr>
+<td>通知（Notification）</td>
+<td>メール・Slackなどの通知送信</td>
+<td><code>info</code> / <code>error</code></td>
+<td><code>notification.mail.sent</code>, <code>notification.mail.failed</code>, <code>notification.slack.sent</code></td>
+<td>誰にどのチャネルで通知したか、失敗時の原因を追跡できる粒度で記録する。</td>
+</tr>
+<tr>
+<td>CSV入出力</td>
+<td>管理画面からのCSVインポート・エクスポートの開始／完了／失敗</td>
+<td><code>info</code> / <code>error</code></td>
+<td><code>csv.import.started</code>, <code>csv.import.failed</code>, <code>csv.export.completed</code></td>
+<td>対象テーブルや件数、ファイル名などを含めて記録し、不整合や取り込みミスの調査に使う。</td>
+</tr>
+<tr>
+<td>バッチ操作</td>
+<td>定期ジョブ／手動実行ジョブ（在庫同期、再計算など）の開始／完了／失敗</td>
+<td><code>info</code> / <code>error</code></td>
+<td><code>batch.daily_job.started</code>, <code>batch.daily_job.failed</code>, <code>batch.inventory_sync.completed</code></td>
+<td>大量データに影響する処理の実行履歴と結果を記録し、後から「いつ／どのジョブが／どう失敗したか」を追えるようにする。</td>
+</tr>
+<tr>
+<td>予兆・フォールバック</td>
+<td>リトライ成功、代替処理に切り替えた場合など</td>
+<td><code>notice</code> / <code>warning</code></td>
+<td><code>payment.fallback.used</code></td>
+<td>将来の障害兆候になりうるが、即時対応までは不要なもの。</td>
+</tr>
+<tr>
+<td>エラー系（要対応）</td>
+<td>処理失敗、外部APIエラー、想定外例外など</td>
+<td><code>error</code> / <code>critical</code></td>
+<td><code>cart.error</code>, <code>payment.failed</code></td>
+<td>アラート対象になりうる事象。業務影響に応じてレベルを使い分ける。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="workflow">Workflow / イベント周りのログ責務</h3>
+<p>Workflow やドメインイベント周辺で <code>ExLog</code> を使う際の責務分担は次の通りとする（Eloquentオブザーバーは別設計とする）。</p>
+<table>
+<thead>
+<tr>
+<th>層・仕組み</th>
+<th>主な役割</th>
+<th>ログの粒度・目的</th>
+<th>代表メッセージ例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workflowクラス</td>
+<td>複数ステップを跨ぐビジネスプロセスの進行管理</td>
+<td>ワークフロー全体の開始・ステップ完了・失敗など「マイルストーン」を <code>info</code> / <code>error</code> で記録</td>
+<td><code>workflow.order_placement.started</code>, <code>workflow.order_placement.step.payment_processed</code>, <code>workflow.order_placement.failed</code></td>
+</tr>
+<tr>
+<td>ジョブ（Workflowのステップ）</td>
+<td>各ステップの非同期実行</td>
+<td>ステップごとの開始・完了・失敗、リトライ情報を必要に応じて記録</td>
+<td><code>job.reserve_inventory.started</code>, <code>job.reserve_inventory.completed</code>, <code>job.reserve_inventory.failed</code></td>
+</tr>
+<tr>
+<td>ドメインイベント（Event）</td>
+<td>ビジネスイベントの発火（注文確定、支払い失敗など）</td>
+<td>「ビジネス上の出来事」として重要なイベントのみを <code>info</code> / <code>error</code> で記録</td>
+<td><code>event.order.placed</code>, <code>event.payment.failed</code>, <code>event.subscription.canceled</code></td>
+</tr>
+<tr>
+<td>リスナー（Listener）</td>
+<td>イベントに応じた副作用処理（別Workflow起動・通知など）</td>
+<td>副作用の結果（成功 / 失敗）を簡潔に記録</td>
+<td><code>listener.order_placed.notifications_sent</code>, <code>listener.payment_failed.workflow_started</code></td>
+</tr>
+<tr>
+<td>通知（Notification）</td>
+<td>メール・Slackなどの送信</td>
+<td>通知送信の開始・成功・失敗を <code>info</code> / <code>error</code> で記録</td>
+<td><code>notification.mail.sent</code>, <code>notification.mail.failed</code>, <code>notification.slack.sent</code></td>
+</tr>
+</tbody>
+</table>
+<p>方針として、Workflow/ジョブは「処理フローのどこまで進んだか」を、イベント/リスナー/通知は「ビジネス上何が起きたか」「誰にどう通知したか」を表現するログを担当し、内部の細かい技術ログは必要に応じてサービスクラス側で記録する。</p>
+<!-- 属性ベースExLogは廃止。ログは明示的に ExLog クラスを呼び出して記録する方針に統一。 -->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 EC-SPOKE
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

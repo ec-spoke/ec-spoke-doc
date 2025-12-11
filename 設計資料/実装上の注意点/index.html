@@ -11,10 +11,6 @@
       
       
       
-        <link rel="prev" href="../%E4%BE%A1%E6%A0%BC%E8%A8%88%E7%AE%97/">
-      
-      
-        <link rel="next" href="../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/brands/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>利用プラグイン - EC-SPOKE ドキュメント</title>
+        <title>実装上の注意点 - EC-SPOKE ドキュメント</title>
       
     
     
@@ -75,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -106,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              利用プラグイン
+              実装上の注意点
             
           </span>
         </div>
@@ -218,8 +219,6 @@
   
   
   
-    
-  
   
     
     
@@ -227,12 +226,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/%E5%85%A8%E4%BD%93%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/" class="md-tabs__link">
           
   
@@ -402,29 +399,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -437,7 +429,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             設計資料
@@ -727,17 +719,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../%E5%88%A9%E7%94%A8%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3/" class="md-nav__link">
         
   
   
@@ -748,7 +733,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -2214,6 +2198,157 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#octane" class="md-nav__link">
+    <span class="md-ellipsis">
+      Octane対応実装注意点
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Octane対応実装注意点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. config() の動的変更
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-static" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. シングルトン・staticプロパティ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. セッション・キャッシュドライバ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-viewshare" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. View::share() の使用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. グローバル変数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. ミドルウェアの状態
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. イベントリスナーの状態
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. データベース接続
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. メモリリーク対策
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. ファイルロック
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. マルチテナント対応（将来予定）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. 設定ファイル変更時の再起動
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      実装時のチェックリスト
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考資料
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2229,159 +2364,235 @@
 
 
 
-  <h1>利用プラグイン</h1>
+<h1 id="_1">実装上の注意点</h1>
+<h2 id="octane">Octane対応実装注意点</h2>
+<p>Laravel Octane を使用する場合、常駐型ワーカープロセスにより、リクエスト間で状態が保持される可能性があります。以下の点に注意して実装してください。</p>
+<h3 id="1-config">1. config() の動的変更</h3>
+<p><strong>❌ 非推奨</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="x">// リクエスト間で状態が保持される可能性がある</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="x">config([&#39;theme.current&#39; =&gt; &#39;new-theme&#39;]);</span>
+</code></pre></div></p>
+<p><strong>✅ 推奨</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="x">// データベースから読み取る</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="x">$theme = DB::table(&#39;system_settings&#39;)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="x">    -&gt;where(&#39;key&#39;, &#39;theme.current&#39;)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="x">    -&gt;value(&#39;value&#39;);</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="x">// または、設定ファイルを変更してOctaneを再起動</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="x">// config/theme.php を変更 → php artisan octane:reload</span>
+</code></pre></div></p>
+<p><strong>注意点</strong>:
+- 設定ファイル（<code>config/*.php</code>）を変更した場合は、Octaneを再起動する必要があります
+- <code>.env</code> ファイルを変更した場合も、Octaneを再起動する必要があります
+- 動的に変更する必要がある場合は、データベースに保存し、キャッシュを使用してください</p>
+<h3 id="2-static">2. シングルトン・staticプロパティ</h3>
+<p><strong>❌ 非推奨</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="x">class MyService {</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="x">    protected array $requestData = []; // リクエスト間で保持される可能性</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="x">    public function setData(array $data): void {</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="x">        $this-&gt;requestData = $data; // 次のリクエストに影響する可能性</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="x">    }</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="x">}</span>
+</code></pre></div></p>
+<p><strong>✅ 推奨</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="x">// パターン1: リクエストスコープにする</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="x">$this-&gt;app-&gt;bind(MyService::class, function ($app) {</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="x">    return new MyService; // リクエストごとに新しいインスタンス</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="x">});</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="x">// パターン2: リクエストごとにクリアする</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="x">class MyService {</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="x">    protected array $requestData = [];</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="x">    public function clearRequestData(): void {</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="x">        $this-&gt;requestData = [];</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="x">    }</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="x">}</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="x">// OctaneServiceProvider でリクエスト終了時にクリア</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="x">Octane::terminate(function () {</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="x">    app(MyService::class)-&gt;clearRequestData();</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="x">});</span>
+</code></pre></div></p>
+<p><strong>注意点</strong>:
+- シングルトンにリクエスト固有のデータを保存しない
+- staticプロパティにリクエスト固有のデータを保存しない
+- リクエスト固有のデータは、メソッドの引数や戻り値で管理する</p>
+<h3 id="3">3. セッション・キャッシュドライバ</h3>
+<p><strong>❌ 非推奨</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>SESSION_DRIVER=file
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>CACHE_STORE=array
+</code></pre></div></p>
+<p><strong>✅ 推奨</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>SESSION_DRIVER=redis
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>CACHE_STORE=redis
+</code></pre></div></p>
+<p><strong>注意点</strong>:
+- <code>file</code> ドライバは、ワーカー間で状態が共有されないため、問題が発生する可能性があります
+- <code>array</code> ドライバは、リクエスト間で状態が保持されないため、問題が発生する可能性があります
+- <code>redis</code> または <code>database</code> ドライバを使用してください</p>
+<h3 id="4-viewshare">4. View::share() の使用</h3>
+<p><strong>⚠️ 注意が必要</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="x">// 読み取り専用データは問題なし</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="x">View::share(&#39;blockRegistry&#39;, $blocks-&gt;all());</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="x">// リクエスト固有データは避ける</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="x">View::share(&#39;currentUser&#39;, $user); // ❌ 次のリクエストに影響する可能性</span>
+</code></pre></div></p>
+<p><strong>✅ 推奨</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="x">// リクエスト固有データは、ビューに直接渡す</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="x">return view(&#39;page&#39;, [&#39;user&#39; =&gt; $user]);</span>
+</code></pre></div></p>
+<p><strong>注意点</strong>:
+- <code>View::share()</code> で共有するデータは、読み取り専用で不変のものに限定する
+- リクエスト固有のデータは、ビューに直接渡す</p>
+<h3 id="5">5. グローバル変数</h3>
+<p><strong>❌ 絶対に使用しない</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="x">$GLOBALS[&#39;user&#39;] = $user;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="x">global $theme;</span>
+</code></pre></div></p>
+<p><strong>注意点</strong>:
+- グローバル変数は、リクエスト間で状態が保持されるため、絶対に使用しない
+- 必要なデータは、メソッドの引数や戻り値で管理する</p>
+<h3 id="6">6. ミドルウェアの状態</h3>
+<p><strong>❌ 非推奨</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="x">class MyMiddleware {</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="x">    private $state = []; // リクエスト間で保持される可能性</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="x">    public function handle($request, Closure $next) {</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="x">        $this-&gt;state[&#39;user&#39;] = $request-&gt;user();</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="x">        return $next($request);</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="x">    }</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="x">}</span>
+</code></pre></div></p>
+<p><strong>✅ 推奨</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="x">class MyMiddleware {</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="x">    public function handle($request, Closure $next) {</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="x">        // リクエスト固有のデータは、リクエストに保存</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="x">        $request-&gt;attributes-&gt;set(&#39;user&#39;, $request-&gt;user());</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="x">        return $next($request);</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="x">    }</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="x">}</span>
+</code></pre></div></p>
+<p><strong>注意点</strong>:
+- ミドルウェアのプロパティにリクエスト固有のデータを保存しない
+- リクエスト固有のデータは、<code>$request-&gt;attributes</code> に保存する</p>
+<h3 id="7">7. イベントリスナーの状態</h3>
+<p><strong>❌ 非推奨</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="x">class MyListener {</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="x">    private $processed = []; // リクエスト間で保持される可能性</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="x">    public function handle(MyEvent $event): void {</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="x">        $this-&gt;processed[] = $event-&gt;id;</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="x">    }</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="x">}</span>
+</code></pre></div></p>
+<p><strong>✅ 推奨</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="x">class MyListener {</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="x">    public function handle(MyEvent $event): void {</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="x">        // リクエスト固有のデータは、メソッド内で処理</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="x">        $this-&gt;processEvent($event);</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="x">    }</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="x">    private function processEvent(MyEvent $event): void {</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="x">        // 処理ロジック</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="x">    }</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="x">}</span>
+</code></pre></div></p>
+<p><strong>注意点</strong>:
+- イベントリスナーのプロパティにリクエスト固有のデータを保存しない
+- リクエスト固有のデータは、メソッド内で処理する</p>
+<h3 id="8">8. データベース接続</h3>
+<p><strong>注意点</strong>:
+- Laravelが自動的に接続プールを管理するため、通常は明示的な接続管理は不要
+- 複数のデータベース接続を使用する場合は、接続名を明示的に指定する</p>
+<h3 id="9">9. メモリリーク対策</h3>
+<p><strong>設定</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="x">// config/octane.php</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="x">&#39;max_requests&#39; =&gt; env(&#39;OCTANE_MAX_REQUESTS&#39;, 1000),</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="x">&#39;memory_threshold&#39; =&gt; env(&#39;OCTANE_MEMORY_THRESHOLD&#39;, 128),</span>
+</code></pre></div></p>
+<p><strong>注意点</strong>:
+- <code>max_requests</code> を適切に設定し、定期的にワーカーを再起動する
+- <code>memory_threshold</code> を設定し、メモリ使用量が閾値を超えた場合にワーカーを再起動する
+- メモリリークの原因となるコードを避ける（循環参照、グローバル変数等）</p>
+<h3 id="10">10. ファイルロック</h3>
+<p><strong>⚠️ 注意が必要</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="x">// 複数ワーカーから同時にファイルにアクセスされる可能性</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="x">File::put($path, $content);</span>
+</code></pre></div></p>
+<p><strong>✅ 推奨</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="x">// パターン1: ファイルロックを使用</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="x">use Illuminate\Support\Facades\File;</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="x">File::lock($path, function () use ($path, $content) {</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="x">    File::put($path, $content);</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="x">});</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="x">// パターン2: データベースに保存</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="x">DB::table(&#39;cache&#39;)-&gt;updateOrInsert(</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="x">    [&#39;key&#39; =&gt; $key],</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="x">    [&#39;value&#39; =&gt; $value, &#39;updated_at&#39; =&gt; now()]</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="x">);</span>
+</code></pre></div></p>
+<p><strong>注意点</strong>:
+- 複数ワーカーから同時にファイルにアクセスされる可能性がある
+- ファイルロックを使用するか、データベースに保存する</p>
+<h3 id="11">11. マルチテナント対応（将来予定）</h3>
+<p><strong>実装時の注意点</strong>:
+- <code>spatie/laravel-multitenancy</code> を使用する場合、Octaneのフックでテナントコンテキストをクリアする必要があります
+- <code>OctaneServiceProvider</code> で、リクエスト開始時・終了時に <code>Tenancy::forgetCurrent()</code> を実行してください</p>
+<p><strong>実装例</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="x">// app/Providers/OctaneServiceProvider.php</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="x">Octane::requestReceived(function () {</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="x">    Tenancy::forgetCurrent();</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="x">});</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="x">Octane::terminate(function () {</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="x">    Tenancy::forgetCurrent();</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="x">    Octane::flush();</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="x">});</span>
+</code></pre></div></p>
+<h3 id="12">12. 設定ファイル変更時の再起動</h3>
+<p><strong>必須対応</strong>:
+- <code>config/*.php</code> ファイルを変更した場合は、Octaneを再起動する必要があります
+- <code>.env</code> ファイルを変更した場合も、Octaneを再起動する必要があります</p>
+<p><strong>再起動方法</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># ゼロダウンタイム再起動</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>php<span class="w"> </span>artisan<span class="w"> </span>octane:reload
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># または systemd を使用している場合</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>octane
+</code></pre></div></p>
+<p><strong>注意点</strong>:
+- 設定ファイルの変更は、即座に反映されません
+- 必ずOctaneを再起動してください</p>
+<h2 id="_2">実装時のチェックリスト</h2>
+<p>Octane環境で実装する際は、以下を確認してください：</p>
+<ul>
+<li>[ ] <code>config()</code> の動的変更を使用していない</li>
+<li>[ ] シングルトンにリクエスト固有のデータを保存していない</li>
+<li>[ ] staticプロパティにリクエスト固有のデータを保存していない</li>
+<li>[ ] セッション・キャッシュドライバが <code>redis</code> または <code>database</code> である</li>
+<li>[ ] <code>View::share()</code> で共有するデータが読み取り専用である</li>
+<li>[ ] グローバル変数を使用していない</li>
+<li>[ ] ミドルウェアのプロパティにリクエスト固有のデータを保存していない</li>
+<li>[ ] イベントリスナーのプロパティにリクエスト固有のデータを保存していない</li>
+<li>[ ] ファイルロックが必要な場合は実装している</li>
+<li>[ ] マルチテナント対応の場合は、Octaneフックでテナントコンテキストをクリアしている</li>
+</ul>
+<h2 id="_3">参考資料</h2>
+<ul>
+<li><a href="../../../private/Laravel-Octane-導入ガイド.md">Laravel Octane 導入ガイド</a></li>
+<li><a href="https://laravel.com/docs/octane">Laravel Octane 公式ドキュメント</a></li>
+</ul>
 
-<p>削除予定
-"mominalzaraa/filament-localization": "^1.0",　</p>
-<p>アイコン
-https://filamentphp.com/plugins/filafly-carbon-icons★</p>
-<p>バージョン
-https://filamentphp.com/plugins/cmsmax-system-versions★
-https://filamentphp.com/plugins/awcodes-versions</p>
-<p>JSON整形
-https://filamentphp.com/plugins/novadaemon-pretty-json★</p>
-<p>テーブルリサイズ　使っていないけど
-https://filamentphp.com/plugins/asmit-nepali-resized-column★</p>
-<p>ログイン画面切り替え
-https://filamentphp.com/plugins/caresome-auth-designer★</p>
-<p>ログビュアー
-https://filamentphp.com/plugins/achyutn-log-viewer★</p>
-<p>2FA認証
-https://filamentphp.com/plugins/jeffgreco-breezy★</p>
-<p>アラート
-https://filamentphp.com/plugins/codewithdennis-simple-alert★
-https://filamentphp.com/plugins/awcodes-shout</p>
-<p>テーブルヘッダー固定　使っていない
-https://filamentphp.com/plugins/watheq-alshowaiter-sticky-table-header★</p>
-<p>ラジオボタン装飾
-https://filamentphp.com/plugins/jaocero-radio-deck★</p>
-<p>リピーター
-https://filamentphp.com/plugins/zvizvi-relation-manager-repeater</p>
-<p>あどみんトップばー
-https://filamentphp.com/plugins/attargah-admin-bar</p>
-<p>レイアウト変更
-https://filamentphp.com/plugins/asosick-layout-manager</p>
-<p>テーブルバッジ
-https://filamentphp.com/plugins/awcodes-badgeable-column</p>
-<p>ビデオ最適化
-https://filamentphp.com/plugins/tony-mansour-video-optimizer</p>
-<p>Youtube埋込をしたい場合？
-https://filamentphp.com/plugins/awcodes-matinee</p>
-<p>メールブロック作成
-https://filamentphp.com/plugins/zpmlabs-unlayer</p>
-<p>https://filamentphp.com/plugins/rich-editor-fullscreen</p>
-<p>アンレイヤー
-https://filamentphp.com/plugins/zpmlabs-unlayer</p>
-<p>PDFアップロード
-https://filamentphp.com/plugins/asmit-nepali-upload</p>
-<p>多言語
-翻訳
-https://filamentphp.com/plugins/statik-chained-translation-manager ★
-データ側の翻訳
-https://filamentphp.com/plugins/pixelpeter-language-tabs
-https://filamentphp.com/plugins/abdulmajeed-jamaan-translatable-tabs ★
-言語切替
-https://filamentphp.com/plugins/bezhansalleh-language-switch★
-タブレイアウト
-https://filamentphp.com/plugins/solution-forest-tab-layout-plugin</p>
-<p>国コード
-https://filamentphp.com/plugins/tapp-network-country-code-field</p>
-<p>通貨
-https://filamentphp.com/plugins/ariaieboy-currency</p>
-<p>電話番号 国別
-https://filamentphp.com/plugins/ysfkaya-phone-input</p>
-<p>検索
-https://filamentphp.com/plugins/kainiklas-laravel-scout</p>
-<p>ウィジット
-https://filamentphp.com/plugins/eightynine-advanced-widgets</p>
-<p>Common Helper Components
-https://filamentphp.com/plugins/marc-beinder-common-helper-components</p>
-<p>レポート表を作る
-https://filamentphp.com/plugins/eightynine-reports</p>
-<p>数値アップダウン
-https://filamentphp.com/plugins/lara-zeus-quantity</p>
-<p>日付選択
-https://filamentphp.com/plugins/coolsam-flatpickr
-https://filamentphp.com/plugins/jacobtims-inline-date-time-picker
-時間選択　時計
-https://filamentphp.com/plugins/husam-tariq-time-picker</p>
-<p>プレビュー
-https://filamentphp.com/plugins/pboivin-peek</p>
-<p>クッキー同意
-https://filamentphp.com/plugins/jeffersongoncalves-cookie-consent</p>
-<p>権限
-権限管理 使えるか？
-https://filamentphp.com/plugins/code-with-sps-154-users-roles-permissions
-https://filamentphp.com/plugins/bezhansalleh-shield
-https://filamentphp.com/plugins/hexters-hexa</p>
-<p>WEBフック受信 決済プラグイン開発時には必須
-https://filamentphp.com/plugins/tapp-network-webhook-client
-WEBフック送信
-https://filamentphp.com/plugins/marjose123-webhook-server</p>
-<p>キュー　一括アップロードで利用？
-https://filamentphp.com/plugins/eddie-rusinskas-queueable-bulk-actions</p>
-<p>メディア管理を作らないと　これは使えるか？
-https://filamentphp.com/plugins/webplusm-json-media</p>
-<p>エラーメール
-https://filamentphp.com/plugins/hugomyb-error-mailer</p>
-<p>リストグループ
-https://filamentphp.com/plugins/lara-zeus-list-group</p>
-<p>★ランキング
-https://filamentphp.com/plugins/mokhosh-rating</p>
-<p>ヘルプ？
-https://filamentphp.com/plugins/guava-knowledge-base</p>
-<p>メールログ　受注画面で利用
-https://filamentphp.com/plugins/tapp-network-mail-log</p>
-<p>文字数カウンター
-https://filamentphp.com/plugins/tallyschmeits-character-counter</p>
-<p>開発モードの表示
-https://filamentphp.com/plugins/ahmad-oops</p>
-<p>laravel-debugbar
-Horizo​​n、Telescope、Pulse
-https://filamentphp.com/plugins/stephenjude-debugger</p>
-<p>ツールチップ
-https://filamentphp.com/plugins/defstudio-column-length-limiter</p>
-<p>アイコンをテーブルで選択できるようにする
-https://filamentphp.com/plugins/guava-icon-select-column</p>
-<p>ウィジット拡張
-https://filamentphp.com/plugins/eightynine-advanced-widgets
-https://filamentphp.com/plugins/awcodes-overlook</p>
-<p>コンボボックス（CSVで使えそう）
-https://filamentphp.com/plugins/novadaemon-combobox</p>
-<p>エクスポートに使える？
-https://filamentphp.com/plugins/alperen-ersoy-export</p>
-<p>SQLを書くなら
-https://filamentphp.com/plugins/mrpowerup82-sql-field</p>
-<p>プログレスバー
-https://filamentphp.com/plugins/tapp-network-progress-bar-column</p>
-<p>動画やメディア表示に使えそう
-https://filamentphp.com/plugins/hugomyb-media-action</p>
-<p>プッシュ通知
-https://filamentphp.com/plugins/xentixar-push-notifications</p>
-<p>なりすまし
-https://filamentphp.com/plugins/joseph-szobody-impersonate</p>
-<p>お問い合わせ
-https://filamentphp.com/plugins/lara-zeus-bolt
-https://filamentphp.com/plugins/lara-zeus-wind</p>
-<p>SEO　メディアライブラリが関係する？
-https://filamentphp.com/plugins/ralphjsmit-seo
-メディアライブラリ？？
-https://filamentphp.com/plugins/filament-spatie-media-library</p>
-<p>タイムゾーン　使う？
-https://filamentphp.com/plugins/tapp-network-timezone-field</p>
-<p>モジュール
-https://filamentphp.com/plugins/coolsam-modules</p>
-<p>リピーターをテーブルに　要調査
-https://filamentphp.com/plugins/icetalker-table-repeater</p>
 
 
 
 
 
-
-
-  
-  
 
 
 

@@ -3993,13 +3993,19 @@
 </ul>
 <h3 id="admin-appadmin">Admin (<code>app/Admin/</code>)</h3>
 <ul>
-<li><strong>役割</strong>: Filament管理画面のリソース、コンポーネント、ウィジェット、ページを配置</li>
+<li><strong>役割</strong>: Filament管理画面のリソース、コンポーネント、ウィジェット、ページ、プラグインを配置</li>
 <li><strong>配置ルール</strong>:</li>
 <li><strong>Resources/</strong>: Filamentリソース（CRUD管理）。各リソースは <code>{ResourceName}Resource.php</code> として配置</li>
 <li><strong>Components/</strong>: Filamentカスタムコンポーネント。Livewireコンポーネントやカスタムフィールドを配置</li>
 <li><strong>Widgets/</strong>: Filamentウィジェット。ダッシュボード用の小型コンポーネント</li>
+<li><strong>Pages/</strong>: Filamentページ。独立したページコンポーネントを配置</li>
+<li><strong>Plugins/</strong>: Filamentプラグインの拡張。外部パッケージのプラグインを拡張・カスタマイズする場合に配置。各プラグインは <code>{PluginName}/</code> ディレクトリに集約し、プラグインクラス、ページ、関連ロジックを同一ディレクトリに配置</li>
 <li><strong>Base/</strong>: 基底クラス・共通機能。複数のリソースで共通利用される基底クラス</li>
 <li><strong>Views/</strong>: ビューは<a href="../AdminViewsResource%E8%BF%91%E6%8E%A5%E9%85%8D%E7%BD%AE/">近接配置ルール</a>に従い、各コンポーネント・リソースと同じディレクトリ直下の <code>Views/</code> に配置</li>
+<li><strong>プラグイン拡張の配置例</strong>:</li>
+<li><code>app/Admin/Plugins/LogViewer/CustomLogViewerPlugin.php</code> - FilamentLogViewerパッケージの拡張プラグイン（<code>Filament\Contracts\Plugin</code> を実装）</li>
+<li><code>app/Admin/Plugins/LogViewer/CustomLogTable.php</code> - プラグインが提供するPage</li>
+<li><code>app/Admin/Plugins/LogViewer/CustomLog.php</code> - プラグイン固有のロジック（ログデータ処理等）</li>
 <li><strong>注意</strong>: リソース／ウィジェット／フォームビューは <code>app/Admin/{Domain}</code> 以下で近接配置し、必要なサービスやポリシーを <code>use App\Domains\...</code> で参照する。ドメインフォルダ内のアクションやサービスを呼び出すことで、管理画面・API・ジョブのロジックを統一できる。監査ログ・設定変更などは Administration ドメインのサービスを経由して Filament から操作し、変更履歴を残す。詳細は<a href="../AdminViewsResource%E8%BF%91%E6%8E%A5%E9%85%8D%E7%BD%AE/">近接配置ルール</a>を参照</li>
 </ul>
 <h3 id="frontend-appfrontend">Frontend (<code>app/Frontend/</code>)</h3>

@@ -11,10 +11,6 @@
       
       
       
-        <link rel="prev" href="../%E4%BE%A1%E6%A0%BC%E8%A8%88%E7%AE%97/">
-      
-      
-        <link rel="next" href="../../%E4%BB%95%E6%A7%98%E6%9B%B8/%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8/%E5%95%86%E5%93%81%E7%AE%A1%E7%90%86/brands/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>利用プラグイン - EC-SPOKE ドキュメント</title>
+        <title>アーキテクチャ検討項目一覧 - EC-SPOKE ドキュメント</title>
       
     
     
@@ -75,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -106,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              利用プラグイン
+              アーキテクチャ検討項目一覧
             
           </span>
         </div>
@@ -218,8 +219,6 @@
   
   
   
-    
-  
   
     
     
@@ -227,12 +226,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/%E5%85%A8%E4%BD%93%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3/" class="md-tabs__link">
           
   
@@ -402,29 +399,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -437,7 +429,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             設計資料
@@ -727,17 +719,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../%E5%88%A9%E7%94%A8%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3/" class="md-nav__link">
         
   
   
@@ -748,7 +733,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -2214,6 +2198,70 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 運用基盤
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. PDF出力
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. CSV入出力
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. メール・通知
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. イベントアーキテクチャ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. プラグイン・拡張基盤
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2229,159 +2277,42 @@
 
 
 
-  <h1>利用プラグイン</h1>
-
-<p>削除予定
-"mominalzaraa/filament-localization": "^1.0",　</p>
-<p>アイコン
-https://filamentphp.com/plugins/filafly-carbon-icons★</p>
-<p>バージョン
-https://filamentphp.com/plugins/cmsmax-system-versions★
-https://filamentphp.com/plugins/awcodes-versions</p>
-<p>JSON整形
-https://filamentphp.com/plugins/novadaemon-pretty-json★</p>
-<p>テーブルリサイズ　使っていないけど
-https://filamentphp.com/plugins/asmit-nepali-resized-column★</p>
-<p>ログイン画面切り替え
-https://filamentphp.com/plugins/caresome-auth-designer★</p>
-<p>ログビュアー
-https://filamentphp.com/plugins/achyutn-log-viewer★</p>
-<p>2FA認証
-https://filamentphp.com/plugins/jeffgreco-breezy★</p>
-<p>アラート
-https://filamentphp.com/plugins/codewithdennis-simple-alert★
-https://filamentphp.com/plugins/awcodes-shout</p>
-<p>テーブルヘッダー固定　使っていない
-https://filamentphp.com/plugins/watheq-alshowaiter-sticky-table-header★</p>
-<p>ラジオボタン装飾
-https://filamentphp.com/plugins/jaocero-radio-deck★</p>
-<p>リピーター
-https://filamentphp.com/plugins/zvizvi-relation-manager-repeater</p>
-<p>あどみんトップばー
-https://filamentphp.com/plugins/attargah-admin-bar</p>
-<p>レイアウト変更
-https://filamentphp.com/plugins/asosick-layout-manager</p>
-<p>テーブルバッジ
-https://filamentphp.com/plugins/awcodes-badgeable-column</p>
-<p>ビデオ最適化
-https://filamentphp.com/plugins/tony-mansour-video-optimizer</p>
-<p>Youtube埋込をしたい場合？
-https://filamentphp.com/plugins/awcodes-matinee</p>
-<p>メールブロック作成
-https://filamentphp.com/plugins/zpmlabs-unlayer</p>
-<p>https://filamentphp.com/plugins/rich-editor-fullscreen</p>
-<p>アンレイヤー
-https://filamentphp.com/plugins/zpmlabs-unlayer</p>
-<p>PDFアップロード
-https://filamentphp.com/plugins/asmit-nepali-upload</p>
-<p>多言語
-翻訳
-https://filamentphp.com/plugins/statik-chained-translation-manager ★
-データ側の翻訳
-https://filamentphp.com/plugins/pixelpeter-language-tabs
-https://filamentphp.com/plugins/abdulmajeed-jamaan-translatable-tabs ★
-言語切替
-https://filamentphp.com/plugins/bezhansalleh-language-switch★
-タブレイアウト
-https://filamentphp.com/plugins/solution-forest-tab-layout-plugin</p>
-<p>国コード
-https://filamentphp.com/plugins/tapp-network-country-code-field</p>
-<p>通貨
-https://filamentphp.com/plugins/ariaieboy-currency</p>
-<p>電話番号 国別
-https://filamentphp.com/plugins/ysfkaya-phone-input</p>
-<p>検索
-https://filamentphp.com/plugins/kainiklas-laravel-scout</p>
-<p>ウィジット
-https://filamentphp.com/plugins/eightynine-advanced-widgets</p>
-<p>Common Helper Components
-https://filamentphp.com/plugins/marc-beinder-common-helper-components</p>
-<p>レポート表を作る
-https://filamentphp.com/plugins/eightynine-reports</p>
-<p>数値アップダウン
-https://filamentphp.com/plugins/lara-zeus-quantity</p>
-<p>日付選択
-https://filamentphp.com/plugins/coolsam-flatpickr
-https://filamentphp.com/plugins/jacobtims-inline-date-time-picker
-時間選択　時計
-https://filamentphp.com/plugins/husam-tariq-time-picker</p>
-<p>プレビュー
-https://filamentphp.com/plugins/pboivin-peek</p>
-<p>クッキー同意
-https://filamentphp.com/plugins/jeffersongoncalves-cookie-consent</p>
-<p>権限
-権限管理 使えるか？
-https://filamentphp.com/plugins/code-with-sps-154-users-roles-permissions
-https://filamentphp.com/plugins/bezhansalleh-shield
-https://filamentphp.com/plugins/hexters-hexa</p>
-<p>WEBフック受信 決済プラグイン開発時には必須
-https://filamentphp.com/plugins/tapp-network-webhook-client
-WEBフック送信
-https://filamentphp.com/plugins/marjose123-webhook-server</p>
-<p>キュー　一括アップロードで利用？
-https://filamentphp.com/plugins/eddie-rusinskas-queueable-bulk-actions</p>
-<p>メディア管理を作らないと　これは使えるか？
-https://filamentphp.com/plugins/webplusm-json-media</p>
-<p>エラーメール
-https://filamentphp.com/plugins/hugomyb-error-mailer</p>
-<p>リストグループ
-https://filamentphp.com/plugins/lara-zeus-list-group</p>
-<p>★ランキング
-https://filamentphp.com/plugins/mokhosh-rating</p>
-<p>ヘルプ？
-https://filamentphp.com/plugins/guava-knowledge-base</p>
-<p>メールログ　受注画面で利用
-https://filamentphp.com/plugins/tapp-network-mail-log</p>
-<p>文字数カウンター
-https://filamentphp.com/plugins/tallyschmeits-character-counter</p>
-<p>開発モードの表示
-https://filamentphp.com/plugins/ahmad-oops</p>
-<p>laravel-debugbar
-Horizo​​n、Telescope、Pulse
-https://filamentphp.com/plugins/stephenjude-debugger</p>
-<p>ツールチップ
-https://filamentphp.com/plugins/defstudio-column-length-limiter</p>
-<p>アイコンをテーブルで選択できるようにする
-https://filamentphp.com/plugins/guava-icon-select-column</p>
-<p>ウィジット拡張
-https://filamentphp.com/plugins/eightynine-advanced-widgets
-https://filamentphp.com/plugins/awcodes-overlook</p>
-<p>コンボボックス（CSVで使えそう）
-https://filamentphp.com/plugins/novadaemon-combobox</p>
-<p>エクスポートに使える？
-https://filamentphp.com/plugins/alperen-ersoy-export</p>
-<p>SQLを書くなら
-https://filamentphp.com/plugins/mrpowerup82-sql-field</p>
-<p>プログレスバー
-https://filamentphp.com/plugins/tapp-network-progress-bar-column</p>
-<p>動画やメディア表示に使えそう
-https://filamentphp.com/plugins/hugomyb-media-action</p>
-<p>プッシュ通知
-https://filamentphp.com/plugins/xentixar-push-notifications</p>
-<p>なりすまし
-https://filamentphp.com/plugins/joseph-szobody-impersonate</p>
-<p>お問い合わせ
-https://filamentphp.com/plugins/lara-zeus-bolt
-https://filamentphp.com/plugins/lara-zeus-wind</p>
-<p>SEO　メディアライブラリが関係する？
-https://filamentphp.com/plugins/ralphjsmit-seo
-メディアライブラリ？？
-https://filamentphp.com/plugins/filament-spatie-media-library</p>
-<p>タイムゾーン　使う？
-https://filamentphp.com/plugins/tapp-network-timezone-field</p>
-<p>モジュール
-https://filamentphp.com/plugins/coolsam-modules</p>
-<p>リピーターをテーブルに　要調査
-https://filamentphp.com/plugins/icetalker-table-repeater</p>
+<h1 id="_1">アーキテクチャ検討項目一覧</h1>
+<p>EC-CUBEのソースコード調査を踏まえて、EC-SPOKEで検討すべき基盤機能・サービス・イベント関連の項目を整理する。</p>
+<h2 id="1">1. 運用基盤</h2>
+<ul>
+<li><strong>メンテナンス切替サービス</strong>: <code>SystemService</code> によるメンテナンスモード制御、DB/メモリ情報取得。イベント駆動で後処理（<code>KernelEvents::TERMINATE</code>）を差し込む構造を参考に運用系サービスを設計する。(<code>src/Eccube/Service/SystemService.php</code>)</li>
+</ul>
+<h2 id="3-pdf">3. PDF出力</h2>
+<ul>
+<li><strong>帳票サービス</strong>: <code>OrderPdfService</code> が TCPDF/FPDI を継承し、テンプレート読み込みとショップ情報・受注明細描画をまとめて実装。帳票テンプレート管理、フォント設定、複数配送対応などの要件整理に利用する。(<code>src/Eccube/Service/OrderPdfService.php</code>)</li>
+</ul>
+<h2 id="4-csv">4. CSV入出力</h2>
+<ul>
+<li><strong>CSV定義とエクスポート</strong>: <code>CsvExportService</code> が CSV 項目定義（<code>dtb_csv</code>）と <code>CsvType</code> を元にヘッダ/データ出力を制御。フォーム条件→QueryBuilder→ページング→ストリーム出力までの流れを参考に、柔軟なCSV基盤を検討する。(<code>src/Eccube/Service/CsvExportService.php</code>)</li>
+</ul>
+<h2 id="5">5. メール・通知</h2>
+<ul>
+<li><strong>メール送信サービス</strong>: <code>MailService</code> がテンプレート描画、イベントディスパッチ、履歴記録（<code>MailHistory</code>）を統合。通知処理の共通化、差し込みポイント設計、履歴管理の検討に活用する。(<code>src/Eccube/Service/MailService.php</code>)</li>
+</ul>
+<h2 id="7">7. イベントアーキテクチャ</h2>
+<ul>
+<li><strong>イベント定義集約</strong>: <code>Eccube\Event\EccubeEvents</code> によるイベント名の集中管理。管理画面・フロント・メールなど拡張ポイントの一覧として活用し、EC-SPOKEでのイベント契約を設計する。(<code>src/Eccube/Event/EccubeEvents.php</code>)</li>
+<li><strong>テンプレートイベント</strong>: <code>TemplateEvent</code> がアセット/スニペット追加やパラメータ操作を提供。テーマやビュー拡張の差し込み点検討に利用する。(<code>src/Eccube/Event/TemplateEvent.php</code>)</li>
+<li><strong>イベントリスナー</strong>: <code>src/Eccube/EventListener/</code> 配下でレートリミット、メンテナンス判定、ログ集約など非機能処理を差し込む構造。横断的なイベント購読パターンを把握する。</li>
+</ul>
+<h2 id="8">8. プラグイン・拡張基盤</h2>
+<ul>
+<li><strong>プラグインライフサイクル</strong>: <code>PluginService</code> がプラグインの展開、依存確認、Schema更新、Manager呼び出しまで統括。EC-SPOKEの「パッケージ化」やモジュール配布を検討する際の参考とする。(<code>src/Eccube/Service/PluginService.php</code>)</li>
+</ul>
+<hr />
+<p>上記をベースに、各機能の採用可否や再設計方針を議論する際のチェックリストとして活用する。</p>
 
 
 
 
 
 
-
-  
-  
 
 
 
